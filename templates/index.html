@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Asha AI Chatbot - Enhancing women careers with JobsForHer Foundation">
+    <title>Asha AI Chatbot</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #6a1b9a;
+            --secondary: #9c27b0;
+            --accent: #e91e63;
+            --light: #f5f5f5;
+            --dark: #333;
+            --success: #4caf50;
+            --warning: #ff9800;
+            --info: #2196f3;
+            --error: #f44336;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f9f3ff;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            text-align: center;
+            padding: 2rem 1rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+        
+        .feature-card {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        }
+        
+        .feature-card i {
+            font-size: 2rem;
+            color: var(--secondary);
+            margin-bottom: 1rem;
+        }
+        
+        .feature-card h3 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+        
+        /* Chatbot Button */
+        .chatbot-toggle {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: var(--primary);
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(106, 27, 154, 0.3);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+        
+        .chatbot-toggle:hover {
+            background: var(--secondary);
+            transform: scale(1.1);
+        }
+        
+        .chatbot-toggle i {
+            font-size: 1.5rem;
+        }
+        
+        /* Chatbot Container */
+        .chatbot-container {
+            position: fixed;
+            bottom: 5rem;
+            right: 2rem;
+            width: 350px;
+            max-width: 90%;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+            overflow: hidden;
+            transform: translateY(20px);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+        
+        .chatbot-container.active {
+            transform: translateY(0);
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .chatbot-header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .chatbot-header h3 {
+            font-weight: 500;
+        }
+        
+        .chatbot-close {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+        }
+        
+        .chatbot-messages {
+            height: 350px;
+            overflow-y: auto;
+            padding: 1rem;
+            background: #fafafa;
+        }
+        
+        .message {
+            margin-bottom: 1rem;
+            max-width: 80%;
+            padding: 0.8rem 1rem;
+            border-radius: 15px;
+            font-size: 0.9rem;
+            line-height: 1.4;
+            position: relative;
+        }
+        
+        .bot-message {
+            background: white;
+            color: var(--dark);
+            border: 1px solid #eee;
+            border-bottom-left-radius: 5px;
+            align-self: flex-start;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+        
+        .user-message {
+            background: var(--primary);
+            color: white;
+            border-bottom-right-radius: 5px;
+            align-self: flex-end;
+            margin-left: auto;
+        }
+        
+        .quick-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+        
+        .quick-action {
+            background: rgba(156, 39, 176, 0.1);
+            color: var(--primary);
+            border: none;
+            border-radius: 20px;
+            padding: 0.5rem 1rem;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: background 0.2s ease;
+        }
+        
+        .quick-action:hover {
+            background: rgba(156, 39, 176, 0.2);
+        }
+        
+        .chatbot-input {
+            display: flex;
+            padding: 0.8rem;
+            border-top: 1px solid #eee;
+            background: white;
+        }
+        
+        .chatbot-input input {
+            flex: 1;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 25px;
+            outline: none;
+            font-size: 0.9rem;
+        }
+        
+        .chatbot-input button {
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            margin-left: 0.5rem;
+            cursor: pointer;
+            transition: background 0.2s ease;
+        }
+        
+        .chatbot-input button:hover {
+            background: var(--secondary);
+        }
+        
+        .feedback-buttons {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 0.5rem;
+            gap: 0.5rem;
+        }
+        
+        .feedback-button {
+            background: none;
+            border: none;
+            color: #aaa;
+            cursor: pointer;
+            font-size: 0.8rem;
+            transition: color 0.2s ease;
+        }
+        
+        .feedback-button:hover {
+            color: var(--primary);
+        }
+        
+        .category-buttons {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+        
+        .category-button {
+            background: rgba(156, 39, 176, 0.1);
+            color: var(--primary);
+            border: none;
+            border-radius: 8px;
+            padding: 0.6rem;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+        
+        .category-button i {
+            margin-right: 0.3rem;
+        }
+        
+        .category-button:hover {
+            background: rgba(156, 39, 176, 0.2);
+            transform: translateY(-2px);
+        }
+        
+        footer {
+            background: var(--dark);
+            color: white;
+            text-align: center;
+            padding: 2rem 1rem;
+            margin-top: 3rem;
+        }
+        
+        footer p {
+            opacity: 0.8;
+            font-size: 0.9rem;
+        }
+        
+        .typing-indicator {
+            display: flex;
+            padding: 0.8rem 1rem;
+        }
+        
+        .typing-dot {
+            width: 8px;
+            height: 8px;
+            background: #ccc;
+            border-radius: 50%;
+            margin: 0 2px;
+            animation: typingAnimation 1.4s infinite ease-in-out;
+        }
+        
+        .typing-dot:nth-child(1) {
+            animation-delay: 0s;
+        }
+        
+        .typing-dot:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+        
+        .typing-dot:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+        
+        @keyframes typingAnimation {
+            0%, 60%, 100% {
+                transform: translateY(0);
+            }
+            30% {
+                transform: translateY(-5px);
+            }
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+            
+            .chatbot-container {
+                width: 90%;
+                right: 5%;
+            }
+            
+            .category-buttons {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Asha AI Chatbot</h1>
+        <p>Your AI-powered guide to women careers, jobs, mentorships, and events.</p>
+    </header>
+
+    <div class="container">
+        <h2 style="text-align: center; color: var(--primary); margin-bottom: 2rem;">How Asha Can Help You</h2>
+        
+        <div class="features-grid">
+            <div class="feature-card">
+                <i class="fas fa-briefcase"></i>
+                <h3>Career Exploration</h3>
+                <p>Discover various career paths tailored for women with insights into growth opportunities and required skills.</p>
+            </div>
+            
+            <div class="feature-card">
+                <i class="fas fa-search-dollar"></i>
+                <h3>Job Listings</h3>
+                <p>Access real-time job opportunities from top companies committed to diversity and inclusion.</p>
+            </div>
+            
+            <div class="feature-card">
+                <i class="fas fa-calendar-alt"></i>
+                <h3>Community Events</h3>
+                <p>Stay updated with upcoming networking events, workshops, and career development sessions.</p>
+            </div>
+            
+            <div class="feature-card">
+                <i class="fas fa-hands-helping"></i>
+                <h3>Mentorship Programs</h3>
+                <p>Connect with experienced mentors who can guide you through your career journey.</p>
+            </div>
+            
+            <div class="feature-card">
+                <i class="fas fa-chalkboard-teacher"></i>
+                <h3>Sessions & Workshops</h3>
+                <p>Learn new skills through our curated webinars and training programs.</p>
+            </div>
+            
+            <div class="feature-card">
+                <i class="fas fa-book-open"></i>
+                <h3>Resources</h3>
+                <p>Access articles, research papers, and guides on career advancement and workplace success.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Chatbot Toggle Button -->
+    <div class="chatbot-toggle" id="chatbotToggle">
+        <i class="fas fa-comments"></i>
+    </div>
+
+    <!-- Chatbot Container -->
+    <div class="chatbot-container" id="chatbotContainer">
+        <div class="chatbot-header">
+            <h3>Asha AI Assistant</h3>
+            <button class="chatbot-close" id="chatbotClose">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        
+        <div class="chatbot-messages" id="chatbotMessages">
+            <!-- Messages will appear here -->
+        </div>
+        
+        <div class="chatbot-input">
+            <input type="text" id="userInput" placeholder="Ask me something...">
+            <button id="sendButton"><i class="fas fa-paper-plane"></i></button>
+        </div>
+    </div>
+
+    <footer>
+        <p>Powered by ethical AI principles | JobsForHer Foundation</p>
+        <p style="margin-top: 0.5rem;">© 2023 All Rights Reserved</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const chatbotToggle = document.getElementById('chatbotToggle');
+            const chatbotContainer = document.getElementById('chatbotContainer');
+            const chatbotClose = document.getElementById('chatbotClose');
+            const chatbotMessages = document.getElementById('chatbotMessages');
+            const userInput = document.getElementById('userInput');
+            const sendButton = document.getElementById('sendButton');
+            
+            // Toggle chatbot visibility
+            chatbotToggle.addEventListener('click', function() {
+                chatbotContainer.classList.toggle('active');
+                if (chatbotContainer.classList.contains('active') {
+                    // Add welcome message if chat is empty
+                    if (chatbotMessages.children.length === 0) {
+                        addBotMessage("Hi there! 👋 I'm Asha, your AI career assistant. How can I help you today?");
+                        
+                        // Add quick action buttons
+                        setTimeout(() => {
+                            const quickActions = document.createElement('div');
+                            quickActions.className = 'quick-actions';
+                            
+                            const categories = [
+                                {icon: 'briefcase', text: 'Career Guidance'},
+                                {icon: 'search-dollar', text: 'Job Listings'},
+                                {icon: 'calendar-alt', text: 'Upcoming Events'},
+                                {icon: 'hands-helping', text: 'Mentorship'},
+                                {icon: 'chalkboard-teacher', text: 'Workshops'},
+                                {icon: 'book-open', text: 'Resources'}
+                            ];
+                            
+                            categories.forEach(category => {
+                                const button = document.createElement('button');
+                                button.className = 'quick-action';
+                                button.innerHTML = `<i class="fas fa-${category.icon}"></i> ${category.text}`;
+                                button.addEventListener('click', () => {
+                                    handleQuickAction(category.text);
+                                });
+                                quickActions.appendChild(button);
+                            });
+                            
+                            const messageDiv = document.createElement('div');
+                            messageDiv.className = 'message bot-message';
+                            messageDiv.appendChild(quickActions);
+                            chatbotMessages.appendChild(messageDiv);
+                            scrollToBottom();
+                        }, 500);
+                    }
+                }
+            });
+            
+            chatbotClose.addEventListener('click', function() {
+                chatbotContainer.classList.remove('active');
+            });
+            
+            // Send message when button is clicked
+            sendButton.addEventListener('click', sendMessage);
+            
+            // Send message when Enter key is pressed
+            userInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    sendMessage();
+                }
+            });
+            
+            function sendMessage() {
+                const message = userInput.value.trim();
+                if (message) {
+                    addUserMessage(message);
+                    userInput.value = '';
+                    
+                    // Show typing indicator
+                    showTypingIndicator();
+                    
+                    // Simulate bot response after a delay
+                    setTimeout(() => {
+                        removeTypingIndicator();
+                        handleUserMessage(message);
+                    }, 1000 + Math.random() * 2000); // Random delay between 1-3 seconds
+                }
+            }
+            
+            function addUserMessage(text) {
+                const messageDiv = document.createElement('div');
+                messageDiv.className = 'message user-message';
+                messageDiv.textContent = text;
+                chatbotMessages.appendChild(messageDiv);
+                scrollToBottom();
+            }
+            
+            function addBotMessage(text) {
+                const messageDiv = document.createElement('div');
+                messageDiv.className = 'message bot-message';
+                messageDiv.textContent = text;
+                chatbotMessages.appendChild(messageDiv);
+                scrollToBottom();
+                
+                // Add feedback buttons
+                const feedbackDiv = document.createElement('div');
+                feedbackDiv.className = 'feedback-buttons';
+                feedbackDiv.innerHTML = `
+                    <button class="feedback-button" title="Helpful"><i class="fas fa-thumbs-up"></i></button>
+                    <button class="feedback-button" title="Not helpful"><i class="fas fa-thumbs-down"></i></button>
+                `;
+                messageDiv.appendChild(feedbackDiv);
+            }
+            
+            function showTypingIndicator() {
+                const typingDiv = document.createElement('div');
+                typingDiv.className = 'typing-indicator';
+                typingDiv.id = 'typingIndicator';
+                typingDiv.innerHTML = `
+                    <div class="typing-dot"></div>
+                    <div class="typing-dot"></div>
+                    <div class="typing-dot"></div>
+                `;
+                chatbotMessages.appendChild(typingDiv);
+                scrollToBottom();
+            }
+            
+            function removeTypingIndicator() {
+                const typingIndicator = document.getElementById('typingIndicator');
+                if (typingIndicator) {
+                    typingIndicator.remove();
+                }
+            }
+            
+            function scrollToBottom() {
+                chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+            }
+            
+            function handleUserMessage(message) {
+                message = message.toLowerCase();
+                
+                // Simple response logic - in a real app, this would connect to an AI service
+                if (message.includes('hello') || message.includes('hi') || message.includes('hey')) {
+                    addBotMessage("Hello! 😊 How can I assist you with your career journey today?");
+                } 
+                else if (message.includes('job') || message.includes('career')) {
+                    addBotMessage("I can help you explore various job opportunities. What field are you interested in?");
+                    
+                    // Add category buttons
+                    setTimeout(() => {
+                        const categories = [
+                            {icon: 'laptop-code', text: 'Technology'},
+                            {icon: 'chart-line', text: 'Business'},
+                            {icon: 'flask', text: 'Science'},
+                            {icon: 'paint-brush', text: 'Creative Arts'},
+                            {icon: 'heart', text: 'Healthcare'},
+                            {icon: 'graduation-cap', text: 'Education'}
+                        ];
+                        
+                        const categoryDiv = document.createElement('div');
+                        categoryDiv.className = 'category-buttons';
+                        
+                        categories.forEach(category => {
+                            const button = document.createElement('button');
+                            button.className = 'category-button';
+                            button.innerHTML = `<i class="fas fa-${category.icon}"></i> ${category.text}`;
+                            button.addEventListener('click', () => {
+                                addUserMessage(`Jobs in ${category.text}`);
+                                showTypingIndicator();
+                                setTimeout(() => {
+                                    removeTypingIndicator();
+                                    addBotMessage(`Here are some recent job opportunities in ${category.text}:\n\n1. Senior ${category.text} Consultant at Diversity Inc.\n2. ${category.text} Team Lead at EmpowerHer\n3. Junior ${category.text} Associate at WomenFirst\n\nWould you like more details about any of these?`);
+                                }, 1500);
+                            });
+                            categoryDiv.appendChild(button);
+                        });
+                        
+                        const messageDiv = document.createElement('div');
+                        messageDiv.className = 'message bot-message';
+                        messageDiv.appendChild(categoryDiv);
+                        chatbotMessages.appendChild(messageDiv);
+                        scrollToBottom();
+                    }, 500);
+                }
+                else if (message.includes('event') || message.includes('workshop')) {
+                    addBotMessage("We have several upcoming events you might be interested in:");
+                    
+                    // Simulate event data
+                    setTimeout(() => {
+                        const events = [
+                            "Women in Tech Conference - June 15",
+                            "Leadership Workshop - July 2",
+                            "Networking Mixer - June 28",
+                            "Salary Negotiation Seminar - July 10"
+                        ];
+                        
+                        let eventList = events.map(event => `• ${event}`).join('\n');
+                        addBotMessage(`${eventList}\n\nWould you like to register for any of these?`);
+                    }, 800);
+                }
+                else if (message.includes('mentor') || message.includes('guidance')) {
+                    addBotMessage("Our mentorship program connects you with experienced professionals in your field. What specific area are you looking for guidance in?");
+                }
+                else if (message.includes('thank')) {
+                    addBotMessage("You're welcome! 😊 Is there anything else I can help you with?");
+                }
+                else {
+                    addBotMessage("I'm here to help with career-related questions. You can ask me about jobs, events, mentorship programs, or career advice. What would you like to know?");
+                    
+                    // Add quick actions for clarification
+                    setTimeout(() => {
+                        const quickActions = document.createElement('div');
+                        quickActions.className = 'quick-actions';
+                        
+                        const suggestions = [
+                            "How do I prepare for a tech interview?",
+                            "What are some high-growth careers for women?",
+                            "How can I improve my leadership skills?"
+                        ];
+                        
+                        suggestions.forEach(suggestion => {
+                            const button = document.createElement('button');
+                            button.className = 'quick-action';
+                            button.textContent = suggestion;
+                            button.addEventListener('click', () => {
+                                addUserMessage(suggestion);
+                                showTypingIndicator();
+                                setTimeout(() => {
+                                    removeTypingIndicator();
+                                    handleUserMessage(suggestion);
+                                }, 1500);
+                            });
+                            quickActions.appendChild(button);
+                        });
+                        
+                        const messageDiv = document.createElement('div');
+                        messageDiv.className = 'message bot-message';
+                        messageDiv.appendChild(quickActions);
+                        chatbotMessages.appendChild(messageDiv);
+                        scrollToBottom();
+                    }, 500);
+                }
+            }
+            
+            function handleQuickAction(action) {
+                addUserMessage(action);
+                showTypingIndicator();
+                setTimeout(() => {
+                    removeTypingIndicator();
+                    handleUserMessage(action);
+                }, 1500);
+            }
+            
+            // Initialize with chatbot hidden
+            chatbotContainer.classList.remove('active');
+        });
+    </script>
+</body>
+</html>
