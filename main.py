@@ -5,7 +5,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def home():
-    return "Welcome to Asha AI Chatbot! How Are You!!!!!"
+    return "Welcome to Asha AI Chatbot!"
 
 @app.route('/api/chat', methods=['POST'])
 def chat():
