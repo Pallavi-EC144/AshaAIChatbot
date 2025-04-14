@@ -8,129 +8,376 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --primary: #6a1b9a;
-            --secondary: #9c27b0;
-            --accent: #e91e63;
-            --light: #f5f5f5;
-            --dark: #333;
-            --success: #4caf50;
-            --warning: #ff9800;
-            --info: #2196f3;
-            --error: #f44336;
+            --primary: #8B1F35;
+            --primary-light: #A66349;
+            --secondary: #E6427A;
+            --accent: #F28C38;
+            --accent-light: #FDD8D2;
+            --dark: #0D0D0D;
+            --dark-light: #1A1A1A;
+            --text: #333333;
+            --text-light: #F5F5F5;
+            --bg: #F5F5F7;
+            --bg-dark: #0D0D0D;
+            --card-bg: #FFFFFF;
+            --card-bg-dark: #1A1A1A;
+            --border: rgba(139, 31, 53, 0.1);
+            --border-dark: rgba(245, 245, 247, 0.1);
+            
+            /* Current theme variables */
+            --current-bg: var(--bg);
+            --current-text: var(--text);
+            --current-card-bg: var(--card-bg);
+            --current-border: var(--border);
         }
         
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Montserrat', 'Segoe UI', sans-serif;
+            transition: background-color 0.3s, color 0.3s;
         }
+        
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
         
         body {
-            background-color: #f9f3ff;
-            color: var(--dark);
+            background-color: var(--current-bg);
+            color: var(--current-text);
             line-height: 1.6;
+            min-height: 100vh;
         }
         
+        /* Header */
         header {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            background-color: var(--current-card-bg);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .logo img {
+            height: 40px;
+        }
+        
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        
+        .logo-text span {
+            color: var(--accent);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+        
+        nav a {
+            text-decoration: none;
+            color: var(--current-text);
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+        }
+        
+        nav a:hover {
+            color: var(--primary);
+        }
+        
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary);
+            transition: width 0.3s;
+        }
+        
+        nav a:hover::after {
+            width: 100%;
+        }
+        
+        .nav-buttons {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+        
+        .btn {
+            padding: 0.6rem 1.2rem;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+        
+        .btn-outline {
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            background: transparent;
+        }
+        
+        .btn-outline:hover {
+            background-color: var(--primary);
             color: white;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+            border: 2px solid var(--primary);
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--secondary);
+            border-color: var(--secondary);
+        }
+        
+        /* Theme Toggle */
+        .theme-toggle {
+            background: transparent;
+            border: none;
+            color: var(--current-text);
+            font-size: 1.2rem;
+            cursor: pointer;
+            margin-left: 1rem;
+            transition: transform 0.3s;
+        }
+        
+        .theme-toggle:hover {
+            transform: rotate(30deg) scale(1.1);
+            color: var(--accent);
+        }
+        
+        /* Hero Section */
+        .hero {
+            margin-top: 80px;
+            padding: 4rem 2rem;
+            background: linear-gradient(135deg, rgba(139, 31, 53, 0.1), rgba(230, 66, 122, 0.1));
             text-align: center;
-            padding: 2rem 1rem;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
         
-        header h1 {
+        .dark-mode .hero {
+            background: linear-gradient(135deg, rgba(139, 31, 53, 0.2), rgba(230, 66, 122, 0.2));
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+        }
+        
+        .hero h1 span {
+            color: var(--accent);
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            color: var(--current-text);
+        }
+        
+        .hero-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        /* Features Section */
+        .features {
+            padding: 4rem 2rem;
+            background-color: var(--current-card-bg);
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .section-title h2 {
             font-size: 2.5rem;
-            margin-bottom: 0.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
         }
         
-        header p {
-            font-size: 1.1rem;
-            opacity: 0.9;
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 2rem auto;
-            padding: 0 1rem;
+        .section-title p {
+            color: var(--current-text);
+            max-width: 700px;
+            margin: 0 auto;
         }
         
         .features-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1.5rem;
-            margin-bottom: 3rem;
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
         }
         
         .feature-card {
-            background: white;
+            background-color: var(--current-bg);
             border-radius: 10px;
-            padding: 1.5rem;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            padding: 2rem;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid var(--current-border);
         }
         
         .feature-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
         }
         
-        .feature-card i {
-            font-size: 2rem;
-            color: var(--secondary);
-            margin-bottom: 1rem;
+        .feature-icon {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
         }
         
         .feature-card h3 {
-            color: var(--primary);
-            margin-bottom: 0.5rem;
-        }
-        
-        /* Chatbot Button */
-        .chatbot-toggle {
-            position: fixed;
-            bottom: 2rem;
-            right: 2rem;
-            background: var(--primary);
-            color: white;
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            box-shadow: 0 4px 12px rgba(106, 27, 154, 0.3);
-            z-index: 1000;
-            transition: all 0.3s ease;
-        }
-        
-        .chatbot-toggle:hover {
-            background: var(--secondary);
-            transform: scale(1.1);
-        }
-        
-        .chatbot-toggle i {
             font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+        
+        .feature-card p {
+            color: var(--current-text);
+        }
+        
+        /* Testimonials */
+        .testimonials {
+            padding: 4rem 2rem;
+            background-color: var(--current-bg);
+        }
+        
+        .dark-mode .testimonials {
+            background-color: var(--dark-light);
+        }
+        
+        .testimonial-slider {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .testimonial {
+            background-color: var(--current-card-bg);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            margin: 1rem;
+            border: 1px solid var(--current-border);
+        }
+        
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            color: var(--current-text);
+        }
+        
+        .testimonial-author {
+            font-weight: 600;
+            color: var(--primary);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+        
+        .footer-logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: white;
+        }
+        
+        .footer-logo span {
+            color: var(--accent);
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: var(--accent);
+        }
+        
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .social-icons a {
+            color: white;
+            font-size: 1.5rem;
+            transition: color 0.3s;
+        }
+        
+        .social-icons a:hover {
+            color: var(--accent);
+        }
+        
+        .copyright {
+            color: rgba(255,255,255,0.7);
+            font-size: 0.9rem;
         }
         
         /* Chatbot Container */
         .chatbot-container {
             position: fixed;
-            bottom: 5rem;
+            bottom: 2rem;
             right: 2rem;
-            width: 350px;
+            width: 380px;
             max-width: 90%;
-            background: white;
-            border-radius: 15px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+            background: var(--current-card-bg);
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
             overflow: hidden;
             transform: translateY(20px);
             opacity: 0;
             visibility: hidden;
             transition: all 0.3s ease;
             z-index: 1000;
+            border: 1px solid var(--current-border);
         }
         
         .chatbot-container.active {
@@ -142,14 +389,15 @@
         .chatbot-header {
             background: linear-gradient(135deg, var(--primary), var(--secondary));
             color: white;
-            padding: 1rem;
+            padding: 1rem 1.5rem;
             display: flex;
             align-items: center;
             justify-content: space-between;
         }
         
         .chatbot-header h3 {
-            font-weight: 500;
+            font-weight: 600;
+            font-size: 1.1rem;
         }
         
         .chatbot-close {
@@ -158,172 +406,186 @@
             color: white;
             font-size: 1.2rem;
             cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+        
+        .chatbot-close:hover {
+            transform: rotate(90deg);
         }
         
         .chatbot-messages {
-            height: 350px;
+            height: 400px;
             overflow-y: auto;
-            padding: 1rem;
-            background: #fafafa;
+            padding: 1.5rem;
+            background: var(--current-card-bg);
+            scrollbar-width: thin;
+            scrollbar-color: var(--primary) var(--current-bg);
+        }
+        
+        .chatbot-messages::-webkit-scrollbar {
+            width: 6px;
+        }
+        
+        .chatbot-messages::-webkit-scrollbar-track {
+            background: var(--current-bg);
+        }
+        
+        .chatbot-messages::-webkit-scrollbar-thumb {
+            background-color: var(--primary);
+            border-radius: 3px;
         }
         
         .message {
-            margin-bottom: 1rem;
-            max-width: 80%;
-            padding: 0.8rem 1rem;
-            border-radius: 15px;
-            font-size: 0.9rem;
-            line-height: 1.4;
+            margin-bottom: 1.2rem;
+            max-width: 85%;
+            padding: 1rem;
+            border-radius: 12px;
+            font-size: 0.95rem;
+            line-height: 1.5;
             position: relative;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
         
         .bot-message {
-            background: white;
-            color: var(--dark);
-            border: 1px solid #eee;
+            background: rgba(139, 31, 53, 0.1);
+            color: var(--current-text);
             border-bottom-left-radius: 5px;
             align-self: flex-start;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            border: 1px solid rgba(139, 31, 53, 0.2);
+        }
+        
+        .dark-mode .bot-message {
+            background: rgba(139, 31, 53, 0.3);
         }
         
         .user-message {
-            background: var(--primary);
-            color: white;
+            background: linear-gradient(135deg, rgba(139, 31, 53, 0.1), rgba(230, 66, 122, 0.1));
+            color: var(--current-text);
             border-bottom-right-radius: 5px;
             align-self: flex-end;
             margin-left: auto;
+            border: 1px solid rgba(230, 66, 122, 0.2);
+        }
+        
+        .dark-mode .user-message {
+            background: linear-gradient(135deg, rgba(139, 31, 53, 0.3), rgba(230, 66, 122, 0.3));
         }
         
         .quick-actions {
             display: flex;
             flex-wrap: wrap;
-            gap: 0.5rem;
-            margin-top: 1rem;
+            gap: 0.6rem;
+            margin-top: 1.2rem;
         }
         
         .quick-action {
-            background: rgba(156, 39, 176, 0.1);
+            background: rgba(139, 31, 53, 0.1);
             color: var(--primary);
-            border: none;
+            border: 1px solid rgba(139, 31, 53, 0.3);
             border-radius: 20px;
-            padding: 0.5rem 1rem;
-            font-size: 0.8rem;
+            padding: 0.6rem 1.2rem;
+            font-size: 0.85rem;
             cursor: pointer;
-            transition: background 0.2s ease;
+            transition: all 0.2s ease;
+        }
+        
+        .dark-mode .quick-action {
+            background: rgba(139, 31, 53, 0.3);
         }
         
         .quick-action:hover {
-            background: rgba(156, 39, 176, 0.2);
+            background: rgba(139, 31, 53, 0.2);
+            transform: translateY(-2px);
+            box-shadow: 0 3px 10px rgba(139, 31, 53, 0.1);
+        }
+        
+        .dark-mode .quick-action:hover {
+            background: rgba(139, 31, 53, 0.4);
         }
         
         .chatbot-input {
             display: flex;
-            padding: 0.8rem;
-            border-top: 1px solid #eee;
-            background: white;
+            padding: 1rem;
+            border-top: 1px solid var(--current-border);
+            background: var(--current-card-bg);
+            position: relative;
+        }
+        
+        .chatbot-input::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--primary), transparent);
         }
         
         .chatbot-input input {
             flex: 1;
-            padding: 0.8rem;
-            border: 1px solid #ddd;
-            border-radius: 25px;
+            padding: 0.9rem 1.2rem;
+            border: 1px solid var(--current-border);
+            border-radius: 30px;
             outline: none;
-            font-size: 0.9rem;
+            font-size: 0.95rem;
+            color: var(--current-text);
+            background: var(--current-bg);
+            transition: all 0.3s ease;
+        }
+        
+        .chatbot-input input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 2px rgba(139, 31, 53, 0.2);
+        }
+        
+        .chatbot-input input::placeholder {
+            color: var(--current-text);
+            opacity: 0.5;
         }
         
         .chatbot-input button {
-            background: var(--primary);
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
             color: white;
             border: none;
             border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            margin-left: 0.5rem;
+            width: 45px;
+            height: 45px;
+            margin-left: 0.8rem;
             cursor: pointer;
-            transition: background 0.2s ease;
+            transition: all 0.3s ease;
+            box-shadow: 0 3px 10px rgba(139, 31, 53, 0.3);
         }
         
         .chatbot-input button:hover {
-            background: var(--secondary);
-        }
-        
-        .feedback-buttons {
-            display: flex;
-            justify-content: flex-end;
-            margin-top: 0.5rem;
-            gap: 0.5rem;
-        }
-        
-        .feedback-button {
-            background: none;
-            border: none;
-            color: #aaa;
-            cursor: pointer;
-            font-size: 0.8rem;
-            transition: color 0.2s ease;
-        }
-        
-        .feedback-button:hover {
-            color: var(--primary);
-        }
-        
-        .category-buttons {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 0.5rem;
-            margin-top: 1rem;
-        }
-        
-        .category-button {
-            background: rgba(156, 39, 176, 0.1);
-            color: var(--primary);
-            border: none;
-            border-radius: 8px;
-            padding: 0.6rem;
-            font-size: 0.8rem;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-        }
-        
-        .category-button i {
-            margin-right: 0.3rem;
-        }
-        
-        .category-button:hover {
-            background: rgba(156, 39, 176, 0.2);
-            transform: translateY(-2px);
-        }
-        
-        footer {
-            background: var(--dark);
-            color: white;
-            text-align: center;
-            padding: 2rem 1rem;
-            margin-top: 3rem;
-        }
-        
-        footer p {
-            opacity: 0.8;
-            font-size: 0.9rem;
+            transform: rotate(15deg) scale(1.1);
+            box-shadow: 0 5px 15px rgba(139, 31, 53, 0.4);
         }
         
         .typing-indicator {
             display: flex;
-            padding: 0.8rem 1rem;
+            padding: 1rem;
+            align-items: center;
+        }
+        
+        .typing-text {
+            margin-right: 0.8rem;
+            color: var(--primary);
+            font-size: 0.8rem;
         }
         
         .typing-dot {
             width: 8px;
             height: 8px;
-            background: #ccc;
+            background: var(--primary);
             border-radius: 50%;
-            margin: 0 2px;
+            margin: 0 3px;
             animation: typingAnimation 1.4s infinite ease-in-out;
+            opacity: 0.7;
         }
         
         .typing-dot:nth-child(1) {
@@ -341,86 +603,217 @@
         @keyframes typingAnimation {
             0%, 60%, 100% {
                 transform: translateY(0);
+                background: var(--primary);
             }
             30% {
                 transform: translateY(-5px);
+                background: var(--secondary);
             }
+        }
+        
+        /* Chatbot Toggle Button */
+        .chatbot-toggle {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: 0 5px 20px rgba(139, 31, 53, 0.4);
+            z-index: 999;
+            transition: all 0.3s ease;
+        }
+        
+        .chatbot-toggle:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 25px rgba(139, 31, 53, 0.5);
+        }
+        
+        /* Dark Mode Styles */
+        .dark-mode {
+            --current-bg: var(--bg-dark);
+            --current-text: var(--text-light);
+            --current-card-bg: var(--card-bg-dark);
+            --current-border: var(--border-dark);
         }
         
         /* Responsive Design */
         @media (max-width: 768px) {
-            header h1 {
-                font-size: 2rem;
+            header {
+                flex-direction: column;
+                padding: 1rem;
+                gap: 1rem;
+            }
+            
+            nav ul {
+                gap: 1rem;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+                gap: 1rem;
             }
             
             .chatbot-container {
-                width: 90%;
-                right: 5%;
-            }
-            
-            .category-buttons {
-                grid-template-columns: 1fr;
+                width: 95%;
+                right: 2.5%;
             }
         }
     </style>
 </head>
 <body>
+    <!-- Header -->
     <header>
-        <h1>Asha AI Chatbot</h1>
-        <p>Your AI-powered guide to women careers, jobs, mentorships, and events.</p>
+        <div class="logo">
+            <img src="https://static.wixstatic.com/media/2e2a49_0f0e1c5f8a2a4e1b8e0e3c3e0e3c3e0e~mv2.png/v1/fill/w_120,h_120,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/Asha%20Logo%20New.png" alt="Asha Logo">
+            <div class="logo-text">Asha<span>AI</span></div>
+        </div>
+        
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Features</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </nav>
+        
+        <div class="nav-buttons">
+            <a href="#" class="btn btn-outline">Login</a>
+            <a href="#" class="btn btn-primary">Sign Up</a>
+            <button class="theme-toggle" id="themeToggle">
+                <i class="fas fa-moon"></i>
+            </button>
+        </div>
     </header>
-
-    <div class="container">
-        <h2 style="text-align: center; color: var(--primary); margin-bottom: 2rem;">How Asha Can Help You</h2>
+    
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Empowering Women in Their <span>Career Journey</span></h1>
+        <p>Asha AI is your personal career companion, helping you navigate challenges, find opportunities, and connect with mentors to achieve your professional goals.</p>
+        
+        <div class="hero-buttons">
+            <a href="#" class="btn btn-primary">Get Started</a>
+            <a href="#" class="btn btn-outline">Learn More</a>
+        </div>
+    </section>
+    
+    <!-- Features Section -->
+    <section class="features">
+        <div class="section-title">
+            <h2>How Asha Can Help You</h2>
+            <p>Discover the powerful features designed to support women at every stage of their career</p>
+        </div>
         
         <div class="features-grid">
             <div class="feature-card">
-                <i class="fas fa-briefcase"></i>
-                <h3>Career Exploration</h3>
-                <p>Discover various career paths tailored for women with insights into growth opportunities and required skills.</p>
+                <div class="feature-icon">
+                    <i class="fas fa-briefcase"></i>
+                </div>
+                <h3>Job Matching</h3>
+                <p>Find the perfect job opportunities tailored to your skills, experience, and career aspirations.</p>
             </div>
             
             <div class="feature-card">
-                <i class="fas fa-search-dollar"></i>
-                <h3>Job Listings</h3>
-                <p>Access real-time job opportunities from top companies committed to diversity and inclusion.</p>
+                <div class="feature-icon">
+                    <i class="fas fa-user-tie"></i>
+                </div>
+                <h3>Mentor Connect</h3>
+                <p>Connect with experienced professionals who can guide you through your career challenges.</p>
             </div>
             
             <div class="feature-card">
-                <i class="fas fa-calendar-alt"></i>
-                <h3>Community Events</h3>
-                <p>Stay updated with upcoming networking events, workshops, and career development sessions.</p>
+                <div class="feature-icon">
+                    <i class="fas fa-chart-line"></i>
+                </div>
+                <h3>Career Growth</h3>
+                <p>Personalized recommendations to help you grow and advance in your chosen field.</p>
             </div>
             
             <div class="feature-card">
-                <i class="fas fa-hands-helping"></i>
-                <h3>Mentorship Programs</h3>
-                <p>Connect with experienced mentors who can guide you through your career journey.</p>
+                <div class="feature-icon">
+                    <i class="fas fa-calendar-star"></i>
+                </div>
+                <h3>Events & Workshops</h3>
+                <p>Access to exclusive events, webinars, and workshops to enhance your skills.</p>
             </div>
             
             <div class="feature-card">
-                <i class="fas fa-chalkboard-teacher"></i>
-                <h3>Sessions & Workshops</h3>
-                <p>Learn new skills through our curated webinars and training programs.</p>
+                <div class="feature-icon">
+                    <i class="fas fa-comments"></i>
+                </div>
+                <h3>Community Support</h3>
+                <p>Join a supportive community of women sharing similar career journeys and challenges.</p>
             </div>
             
             <div class="feature-card">
-                <i class="fas fa-book-open"></i>
-                <h3>Resources</h3>
-                <p>Access articles, research papers, and guides on career advancement and workplace success.</p>
+                <div class="feature-icon">
+                    <i class="fas fa-lightbulb"></i>
+                </div>
+                <h3>Personalized Advice</h3>
+                <p>Get tailored career advice based on your unique situation and goals.</p>
             </div>
         </div>
-    </div>
-
+    </section>
+    
+    <!-- Testimonials Section -->
+    <section class="testimonials">
+        <div class="section-title">
+            <h2>Success Stories</h2>
+            <p>Hear from women who have transformed their careers with Asha</p>
+        </div>
+        
+        <div class="testimonial-slider">
+            <div class="testimonial">
+                <p class="testimonial-text">"Asha helped me find the confidence to return to work after a 5-year break. The mentorship program connected me with an amazing guide who understood my challenges."</p>
+                <p class="testimonial-author">- Priya M., Marketing Professional</p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="footer-logo">Asha<span>AI</span></div>
+        
+        <div class="footer-links">
+            <a href="#">Home</a>
+            <a href="#">Features</a>
+            <a href="#">About</a>
+            <a href="#">Contact</a>
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms of Service</a>
+        </div>
+        
+        <div class="social-icons">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+        </div>
+        
+        <p class="copyright">© 2023 Asha AI Chatbot. All rights reserved.</p>
+    </footer>
+    
     <!-- Chatbot Toggle Button -->
     <div class="chatbot-toggle" id="chatbotToggle">
-        <i class="fas fa-comments"></i>
+        <i class="fas fa-comment-dots"></i>
     </div>
 
     <!-- Chatbot Container -->
     <div class="chatbot-container" id="chatbotContainer">
         <div class="chatbot-header">
-            <h3>Asha AI Assistant</h3>
+            <h3>ASHA AI ASSISTANT</h3>
             <button class="chatbot-close" id="chatbotClose">
                 <i class="fas fa-times"></i>
             </button>
@@ -436,11 +829,6 @@
         </div>
     </div>
 
-    <footer>
-        <p>Powered by ethical AI principles | JobsForHer Foundation</p>
-        <p style="margin-top: 0.5rem;">© 2023 All Rights Reserved</p>
-    </footer>
-
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const chatbotToggle = document.getElementById('chatbotToggle');
@@ -449,14 +837,37 @@
             const chatbotMessages = document.getElementById('chatbotMessages');
             const userInput = document.getElementById('userInput');
             const sendButton = document.getElementById('sendButton');
+            const themeToggle = document.getElementById('themeToggle');
+            
+            // Theme toggle functionality
+            themeToggle.addEventListener('click', function() {
+                document.body.classList.toggle('dark-mode');
+                
+                // Change icon based on theme
+                if (document.body.classList.contains('dark-mode')) {
+                    themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+                } else {
+                    themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+                }
+                
+                // Save preference to localStorage
+                const isDarkMode = document.body.classList.contains('dark-mode');
+                localStorage.setItem('darkMode', isDarkMode);
+            });
+            
+            // Check for saved theme preference
+            if (localStorage.getItem('darkMode') === 'true') {
+                document.body.classList.add('dark-mode');
+                themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+            }
             
             // Toggle chatbot visibility
             chatbotToggle.addEventListener('click', function() {
                 chatbotContainer.classList.toggle('active');
-                if (chatbotContainer.classList.contains('active') {
+                if (chatbotContainer.classList.contains('active')) {
                     // Add welcome message if chat is empty
                     if (chatbotMessages.children.length === 0) {
-                        addBotMessage("Hi there! 👋 I'm Asha, your AI career assistant. How can I help you today?");
+                        addBotMessage("Hello! I'm Asha, your AI career companion. How can I assist you today?");
                         
                         // Add quick action buttons
                         setTimeout(() => {
@@ -464,12 +875,12 @@
                             quickActions.className = 'quick-actions';
                             
                             const categories = [
-                                {icon: 'briefcase', text: 'Career Guidance'},
-                                {icon: 'search-dollar', text: 'Job Listings'},
-                                {icon: 'calendar-alt', text: 'Upcoming Events'},
-                                {icon: 'hands-helping', text: 'Mentorship'},
-                                {icon: 'chalkboard-teacher', text: 'Workshops'},
-                                {icon: 'book-open', text: 'Resources'}
+                                {icon: 'briefcase', text: 'Job Search'},
+                                {icon: 'calendar-star', text: 'Upcoming Events'},
+                                {icon: 'hands-helping', text: 'Mentor Matching'},
+                                {icon: 'chart-line', text: 'Career Growth'},
+                                {icon: 'book', text: 'Resources'},
+                                {icon: 'cog', text: 'Settings'}
                             ];
                             
                             categories.forEach(category => {
@@ -531,21 +942,12 @@
                 scrollToBottom();
             }
             
-            function addBotMessage(text) {
+            function addBotMessage(text, type) {
                 const messageDiv = document.createElement('div');
                 messageDiv.className = 'message bot-message';
                 messageDiv.textContent = text;
                 chatbotMessages.appendChild(messageDiv);
                 scrollToBottom();
-                
-                // Add feedback buttons
-                const feedbackDiv = document.createElement('div');
-                feedbackDiv.className = 'feedback-buttons';
-                feedbackDiv.innerHTML = `
-                    <button class="feedback-button" title="Helpful"><i class="fas fa-thumbs-up"></i></button>
-                    <button class="feedback-button" title="Not helpful"><i class="fas fa-thumbs-down"></i></button>
-                `;
-                messageDiv.appendChild(feedbackDiv);
             }
             
             function showTypingIndicator() {
@@ -553,6 +955,7 @@
                 typingDiv.className = 'typing-indicator';
                 typingDiv.id = 'typingIndicator';
                 typingDiv.innerHTML = `
+                    <span class="typing-text">Asha is typing</span>
                     <div class="typing-dot"></div>
                     <div class="typing-dot"></div>
                     <div class="typing-dot"></div>
@@ -577,19 +980,19 @@
                 
                 // Simple response logic - in a real app, this would connect to an AI service
                 if (message.includes('hello') || message.includes('hi') || message.includes('hey')) {
-                    addBotMessage("Hello! 😊 How can I assist you with your career journey today?");
+                    addBotMessage("Hello there! How can I assist with your career journey today?");
                 } 
                 else if (message.includes('job') || message.includes('career')) {
-                    addBotMessage("I can help you explore various job opportunities. What field are you interested in?");
+                    addBotMessage("I can help you explore job opportunities. What field are you interested in?");
                     
                     // Add category buttons
                     setTimeout(() => {
                         const categories = [
                             {icon: 'laptop-code', text: 'Technology'},
-                            {icon: 'chart-line', text: 'Business'},
+                            {icon: 'chart-pie', text: 'Business'},
                             {icon: 'flask', text: 'Science'},
-                            {icon: 'paint-brush', text: 'Creative Arts'},
-                            {icon: 'heart', text: 'Healthcare'},
+                            {icon: 'palette', text: 'Creative'},
+                            {icon: 'heartbeat', text: 'Healthcare'},
                             {icon: 'graduation-cap', text: 'Education'}
                         ];
                         
@@ -598,14 +1001,14 @@
                         
                         categories.forEach(category => {
                             const button = document.createElement('button');
-                            button.className = 'category-button';
+                            button.className = 'quick-action';
                             button.innerHTML = `<i class="fas fa-${category.icon}"></i> ${category.text}`;
                             button.addEventListener('click', () => {
                                 addUserMessage(`Jobs in ${category.text}`);
                                 showTypingIndicator();
                                 setTimeout(() => {
                                     removeTypingIndicator();
-                                    addBotMessage(`Here are some recent job opportunities in ${category.text}:\n\n1. Senior ${category.text} Consultant at Diversity Inc.\n2. ${category.text} Team Lead at EmpowerHer\n3. Junior ${category.text} Associate at WomenFirst\n\nWould you like more details about any of these?`);
+                                    addBotMessage(`Here are some opportunities in ${category.text}:\n\n1. Senior ${category.text} Role at TechCorp\n2. ${category.text} Manager at InnovateInc\n3. ${category.text} Specialist at FutureWorks`);
                                 }, 1500);
                             });
                             categoryDiv.appendChild(button);
@@ -619,29 +1022,19 @@
                     }, 500);
                 }
                 else if (message.includes('event') || message.includes('workshop')) {
-                    addBotMessage("We have several upcoming events you might be interested in:");
-                    
-                    // Simulate event data
-                    setTimeout(() => {
-                        const events = [
-                            "Women in Tech Conference - June 15",
-                            "Leadership Workshop - July 2",
-                            "Networking Mixer - June 28",
-                            "Salary Negotiation Seminar - July 10"
-                        ];
-                        
-                        let eventList = events.map(event => `• ${event}`).join('\n');
-                        addBotMessage(`${eventList}\n\nWould you like to register for any of these?`);
-                    }, 800);
+                    addBotMessage("Here are upcoming events you might enjoy:\n\n• Women in Tech Conference - June 15\n• Leadership Workshop - July 2\n• Networking Mixer - June 28");
                 }
                 else if (message.includes('mentor') || message.includes('guidance')) {
-                    addBotMessage("Our mentorship program connects you with experienced professionals in your field. What specific area are you looking for guidance in?");
+                    addBotMessage("Our mentorship program connects you with experienced professionals. What specific area are you looking for guidance in?");
                 }
                 else if (message.includes('thank')) {
-                    addBotMessage("You're welcome! 😊 Is there anything else I can help you with?");
+                    addBotMessage("You're welcome! Is there anything else I can help with?");
+                }
+                else if (message.includes('help') || message.includes('support')) {
+                    addBotMessage("For direct support, contact help@jobsforher.org. How else may I assist you?");
                 }
                 else {
-                    addBotMessage("I'm here to help with career-related questions. You can ask me about jobs, events, mentorship programs, or career advice. What would you like to know?");
+                    addBotMessage("I'm here to help with your career journey. You can ask me about jobs, events, mentorship, or career advice.");
                     
                     // Add quick actions for clarification
                     setTimeout(() => {
@@ -649,9 +1042,9 @@
                         quickActions.className = 'quick-actions';
                         
                         const suggestions = [
-                            "How do I prepare for a tech interview?",
-                            "What are some high-growth careers for women?",
-                            "How can I improve my leadership skills?"
+                            "How do I prepare for an interview?",
+                            "What are high-growth careers?",
+                            "How to improve leadership skills?"
                         ];
                         
                         suggestions.forEach(suggestion => {
