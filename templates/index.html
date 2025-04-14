@@ -3,26 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Asha AI Chatbot - Empowering Indian women in their careers with JobsForHer Foundation">
-    <title>Asha AI Career Companion</title>
+    <meta name="description" content="Asha AI Chatbot - Enhancing women careers with JobsForHer Foundation">
+    <title>Asha AI Chatbot</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            /* Indian-inspired color scheme */
+            /* New color scheme */
             --bg-dark: #0E0E10;
             --card-dark: #1A1A1D;
             --text-light: #F5F5F7;
-            --accent-saffron: #FF9933;  /* Saffron color from Indian flag */
-            --accent-green: #138808;    /* Green color from Indian flag */
             --accent-blue: #4FD1FF;
+            --accent-green: #8FFFAB;
             --accent-purple: #A88BFF;
-            --accent-pink: #E6427A;     /* Common in Indian designs */
+            --accent-blue-transparent: rgba(79, 209, 255, 0.2);
+            --accent-purple-transparent: rgba(168, 139, 255, 0.2);
+            --accent-green-transparent: rgba(143, 255, 171, 0.2);
+            
+            /* Original colors for light mode */
+            --primary: #8B1F35;
+            --secondary: #E6427A;
+            --accent: #F28C38;
+            --light: #F5F5F7;
+            --dark: #1A1A1D;
+            --text: #333333;
             
             /* Current theme variables */
             --current-bg: var(--bg-dark);
             --current-card: var(--card-dark);
             --current-text: var(--text-light);
-            --current-accent: var(--accent-saffron);
+            --current-accent: var(--accent-blue);
             --current-border: rgba(245, 245, 247, 0.1);
         }
         
@@ -30,11 +39,11 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Poppins', 'Montserrat', sans-serif;
+            font-family: 'Montserrat', 'Segoe UI', sans-serif;
             transition: background-color 0.3s, color 0.3s, border-color 0.3s, box-shadow 0.3s;
         }
         
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
         
         body {
             background-color: var(--current-bg);
@@ -55,7 +64,7 @@
             width: 100%;
             top: 0;
             z-index: 1000;
-            border-bottom: 1px solid var(--accent-saffron);
+            border-bottom: 1px solid rgba(79, 209, 255, 0.1);
         }
         
         .logo {
@@ -66,19 +75,18 @@
         
         .logo img {
             height: 40px;
-            filter: drop-shadow(0 0 5px var(--accent-saffron));
+            filter: drop-shadow(0 0 5px var(--current-accent));
         }
         
         .logo-text {
             font-size: 1.5rem;
             font-weight: 700;
             color: var(--current-text);
-            text-shadow: 0 0 10px var(--accent-saffron);
-            font-family: 'Poppins', sans-serif;
+            text-shadow: 0 0 10px var(--current-accent);
         }
         
         .logo-text span {
-            color: var(--accent-green);
+            color: var(--accent-purple);
         }
         
         nav ul {
@@ -94,13 +102,12 @@
             transition: all 0.3s;
             position: relative;
             opacity: 0.9;
-            font-family: 'Poppins', sans-serif;
         }
         
         nav a:hover {
-            color: var(--accent-saffron);
+            color: var(--accent-blue);
             opacity: 1;
-            text-shadow: 0 0 8px rgba(255, 153, 51, 0.3);
+            text-shadow: 0 0 8px var(--accent-blue-transparent);
         }
         
         nav a::after {
@@ -110,7 +117,7 @@
             left: 0;
             width: 0;
             height: 2px;
-            background-color: var(--accent-saffron);
+            background-color: var(--accent-blue);
             transition: width 0.3s;
         }
         
@@ -133,29 +140,28 @@
             text-decoration: none;
             position: relative;
             overflow: hidden;
-            font-family: 'Poppins', sans-serif;
         }
         
         .btn-outline {
-            border: 2px solid var(--accent-saffron);
-            color: var(--accent-saffron);
+            border: 2px solid var(--accent-blue);
+            color: var(--accent-blue);
             background: transparent;
         }
         
         .btn-outline:hover {
-            background-color: rgba(255, 153, 51, 0.1);
-            color: var(--accent-saffron);
-            box-shadow: 0 0 15px rgba(255, 153, 51, 0.2);
+            background-color: var(--accent-blue-transparent);
+            color: var(--accent-blue);
+            box-shadow: 0 0 15px var(--accent-blue-transparent);
         }
         
         .btn-primary {
-            background: linear-gradient(135deg, var(--accent-saffron), var(--accent-pink));
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
             color: var(--current-bg);
             border: none;
         }
         
         .btn-primary:hover {
-            box-shadow: 0 0 20px rgba(255, 153, 51, 0.3);
+            box-shadow: 0 0 20px var(--accent-blue-transparent);
             transform: translateY(-2px);
         }
         
@@ -177,8 +183,8 @@
         }
         
         .theme-toggle:hover {
-            background-color: rgba(19, 136, 8, 0.1);
-            color: var(--accent-green);
+            background-color: var(--accent-purple-transparent);
+            color: var(--accent-purple);
         }
         
         /* Hero Section */
@@ -186,7 +192,7 @@
             margin-top: 80px;
             padding: 6rem 2rem;
             text-align: center;
-            background: linear-gradient(135deg, rgba(255, 153, 51, 0.1), rgba(19, 136, 8, 0.1));
+            background: linear-gradient(135deg, rgba(79, 209, 255, 0.1), rgba(168, 139, 255, 0.1));
             position: relative;
             overflow: hidden;
         }
@@ -198,8 +204,8 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: radial-gradient(circle at 70% 30%, rgba(255, 153, 51, 0.05) 0%, transparent 50%),
-                        radial-gradient(circle at 30% 70%, rgba(19, 136, 8, 0.05) 0%, transparent 50%);
+            background: radial-gradient(circle at 70% 30%, rgba(79, 209, 255, 0.05) 0%, transparent 50%),
+                        radial-gradient(circle at 30% 70%, rgba(168, 139, 255, 0.05) 0%, transparent 50%);
             z-index: -1;
         }
         
@@ -208,12 +214,11 @@
             color: var(--current-text);
             margin-bottom: 1.5rem;
             font-weight: 700;
-            text-shadow: 0 0 15px rgba(255, 153, 51, 0.3);
-            font-family: 'Poppins', sans-serif;
+            text-shadow: 0 0 15px rgba(79, 209, 255, 0.3);
         }
         
         .hero h1 span {
-            background: linear-gradient(90deg, var(--accent-saffron), var(--accent-green));
+            background: linear-gradient(90deg, var(--accent-blue), var(--accent-purple));
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
@@ -225,7 +230,6 @@
             margin: 0 auto 2rem;
             color: var(--current-text);
             opacity: 0.9;
-            font-family: 'Poppins', sans-serif;
         }
         
         .hero-buttons {
@@ -254,7 +258,7 @@
             border-radius: 12px;
             padding: 1.5rem;
             box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-            border: 1px solid rgba(255, 153, 51, 0.1);
+            border: 1px solid rgba(79, 209, 255, 0.1);
         }
         
         .sidebar-nav {
@@ -274,13 +278,12 @@
             text-decoration: none;
             border-radius: 8px;
             transition: all 0.3s;
-            font-family: 'Poppins', sans-serif;
         }
         
         .sidebar-nav a:hover, .sidebar-nav a.active {
-            background-color: rgba(255, 153, 51, 0.1);
-            color: var(--accent-saffron);
-            box-shadow: 0 0 10px rgba(255, 153, 51, 0.2);
+            background-color: var(--accent-blue-transparent);
+            color: var(--accent-blue);
+            box-shadow: 0 0 10px var(--accent-blue-transparent);
         }
         
         .sidebar-nav i {
@@ -306,7 +309,7 @@
             border-radius: 12px;
             padding: 1.5rem;
             box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-            border: 1px solid rgba(255, 153, 51, 0.1);
+            border: 1px solid rgba(79, 209, 255, 0.1);
             transition: transform 0.3s;
         }
         
@@ -317,22 +320,20 @@
         
         .stat-card h3 {
             font-size: 0.9rem;
-            color: var(--accent-saffron);
+            color: var(--accent-blue);
             margin-bottom: 0.5rem;
             text-transform: uppercase;
             letter-spacing: 1px;
-            font-family: 'Poppins', sans-serif;
         }
         
         .stat-card .value {
             font-size: 2rem;
             font-weight: 700;
             margin-bottom: 0.5rem;
-            background: linear-gradient(90deg, var(--accent-saffron), var(--accent-green));
+            background: linear-gradient(90deg, var(--accent-blue), var(--accent-purple));
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
-            font-family: 'Poppins', sans-serif;
         }
         
         .stat-card .change {
@@ -341,7 +342,6 @@
             display: flex;
             align-items: center;
             gap: 0.3rem;
-            font-family: 'Poppins', sans-serif;
         }
         
         /* Search Bar */
@@ -353,20 +353,19 @@
             width: 100%;
             padding: 1rem 1.5rem;
             background-color: var(--current-card);
-            border: 1px solid rgba(255, 153, 51, 0.2);
+            border: 1px solid rgba(79, 209, 255, 0.2);
             border-radius: 30px;
             color: var(--current-text);
             font-size: 1rem;
             outline: none;
             transition: all 0.3s;
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            font-family: 'Poppins', sans-serif;
         }
         
         .search-bar input:focus {
-            border-color: var(--accent-saffron);
-            box-shadow: 0 0 0 2px rgba(255, 153, 51, 0.2),
-                        0 5px 20px rgba(255, 153, 51, 0.2);
+            border-color: var(--accent-blue);
+            box-shadow: 0 0 0 2px var(--accent-blue-transparent),
+                        0 5px 20px rgba(79, 209, 255, 0.2);
         }
         
         .search-bar i {
@@ -374,7 +373,7 @@
             right: 1.5rem;
             top: 50%;
             transform: translateY(-50%);
-            color: var(--accent-saffron);
+            color: var(--accent-blue);
         }
         
         /* Job Listings */
@@ -388,28 +387,26 @@
             border-radius: 12px;
             padding: 1.5rem;
             box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-            border: 1px solid rgba(255, 153, 51, 0.1);
+            border: 1px solid rgba(79, 209, 255, 0.1);
             transition: all 0.3s;
         }
         
         .job-card:hover {
             transform: translateY(-3px);
             box-shadow: 0 8px 25px rgba(0,0,0,0.3);
-            border-color: rgba(255, 153, 51, 0.3);
+            border-color: rgba(79, 209, 255, 0.3);
         }
         
         .job-card h3 {
             font-size: 1.2rem;
             margin-bottom: 0.5rem;
             color: var(--current-text);
-            font-family: 'Poppins', sans-serif;
         }
         
         .job-card .company {
-            color: var(--accent-saffron);
+            color: var(--accent-blue);
             margin-bottom: 0.5rem;
             font-size: 0.9rem;
-            font-family: 'Poppins', sans-serif;
         }
         
         .job-card .details {
@@ -419,7 +416,6 @@
             font-size: 0.9rem;
             color: var(--current-text);
             opacity: 0.8;
-            font-family: 'Poppins', sans-serif;
         }
         
         .job-card .tags {
@@ -429,12 +425,11 @@
         }
         
         .job-card .tag {
-            background-color: rgba(19, 136, 8, 0.1);
-            color: var(--accent-green);
+            background-color: var(--accent-purple-transparent);
+            color: var(--accent-purple);
             padding: 0.3rem 0.8rem;
             border-radius: 20px;
             font-size: 0.8rem;
-            font-family: 'Poppins', sans-serif;
         }
         
         /* User Profile */
@@ -449,18 +444,18 @@
             width: 40px;
             height: 40px;
             border-radius: 50%;
-            background-color: rgba(255, 153, 51, 0.1);
+            background-color: var(--accent-blue-transparent);
             display: flex;
             align-items: center;
             justify-content: center;
-            color: var(--accent-saffron);
+            color: var(--accent-blue);
             cursor: pointer;
             transition: all 0.3s;
         }
         
         .user-avatar:hover {
-            background-color: rgba(19, 136, 8, 0.1);
-            color: var(--accent-green);
+            background-color: var(--accent-purple-transparent);
+            color: var(--accent-purple);
             transform: scale(1.1);
         }
         
@@ -480,7 +475,7 @@
             visibility: hidden;
             transition: all 0.3s ease;
             z-index: 1000;
-            border: 1px solid rgba(255, 153, 51, 0.2);
+            border: 1px solid rgba(79, 209, 255, 0.2);
         }
         
         .chatbot-container.active {
@@ -490,7 +485,7 @@
         }
         
         .chatbot-header {
-            background: linear-gradient(135deg, var(--accent-saffron), var(--accent-pink));
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
             color: var(--current-bg);
             padding: 1rem 1.5rem;
             display: flex;
@@ -501,7 +496,6 @@
         .chatbot-header h3 {
             font-weight: 600;
             font-size: 1.1rem;
-            font-family: 'Poppins', sans-serif;
         }
         
         .chatbot-close {
@@ -523,7 +517,7 @@
             padding: 1.5rem;
             background: var(--current-card);
             scrollbar-width: thin;
-            scrollbar-color: var(--accent-saffron) var(--current-bg);
+            scrollbar-color: var(--accent-blue) var(--current-bg);
         }
         
         .chatbot-messages::-webkit-scrollbar {
@@ -535,7 +529,7 @@
         }
         
         .chatbot-messages::-webkit-scrollbar-thumb {
-            background-color: var(--accent-saffron);
+            background-color: var(--accent-blue);
             border-radius: 3px;
         }
         
@@ -548,7 +542,6 @@
             line-height: 1.5;
             position: relative;
             animation: fadeIn 0.3s ease;
-            font-family: 'Poppins', sans-serif;
         }
         
         @keyframes fadeIn {
@@ -557,20 +550,20 @@
         }
         
         .bot-message {
-            background: rgba(255, 153, 51, 0.1);
+            background: var(--accent-blue-transparent);
             color: var(--current-text);
             border-bottom-left-radius: 5px;
             align-self: flex-start;
-            border: 1px solid rgba(255, 153, 51, 0.3);
+            border: 1px solid rgba(79, 209, 255, 0.3);
         }
         
         .user-message {
-            background: rgba(230, 66, 122, 0.1);
+            background: var(--accent-purple-transparent);
             color: var(--current-text);
             border-bottom-right-radius: 5px;
             align-self: flex-end;
             margin-left: auto;
-            border: 1px solid rgba(230, 66, 122, 0.3);
+            border: 1px solid rgba(168, 139, 255, 0.3);
         }
         
         .quick-actions {
@@ -581,27 +574,26 @@
         }
         
         .quick-action {
-            background: rgba(255, 153, 51, 0.1);
-            color: var(--accent-saffron);
-            border: 1px solid rgba(255, 153, 51, 0.3);
+            background: var(--accent-blue-transparent);
+            color: var(--accent-blue);
+            border: 1px solid rgba(79, 209, 255, 0.3);
             border-radius: 20px;
             padding: 0.6rem 1.2rem;
             font-size: 0.85rem;
             cursor: pointer;
             transition: all 0.2s ease;
-            font-family: 'Poppins', sans-serif;
         }
         
         .quick-action:hover {
-            background: rgba(255, 153, 51, 0.2);
+            background: rgba(79, 209, 255, 0.3);
             transform: translateY(-2px);
-            box-shadow: 0 3px 10px rgba(255, 153, 51, 0.2);
+            box-shadow: 0 3px 10px rgba(79, 209, 255, 0.2);
         }
         
         .chatbot-input {
             display: flex;
             padding: 1rem;
-            border-top: 1px solid rgba(255, 153, 51, 0.1);
+            border-top: 1px solid rgba(79, 209, 255, 0.1);
             background: var(--current-card);
             position: relative;
         }
@@ -613,25 +605,24 @@
             left: 0;
             right: 0;
             height: 1px;
-            background: linear-gradient(90deg, transparent, var(--accent-saffron), transparent);
+            background: linear-gradient(90deg, transparent, var(--accent-blue), transparent);
         }
         
         .chatbot-input input {
             flex: 1;
             padding: 0.9rem 1.2rem;
-            border: 1px solid rgba(255, 153, 51, 0.3);
+            border: 1px solid rgba(79, 209, 255, 0.3);
             border-radius: 30px;
             outline: none;
             font-size: 0.95rem;
             color: var(--current-text);
             background: var(--current-bg);
             transition: all 0.3s ease;
-            font-family: 'Poppins', sans-serif;
         }
         
         .chatbot-input input:focus {
-            border-color: var(--accent-saffron);
-            box-shadow: 0 0 0 2px rgba(255, 153, 51, 0.2);
+            border-color: var(--accent-blue);
+            box-shadow: 0 0 0 2px var(--accent-blue-transparent);
         }
         
         .chatbot-input input::placeholder {
@@ -640,7 +631,7 @@
         }
         
         .chatbot-input button {
-            background: linear-gradient(135deg, var(--accent-saffron), var(--accent-pink));
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
             color: var(--current-bg);
             border: none;
             border-radius: 50%;
@@ -649,12 +640,12 @@
             margin-left: 0.8rem;
             cursor: pointer;
             transition: all 0.3s ease;
-            box-shadow: 0 3px 10px rgba(255, 153, 51, 0.3);
+            box-shadow: 0 3px 10px rgba(79, 209, 255, 0.3);
         }
         
         .chatbot-input button:hover {
             transform: rotate(15deg) scale(1.1);
-            box-shadow: 0 5px 15px rgba(255, 153, 51, 0.4);
+            box-shadow: 0 5px 15px rgba(79, 209, 255, 0.4);
         }
         
         .typing-indicator {
@@ -665,15 +656,14 @@
         
         .typing-text {
             margin-right: 0.8rem;
-            color: var(--accent-saffron);
+            color: var(--accent-blue);
             font-size: 0.8rem;
-            font-family: 'Poppins', sans-serif;
         }
         
         .typing-dot {
             width: 8px;
             height: 8px;
-            background: var(--accent-saffron);
+            background: var(--accent-blue);
             border-radius: 50%;
             margin: 0 3px;
             animation: typingAnimation 1.4s infinite ease-in-out;
@@ -695,11 +685,11 @@
         @keyframes typingAnimation {
             0%, 60%, 100% {
                 transform: translateY(0);
-                background: var(--accent-saffron);
+                background: var(--accent-blue);
             }
             30% {
                 transform: translateY(-5px);
-                background: var(--accent-pink);
+                background: var(--accent-purple);
             }
         }
         
@@ -710,7 +700,7 @@
             right: 2rem;
             width: 60px;
             height: 60px;
-            background: linear-gradient(135deg, var(--accent-saffron), var(--accent-pink));
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
             color: var(--current-bg);
             border-radius: 50%;
             display: flex;
@@ -718,21 +708,89 @@
             justify-content: center;
             font-size: 1.5rem;
             cursor: pointer;
-            box-shadow: 0 5px 20px rgba(255, 153, 51, 0.4);
+            box-shadow: 0 5px 20px rgba(79, 209, 255, 0.4);
             z-index: 999;
             transition: all 0.3s ease;
         }
         
         .chatbot-toggle:hover {
             transform: scale(1.1);
-            box-shadow: 0 8px 25px rgba(255, 153, 51, 0.5);
+            box-shadow: 0 8px 25px rgba(79, 209, 255, 0.5);
             animation: pulse 2s infinite;
         }
         
         @keyframes pulse {
-            0% { box-shadow: 0 0 0 0 rgba(255, 153, 51, 0.7); }
-            70% { box-shadow: 0 0 0 15px rgba(255, 153, 51, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(255, 153, 51, 0); }
+            0% { box-shadow: 0 0 0 0 rgba(79, 209, 255, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(79, 209, 255, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(79, 209, 255, 0); }
+        }
+        
+        /* Light Mode Styles */
+        .light-mode {
+            --current-bg: #F5F5F7;
+            --current-card: #FFFFFF;
+            --current-text: #1A1A1D;
+            --current-accent: #8B1F35;
+            --current-border: rgba(26, 26, 29, 0.1);
+        }
+        
+        .light-mode .hero {
+            background: linear-gradient(135deg, rgba(139, 31, 53, 0.1), rgba(230, 66, 122, 0.1));
+        }
+        
+        .light-mode .hero h1 span {
+            background: linear-gradient(90deg, #8B1F35, #E6427A);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .light-mode .btn-outline {
+            border: 2px solid #8B1F35;
+            color: #8B1F35;
+        }
+        
+        .light-mode .btn-outline:hover {
+            background-color: rgba(139, 31, 53, 0.1);
+        }
+        
+        .light-mode .btn-primary {
+            background: linear-gradient(135deg, #8B1F35, #E6427A);
+            color: white;
+        }
+        
+        .light-mode .sidebar-nav a:hover, 
+        .light-mode .sidebar-nav a.active {
+            background-color: rgba(139, 31, 53, 0.1);
+            color: #8B1F35;
+        }
+        
+        .light-mode .stat-card .value {
+            background: linear-gradient(90deg, #8B1F35, #E6427A);
+        }
+        
+        .light-mode .search-bar input:focus {
+            border-color: #8B1F35;
+            box-shadow: 0 0 0 2px rgba(139, 31, 53, 0.2);
+        }
+        
+        .light-mode .job-card .company {
+            color: #8B1F35;
+        }
+        
+        .light-mode .job-card .tag {
+            background-color: rgba(230, 66, 122, 0.1);
+            color: #E6427A;
+        }
+        
+        .light-mode .user-avatar {
+            background-color: rgba(139, 31, 53, 0.1);
+            color: #8B1F35;
+        }
+        
+        .light-mode .user-avatar:hover {
+            background-color: rgba(230, 66, 122, 0.1);
+            color: #E6427A;
         }
         
         /* Responsive Design */
@@ -784,16 +842,15 @@
         <nav>
             <ul>
                 <li><a href="#" class="active">Home</a></li>
-                <li><a href="#">Career Paths</a></li>
+                <li><a href="#">Careers</a></li>
                 <li><a href="#">Mentorship</a></li>
-                <li><a href="#">Upskilling</a></li>
-                <li><a href="#">Job Portal</a></li>
+                <li><a href="#">Events</a></li>
             </ul>
         </nav>
         
         <div class="nav-buttons">
             <div class="search-bar">
-                <input type="text" placeholder="Search jobs, skills...">
+                <input type="text" placeholder="Search jobs, resources...">
                 <i class="fas fa-search"></i>
             </div>
             <div class="user-profile">
@@ -809,12 +866,12 @@
     
     <!-- Hero Section -->
     <section class="hero">
-        <h1>Empowering Indian Women in Their <span>Career Journey</span></h1>
-        <p>Asha AI helps Indian women restart, upskill, and advance their careers with personalized guidance, mentorship from Indian professionals, and job opportunities across India.</p>
+        <h1>Meet Asha, Your <span>AI Career Buddy</span></h1>
+        <p>Empowering women to navigate their career journey with personalized guidance, mentorship connections, and job opportunities tailored just for you.</p>
         
         <div class="hero-buttons">
-            <a href="#" class="btn btn-primary">Start Your Journey</a>
-            <a href="#" class="btn btn-outline">Watch Testimonials</a>
+            <a href="#" class="btn btn-primary">Get Started</a>
+            <a href="#" class="btn btn-outline">How It Works</a>
         </div>
     </section>
     
@@ -826,11 +883,10 @@
                 <ul class="sidebar-nav">
                     <li><a href="#" class="active"><i class="fas fa-home"></i> Dashboard</a></li>
                     <li><a href="#"><i class="fas fa-briefcase"></i> Career Path</a></li>
-                    <li><a href="#"><i class="fas fa-rupee-sign"></i> Indian Job Market</a></li>
-                    <li><a href="#"><i class="fas fa-graduation-cap"></i> Upskilling</a></li>
+                    <li><a href="#"><i class="fas fa-calendar-star"></i> Events</a></li>
                     <li><a href="#"><i class="fas fa-hands-helping"></i> Mentorship</a></li>
-                    <li><a href="#"><i class="fas fa-calendar-alt"></i> Indian Events</a></li>
-                    <li><a href="#"><i class="fas fa-bookmark"></i> Saved Jobs</a></li>
+                    <li><a href="#"><i class="fas fa-bookmark"></i> Bookmarks</a></li>
+                    <li><a href="#"><i class="fas fa-question-circle"></i> Ask Asha</a></li>
                     <li><a href="#"><i class="fas fa-cog"></i> Settings</a></li>
                 </ul>
             </aside>
@@ -862,14 +918,14 @@
                 </div>
                 
                 <!-- Job Listings -->
-                <h2 style="color: var(--current-text); margin-top: 2rem; font-family: 'Poppins', sans-serif;">Recommended Jobs in India</h2>
+                <h2 style="color: var(--current-text); margin-top: 2rem;">Recommended For You</h2>
                 <div class="job-listings">
                     <div class="job-card">
                         <h3>Senior Product Designer</h3>
-                        <div class="company">Flipkart (Bengaluru)</div>
+                        <div class="company">TechFusion Inc.</div>
                         <div class="details">
-                            <span><i class="fas fa-map-marker-alt"></i> Bengaluru, Hybrid</span>
-                            <span><i class="fas fa-rupee-sign"></i> ₹15L - ₹25L PA</span>
+                            <span><i class="fas fa-map-marker-alt"></i> Remote</span>
+                            <span><i class="fas fa-dollar-sign"></i> $95,000 - $120,000</span>
                         </div>
                         <div class="tags">
                             <span class="tag">UI/UX</span>
@@ -879,23 +935,23 @@
                     </div>
                     <div class="job-card">
                         <h3>Marketing Manager</h3>
-                        <div class="company">Nykaa (Mumbai)</div>
+                        <div class="company">GrowthMarketing Co.</div>
                         <div class="details">
-                            <span><i class="fas fa-map-marker-alt"></i> Mumbai, On-site</span>
-                            <span><i class="fas fa-rupee-sign"></i> ₹12L - ₹18L PA</span>
+                            <span><i class="fas fa-map-marker-alt"></i> San Francisco, CA</span>
+                            <span><i class="fas fa-dollar-sign"></i> $85,000 - $110,000</span>
                         </div>
                         <div class="tags">
-                            <span class="tag">Digital Marketing</span>
-                            <span class="tag">E-commerce</span>
+                            <span class="tag">Digital</span>
+                            <span class="tag">SEO</span>
                             <span class="tag">3+ years</span>
                         </div>
                     </div>
                     <div class="job-card">
                         <h3>Frontend Developer</h3>
-                        <div class="company">Zomato (Gurugram)</div>
+                        <div class="company">WebSolutions LLC</div>
                         <div class="details">
-                            <span><i class="fas fa-map-marker-alt"></i> Gurugram, Remote</span>
-                            <span><i class="fas fa-rupee-sign"></i> ₹10L - ₹16L PA</span>
+                            <span><i class="fas fa-map-marker-alt"></i> Hybrid (NYC)</span>
+                            <span><i class="fas fa-dollar-sign"></i> $100,000 - $130,000</span>
                         </div>
                         <div class="tags">
                             <span class="tag">React</span>
@@ -916,7 +972,7 @@
     <!-- Chatbot Container -->
     <div class="chatbot-container" id="chatbotContainer">
         <div class="chatbot-header">
-            <h3><i class="fas fa-robot"></i> ASHA AI ASSISTANT</h3>
+            <h3>ASHA AI ASSISTANT</h3>
             <button class="chatbot-close" id="chatbotClose">
                 <i class="fas fa-times"></i>
             </button>
@@ -927,7 +983,7 @@
         </div>
         
         <div class="chatbot-input">
-            <input type="text" id="userInput" placeholder="Ask me about jobs, skills, or mentorship...">
+            <input type="text" id="userInput" placeholder="Ask me something...">
             <button id="sendButton"><i class="fas fa-paper-plane"></i></button>
         </div>
     </div>
@@ -972,20 +1028,20 @@
                 if (chatbotContainer.classList.contains('active')) {
                     // Add welcome message if chat is empty
                     if (chatbotMessages.children.length === 0) {
-                        addBotMessage("Namaste! 🙏 I'm Asha, your AI career companion for Indian women. How can I help you today?");
+                        addBotMessage("Hello! I'm Asha, your AI career companion. How can I assist you today?");
                         
-                        // Add quick action buttons with Indian context
+                        // Add quick action buttons
                         setTimeout(() => {
                             const quickActions = document.createElement('div');
                             quickActions.className = 'quick-actions';
                             
                             const categories = [
-                                {icon: 'briefcase', text: 'Jobs in India'},
-                                {icon: 'rupee-sign', text: 'Salary Trends'},
-                                {icon: 'graduation-cap', text: 'Upskilling'},
-                                {icon: 'hands-helping', text: 'Mentorship'},
-                                {icon: 'user-tie', text: 'Career Break Help'},
-                                {icon: 'calendar-alt', text: 'Indian Events'}
+                                {icon: 'briefcase', text: 'Job Search'},
+                                {icon: 'calendar-star', text: 'Upcoming Events'},
+                                {icon: 'hands-helping', text: 'Mentor Matching'},
+                                {icon: 'chart-line', text: 'Career Growth'},
+                                {icon: 'book', text: 'Resources'},
+                                {icon: 'cog', text: 'Settings'}
                             ];
                             
                             categories.forEach(category => {
@@ -1083,66 +1139,63 @@
             function handleUserMessage(message) {
                 message = message.toLowerCase();
                 
-                // Simple response logic with Indian context
-                if (message.includes('hello') || message.includes('hi') || message.includes('namaste')) {
-                    addBotMessage("Namaste! 🙏 How can I assist you with your career journey in India today?");
+                // Simple response logic - in a real app, this would connect to an AI service
+                if (message.includes('hello') || message.includes('hi') || message.includes('hey')) {
+                    addBotMessage("Hello there! How can I assist with your career journey today?");
                 } 
-                else if (message.includes('job') || message.includes('career') || message.includes('naukri')) {
-                    addBotMessage("I can help you find job opportunities across India. Which city are you looking in?");
+                else if (message.includes('job') || message.includes('career')) {
+                    addBotMessage("I can help you explore job opportunities. What field are you interested in?");
                     
-                    // Add Indian city buttons
+                    // Add category buttons
                     setTimeout(() => {
-                        const cities = [
-                            {icon: 'city', text: 'Bangalore'},
-                            {icon: 'city', text: 'Mumbai'},
-                            {icon: 'city', text: 'Delhi NCR'},
-                            {icon: 'city', text: 'Hyderabad'},
-                            {icon: 'city', text: 'Chennai'},
-                            {icon: 'city', text: 'Pune'}
+                        const categories = [
+                            {icon: 'laptop-code', text: 'Technology'},
+                            {icon: 'chart-pie', text: 'Business'},
+                            {icon: 'flask', text: 'Science'},
+                            {icon: 'palette', text: 'Creative'},
+                            {icon: 'heartbeat', text: 'Healthcare'},
+                            {icon: 'graduation-cap', text: 'Education'}
                         ];
                         
-                        const cityDiv = document.createElement('div');
-                        cityDiv.className = 'quick-actions';
+                        const categoryDiv = document.createElement('div');
+                        categoryDiv.className = 'category-buttons';
                         
-                        cities.forEach(city => {
+                        categories.forEach(category => {
                             const button = document.createElement('button');
                             button.className = 'quick-action';
-                            button.innerHTML = `<i class="fas fa-${city.icon}"></i> ${city.text}`;
+                            button.innerHTML = `<i class="fas fa-${category.icon}"></i> ${category.text}`;
                             button.addEventListener('click', () => {
-                                addUserMessage(`Jobs in ${city.text}`);
+                                addUserMessage(`Jobs in ${category.text}`);
                                 showTypingIndicator();
                                 setTimeout(() => {
                                     removeTypingIndicator();
-                                    addBotMessage(`Here are some opportunities in ${city.text}:\n\n1. Tech roles at Indian startups\n2. Corporate jobs in ${city.text}\n3. Remote opportunities for ${city.text} residents`);
+                                    addBotMessage(`Here are some opportunities in ${category.text}:\n\n1. Senior ${category.text} Role at TechCorp\n2. ${category.text} Manager at InnovateInc\n3. ${category.text} Specialist at FutureWorks`);
                                 }, 1500);
                             });
-                            cityDiv.appendChild(button);
+                            categoryDiv.appendChild(button);
                         });
                         
                         const messageDiv = document.createElement('div');
                         messageDiv.className = 'message bot-message';
-                        messageDiv.appendChild(cityDiv);
+                        messageDiv.appendChild(categoryDiv);
                         chatbotMessages.appendChild(messageDiv);
                         scrollToBottom();
                     }, 500);
                 }
-                else if (message.includes('salary') || message.includes('package')) {
-                    addBotMessage("Salary trends vary across Indian cities and industries. For example:\n\n• Bangalore tech salaries: ₹8-30L PA\n• Mumbai finance roles: ₹10-25L PA\n• Delhi marketing jobs: ₹6-18L PA\n\nWhich field are you interested in?");
+                else if (message.includes('event') || message.includes('workshop')) {
+                    addBotMessage("Here are upcoming events you might enjoy:\n\n• Women in Tech Conference - June 15\n• Leadership Workshop - July 2\n• Networking Mixer - June 28");
                 }
                 else if (message.includes('mentor') || message.includes('guidance')) {
-                    addBotMessage("We have mentors from top Indian companies like TATA, Infosys, and HUL. What specific area do you need guidance in?");
+                    addBotMessage("Our mentorship program connects you with experienced professionals. What specific area are you looking for guidance in?");
                 }
-                else if (message.includes('break') || message.includes('gap')) {
-                    addBotMessage("Many Indian women take career breaks. Here are resources to help you restart:\n\n1. 'Back to Work' programs\n2. Skill refresh courses\n3. Returnship opportunities\n\nWould you like details on any of these?");
+                else if (message.includes('thank')) {
+                    addBotMessage("You're welcome! Is there anything else I can help with?");
                 }
-                else if (message.includes('upskill') || message.includes('learn')) {
-                    addBotMessage("Popular upskilling options in India:\n\n• Digital Marketing (Google, Facebook certified)\n• Data Science (IIT courses)\n• Full Stack Development\n• Cloud Computing (AWS, Azure)\n\nWhich interests you?");
-                }
-                else if (message.includes('thank') || message.includes('dhanyavaad')) {
-                    addBotMessage("You're welcome! 🙏 Is there anything else I can help you with regarding your Indian career journey?");
+                else if (message.includes('help') || message.includes('support')) {
+                    addBotMessage("For direct support, contact help@jobsforher.org. How else may I assist you?");
                 }
                 else {
-                    addBotMessage("I specialize in helping Indian women with career growth. You can ask me about:\n\n• Jobs in Indian cities\n• Salary benchmarks\n• Upskilling courses\n• Career break support\n• Mentorship from Indian leaders");
+                    addBotMessage("I'm here to help with your career journey. You can ask me about jobs, events, mentorship, or career advice.");
                     
                     // Add quick actions for clarification
                     setTimeout(() => {
@@ -1150,9 +1203,9 @@
                         quickActions.className = 'quick-actions';
                         
                         const suggestions = [
-                            "How to negotiate salary in India?",
-                            "Best cities for tech jobs?",
-                            "How to restart career after break?"
+                            "How do I prepare for an interview?",
+                            "What are high-growth careers?",
+                            "How to improve leadership skills?"
                         ];
                         
                         suggestions.forEach(suggestion => {
