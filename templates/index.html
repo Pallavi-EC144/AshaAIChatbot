@@ -8,24 +8,19 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            /* New color scheme */
-            --bg-dark: #0E0E10;
-            --card-dark: #1A1A1D;
-            --text-light: #F5F5F7;
-            --accent-blue: #4FD1FF;
-            --accent-green: #8FFFAB;
-            --accent-purple: #A88BFF;
+            /* Professional Dark Theme */
+            --bg-dark: #0E0E10; /* Deep Charcoal Black */
+            --card-dark: #1C1C1E; /* Rich Dark Grey */
+            --text-light: #F5F5F7; /* Soft White */
+            --text-secondary: #9A9A9A; /* Cool Grey */
+            --accent-blue: #4FD1FF; /* Sky Electric Blue */
+            --accent-green: #8FFFAB; /* Mint Glow Green */
+            --accent-purple: #A88BFF; /* Cosmic Purple */
+            --accent-teal: #4FE3C2; /* Teal for gradient */
             --accent-blue-transparent: rgba(79, 209, 255, 0.2);
             --accent-purple-transparent: rgba(168, 139, 255, 0.2);
             --accent-green-transparent: rgba(143, 255, 171, 0.2);
-            
-            /* Original colors for light mode */
-            --primary: #8B1F35;
-            --secondary: #E6427A;
-            --accent: #F28C38;
-            --light: #F5F5F7;
-            --dark: #1A1A1D;
-            --text: #333333;
+            --accent-teal-transparent: rgba(79, 227, 194, 0.2);
             
             /* Current theme variables */
             --current-bg: var(--bg-dark);
@@ -155,7 +150,7 @@
         }
         
         .btn-primary {
-            background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-teal));
             color: var(--current-bg);
             border: none;
         }
@@ -218,7 +213,7 @@
         }
         
         .hero h1 span {
-            background: linear-gradient(90deg, var(--accent-blue), var(--accent-purple));
+            background: linear-gradient(90deg, var(--accent-blue), var(--accent-teal));
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
@@ -228,8 +223,7 @@
             font-size: 1.2rem;
             max-width: 800px;
             margin: 0 auto 2rem;
-            color: var(--current-text);
-            opacity: 0.9;
+            color: var(--text-secondary);
         }
         
         .hero-buttons {
@@ -267,6 +261,7 @@
         
         .sidebar-nav li {
             margin-bottom: 1rem;
+            position: relative;
         }
         
         .sidebar-nav a {
@@ -284,6 +279,32 @@
             background-color: var(--accent-blue-transparent);
             color: var(--accent-blue);
             box-shadow: 0 0 10px var(--accent-blue-transparent);
+        }
+        
+        /* Category dots */
+        .sidebar-nav li:nth-child(1) a::before { /* Dashboard */
+            background: var(--accent-blue);
+        }
+        .sidebar-nav li:nth-child(2) a::before { /* Career Path */
+            background: var(--accent-blue);
+        }
+        .sidebar-nav li:nth-child(3) a::before { /* Events */
+            background: var(--accent-green);
+        }
+        .sidebar-nav li:nth-child(4) a::before { /* Mentorship */
+            background: var(--accent-purple);
+        }
+        .sidebar-nav li:nth-child(5) a::before { /* Bookmarks */
+            background: var(--accent-teal);
+        }
+        
+        .sidebar-nav a::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            margin-right: 10px;
+            display: inline-block;
         }
         
         .sidebar-nav i {
@@ -330,7 +351,7 @@
             font-size: 2rem;
             font-weight: 700;
             margin-bottom: 0.5rem;
-            background: linear-gradient(90deg, var(--accent-blue), var(--accent-purple));
+            background: linear-gradient(90deg, var(--accent-blue), var(--accent-teal));
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
@@ -414,8 +435,7 @@
             gap: 1rem;
             margin-bottom: 1rem;
             font-size: 0.9rem;
-            color: var(--current-text);
-            opacity: 0.8;
+            color: var(--text-secondary);
         }
         
         .job-card .tags {
@@ -485,7 +505,7 @@
         }
         
         .chatbot-header {
-            background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-teal));
             color: var(--current-bg);
             padding: 1rem 1.5rem;
             display: flex;
@@ -631,7 +651,7 @@
         }
         
         .chatbot-input button {
-            background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-teal));
             color: var(--current-bg);
             border: none;
             border-radius: 50%;
@@ -700,7 +720,7 @@
             right: 2rem;
             width: 60px;
             height: 60px;
-            background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-teal));
             color: var(--current-bg);
             border-radius: 50%;
             display: flex;
@@ -725,74 +745,6 @@
             100% { box-shadow: 0 0 0 0 rgba(79, 209, 255, 0); }
         }
         
-        /* Light Mode Styles */
-        .light-mode {
-            --current-bg: #F5F5F7;
-            --current-card: #FFFFFF;
-            --current-text: #1A1A1D;
-            --current-accent: #8B1F35;
-            --current-border: rgba(26, 26, 29, 0.1);
-        }
-        
-        .light-mode .hero {
-            background: linear-gradient(135deg, rgba(139, 31, 53, 0.1), rgba(230, 66, 122, 0.1));
-        }
-        
-        .light-mode .hero h1 span {
-            background: linear-gradient(90deg, #8B1F35, #E6427A);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-        
-        .light-mode .btn-outline {
-            border: 2px solid #8B1F35;
-            color: #8B1F35;
-        }
-        
-        .light-mode .btn-outline:hover {
-            background-color: rgba(139, 31, 53, 0.1);
-        }
-        
-        .light-mode .btn-primary {
-            background: linear-gradient(135deg, #8B1F35, #E6427A);
-            color: white;
-        }
-        
-        .light-mode .sidebar-nav a:hover, 
-        .light-mode .sidebar-nav a.active {
-            background-color: rgba(139, 31, 53, 0.1);
-            color: #8B1F35;
-        }
-        
-        .light-mode .stat-card .value {
-            background: linear-gradient(90deg, #8B1F35, #E6427A);
-        }
-        
-        .light-mode .search-bar input:focus {
-            border-color: #8B1F35;
-            box-shadow: 0 0 0 2px rgba(139, 31, 53, 0.2);
-        }
-        
-        .light-mode .job-card .company {
-            color: #8B1F35;
-        }
-        
-        .light-mode .job-card .tag {
-            background-color: rgba(230, 66, 122, 0.1);
-            color: #E6427A;
-        }
-        
-        .light-mode .user-avatar {
-            background-color: rgba(139, 31, 53, 0.1);
-            color: #8B1F35;
-        }
-        
-        .light-mode .user-avatar:hover {
-            background-color: rgba(230, 66, 122, 0.1);
-            color: #E6427A;
-        }
-        
         /* Responsive Design */
         @media (max-width: 1024px) {
             .dashboard-grid {
@@ -800,7 +752,7 @@
             }
             
             .sidebar {
-                display: none; /* Would be toggled via mobile menu in production */
+                display: none;
             }
         }
         
@@ -883,7 +835,7 @@
                 <ul class="sidebar-nav">
                     <li><a href="#" class="active"><i class="fas fa-home"></i> Dashboard</a></li>
                     <li><a href="#"><i class="fas fa-briefcase"></i> Career Path</a></li>
-                    <li><a href="#"><i class="fas fa-calendar-star"></i> Events</a></li>
+                    <li><a href="#"><i class="fas fa-calendar-alt"></i> Events</a></li>
                     <li><a href="#"><i class="fas fa-hands-helping"></i> Mentorship</a></li>
                     <li><a href="#"><i class="fas fa-bookmark"></i> Bookmarks</a></li>
                     <li><a href="#"><i class="fas fa-question-circle"></i> Ask Asha</a></li>
@@ -922,10 +874,10 @@
                 <div class="job-listings">
                     <div class="job-card">
                         <h3>Senior Product Designer</h3>
-                        <div class="company">TechFusion Inc.</div>
+                        <div class="company">TechFusion India</div>
                         <div class="details">
-                            <span><i class="fas fa-map-marker-alt"></i> Remote</span>
-                            <span><i class="fas fa-dollar-sign"></i> $95,000 - $120,000</span>
+                            <span><i class="fas fa-map-marker-alt"></i> Bangalore, KA</span>
+                            <span><i class="fas fa-rupee-sign"></i> ₹18L - ₹22L</span>
                         </div>
                         <div class="tags">
                             <span class="tag">UI/UX</span>
@@ -935,10 +887,10 @@
                     </div>
                     <div class="job-card">
                         <h3>Marketing Manager</h3>
-                        <div class="company">GrowthMarketing Co.</div>
+                        <div class="company">GrowthMarketing India</div>
                         <div class="details">
-                            <span><i class="fas fa-map-marker-alt"></i> San Francisco, CA</span>
-                            <span><i class="fas fa-dollar-sign"></i> $85,000 - $110,000</span>
+                            <span><i class="fas fa-map-marker-alt"></i> Mumbai, MH</span>
+                            <span><i class="fas fa-rupee-sign"></i> ₹15L - ₹20L</span>
                         </div>
                         <div class="tags">
                             <span class="tag">Digital</span>
@@ -948,10 +900,10 @@
                     </div>
                     <div class="job-card">
                         <h3>Frontend Developer</h3>
-                        <div class="company">WebSolutions LLC</div>
+                        <div class="company">WebSolutions India</div>
                         <div class="details">
-                            <span><i class="fas fa-map-marker-alt"></i> Hybrid (NYC)</span>
-                            <span><i class="fas fa-dollar-sign"></i> $100,000 - $130,000</span>
+                            <span><i class="fas fa-map-marker-alt"></i> Hybrid (Delhi)</span>
+                            <span><i class="fas fa-rupee-sign"></i> ₹20L - ₹25L</span>
                         </div>
                         <div class="tags">
                             <span class="tag">React</span>
@@ -1169,7 +1121,7 @@
                                 showTypingIndicator();
                                 setTimeout(() => {
                                     removeTypingIndicator();
-                                    addBotMessage(`Here are some opportunities in ${category.text}:\n\n1. Senior ${category.text} Role at TechCorp\n2. ${category.text} Manager at InnovateInc\n3. ${category.text} Specialist at FutureWorks`);
+                                    addBotMessage(`Here are some opportunities in ${category.text}:\n\n1. Senior ${category.text} Role at TechCorp India - ₹18L-₹25L\n2. ${category.text} Manager at InnovateIndia - ₹15L-₹22L\n3. ${category.text} Specialist at FutureWorks India - ₹12L-₹18L`);
                                 }, 1500);
                             });
                             categoryDiv.appendChild(button);
@@ -1183,7 +1135,7 @@
                     }, 500);
                 }
                 else if (message.includes('event') || message.includes('workshop')) {
-                    addBotMessage("Here are upcoming events you might enjoy:\n\n• Women in Tech Conference - June 15\n• Leadership Workshop - July 2\n• Networking Mixer - June 28");
+                    addBotMessage("Here are upcoming events you might enjoy:\n\n• Women in Tech Conference - June 15 (Bangalore)\n• Leadership Workshop - July 2 (Mumbai)\n• Networking Mixer - June 28 (Delhi)");
                 }
                 else if (message.includes('mentor') || message.includes('guidance')) {
                     addBotMessage("Our mentorship program connects you with experienced professionals. What specific area are you looking for guidance in?");
