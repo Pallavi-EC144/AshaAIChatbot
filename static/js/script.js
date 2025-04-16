@@ -47,8 +47,4 @@ userInput.addEventListener('keydown', (event) => {
     if (event.key === 'Enter') {
         sendMessage();
     }
-<<<<<<< HEAD
 });
-=======
-});
->>>>>>> b17aab2760960791b7f5377bb1de9d82843b74d9
