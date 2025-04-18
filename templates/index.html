@@ -47,7 +47,7 @@
             padding: 0;
             box-sizing: border-box;
             font-family: 'Montserrat', 'Segoe UI', sans-serif;
-            transition: background-color 0.3s, color 0.3s, border-color 0.3s, box-shadow 0.3s;
+            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
         }
         
         @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
@@ -747,14 +747,14 @@
             100% { box-shadow: 0 0 0 0 rgba(79, 209, 255, 0); }
         }
         
-        /* Light Mode Styles */
+        /* Light Mode Styles - Fixed transitions */
         .light-mode {
-            --current-bg: var(--bg-light); /* Warm off-white */
-            --current-card: var(--card-light); /* Pure white */
-            --current-text: var(--text-dark); /* Charcoal */
-            --current-text-secondary: var(--text-secondary-light); /* Slate grey */
-            --current-accent: var(--accent-blue-light); /* Soft blue */
-            --current-border: var(--border-light); /* Light grey */
+            --current-bg: var(--bg-light);
+            --current-card: var(--card-light);
+            --current-text: var(--text-dark);
+            --current-text-secondary: var(--text-secondary-light);
+            --current-accent: var(--accent-blue-light);
+            --current-border: var(--border-light);
             
             /* Adjust accent colors for light mode */
             --accent-blue: var(--accent-blue-light);
@@ -769,20 +769,25 @@
         
         .light-mode .hero h1 span {
             background: linear-gradient(90deg, var(--accent-blue-light), var(--accent-green-light));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
         }
         
         .light-mode .btn-outline {
             border: 2px solid var(--accent-blue-light);
             color: var(--accent-blue-light);
+            background: transparent;
         }
         
         .light-mode .btn-outline:hover {
             background-color: var(--accent-blue-light-transparent);
+            box-shadow: 0 0 15px var(--accent-blue-light-transparent);
         }
         
         .light-mode .btn-primary {
             background: linear-gradient(135deg, var(--accent-blue-light), var(--accent-green-light));
-            color: white;
+            color: var(--current-bg);
         }
         
         .light-mode .sidebar-nav a:hover, 
@@ -793,6 +798,9 @@
         
         .light-mode .stat-card .value {
             background: linear-gradient(90deg, var(--accent-blue-light), var(--accent-green-light));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
         }
         
         .light-mode .search-bar input:focus {
@@ -821,28 +829,25 @@
         }
         
         .light-mode .bot-message {
-            background: white;
-            color: var(--text-dark);
+            background: var(--accent-blue-light-transparent);
+            color: var(--current-text);
             border: 1px solid rgba(60, 145, 230, 0.3);
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
         }
         
         .light-mode .user-message {
-            background: white;
-            color: var(--text-dark);
+            background: var(--accent-purple-transparent);
+            color: var(--current-text);
             border: 1px solid rgba(178, 141, 255, 0.3);
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
         }
         
         .light-mode .quick-action {
-            background: white;
+            background: var(--accent-blue-light-transparent);
             color: var(--accent-blue-light);
-            border: 1px solid var(--border-light);
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            border: 1px solid rgba(60, 145, 230, 0.3);
         }
         
         .light-mode .quick-action:hover {
-            background: var(--accent-blue-light-transparent);
+            background: rgba(60, 145, 230, 0.2);
         }
         
         /* Responsive Design */
