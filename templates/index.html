@@ -8,29 +8,33 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            /* Professional Dark Theme (EXACTLY AS YOU WANT IT) */
-            --bg-dark: #0E0E10; /* Deep Charcoal Black */
-            --card-dark: #1C1C1E; /* Rich Dark Grey */
-            --text-light: #F5F5F7; /* Soft White */
-            --text-secondary: #9A9A9A; /* Cool Grey */
-            --accent-blue: #4FD1FF; /* Sky Electric Blue */
-            --accent-green: #8FFFAB; /* Mint Glow Green */
-            --accent-purple: #A88BFF; /* Cosmic Purple */
-            --accent-teal: #4FE3C2; /* Teal for gradient */
+            /* Professional Dark Theme */
+            --bg-dark: #0E0E10;
+            --card-dark: #1C1C1E;
+            --text-light: #F5F5F7;
+            --text-secondary: #9A9A9A;
+            --accent-blue: #4FD1FF;
+            --accent-green: #8FFFAB;
+            --accent-purple: #A88BFF;
+            --accent-teal: #4FE3C2;
+            --accent-pink: #FF7EB9;
+            --accent-orange: #FFA85C;
             --accent-blue-transparent: rgba(79, 209, 255, 0.2);
             --accent-purple-transparent: rgba(168, 139, 255, 0.2);
             --accent-green-transparent: rgba(143, 255, 171, 0.2);
             --accent-teal-transparent: rgba(79, 227, 194, 0.2);
             
-            /* Light Mode Palette (NEW) */
-            --bg-light: #F8F9FB; /* Warm off-white / light stone */
-            --card-light: #FFFFFF; /* Soft grey-tint white */
-            --border-light: #E4E6EB; /* Misty light grey */
-            --text-dark: #2D2D2D; /* Charcoal / Graphite */
-            --text-secondary-light: #6A6A6A; /* Slate Grey */
-            --accent-blue-light: #3C91E6; /* Soft Sky Blue */
-            --accent-green-light: #61D199; /* Seafoam / Mint Green */
-            --accent-purple-light: #B28DFF; /* Lavender Mist */
+            /* Light Mode Palette */
+            --bg-light: #F8F9FB;
+            --card-light: #FFFFFF;
+            --border-light: #E4E6EB;
+            --text-dark: #2D2D2D;
+            --text-secondary-light: #6A6A6A;
+            --accent-blue-light: #3C91E6;
+            --accent-green-light: #61D199;
+            --accent-purple-light: #B28DFF;
+            --accent-pink-light: #FF6B9E;
+            --accent-orange-light: #FF9147;
             --accent-blue-light-transparent: rgba(60, 145, 230, 0.15);
             
             /* Current theme variables */
@@ -747,7 +751,99 @@
             100% { box-shadow: 0 0 0 0 rgba(79, 209, 255, 0); }
         }
         
-        /* Light Mode Styles - Fixed transitions */
+        /* Message Controls */
+        .message-controls {
+            display: flex;
+            justify-content: flex-end;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+        }
+        
+        .message-control {
+            background: transparent;
+            border: none;
+            color: var(--current-text-secondary);
+            font-size: 0.7rem;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+        
+        .message-control:hover {
+            color: var(--current-accent);
+        }
+        
+        /* Chatbot Menu */
+        .chatbot-menu {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.5rem 1rem;
+            background: var(--current-card);
+            border-top: 1px solid var(--current-border);
+        }
+        
+        .menu-button {
+            background: transparent;
+            border: none;
+            color: var(--current-text-secondary);
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            padding: 0.5rem;
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.3rem;
+        }
+        
+        .menu-button:hover, .menu-button.active {
+            color: var(--current-accent);
+            background: var(--accent-blue-transparent);
+        }
+        
+        .menu-button i {
+            font-size: 1.1rem;
+        }
+        
+        /* Feedback Form */
+        .feedback-form {
+            padding: 1rem;
+            background: var(--current-card);
+            border-top: 1px solid var(--current-border);
+            display: none;
+        }
+        
+        .feedback-form.active {
+            display: block;
+        }
+        
+        .feedback-form textarea {
+            width: 100%;
+            padding: 1rem;
+            border-radius: 8px;
+            border: 1px solid var(--current-border);
+            background: var(--current-bg);
+            color: var(--current-text);
+            margin-bottom: 0.5rem;
+            resize: none;
+        }
+        
+        .feedback-form button {
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-teal));
+            color: var(--current-bg);
+            border: none;
+            padding: 0.6rem 1.2rem;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .feedback-form button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(79, 209, 255, 0.3);
+        }
+        
+        /* Light Mode Styles */
         .light-mode {
             --current-bg: var(--bg-light);
             --current-card: var(--card-light);
@@ -760,6 +856,8 @@
             --accent-blue: var(--accent-blue-light);
             --accent-green: var(--accent-green-light);
             --accent-purple: var(--accent-purple-light);
+            --accent-pink: var(--accent-pink-light);
+            --accent-orange: var(--accent-orange-light);
             --accent-blue-transparent: var(--accent-blue-light-transparent);
         }
         
@@ -884,7 +982,392 @@
             .chatbot-container {
                 width: 95%;
                 right: 2.5%;
+                bottom: 1rem;
             }
+            
+            .chatbot-toggle {
+                bottom: 1rem;
+                right: 1rem;
+            }
+        }
+        
+        /* Voice Input Button */
+        .voice-input {
+            background: transparent;
+            border: none;
+            color: var(--current-text-secondary);
+            font-size: 1.2rem;
+            cursor: pointer;
+            margin-right: 0.5rem;
+            transition: all 0.3s;
+        }
+        
+        .voice-input:hover {
+            color: var(--current-accent);
+        }
+        
+        .voice-input.listening {
+            color: var(--accent-pink);
+            animation: pulse 1.5s infinite;
+        }
+        
+        /* Emoji Picker */
+        .emoji-picker {
+            position: absolute;
+            bottom: 70px;
+            right: 20px;
+            background: var(--current-card);
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+            padding: 1rem;
+            width: 300px;
+            max-height: 300px;
+            overflow-y: auto;
+            display: none;
+            z-index: 1001;
+            border: 1px solid var(--current-border);
+        }
+        
+        .emoji-picker.active {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 0.5rem;
+        }
+        
+        .emoji-option {
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: transform 0.2s;
+            text-align: center;
+        }
+        
+        .emoji-option:hover {
+            transform: scale(1.2);
+        }
+        
+        /* Language Selector */
+        .language-selector {
+            position: absolute;
+            bottom: 70px;
+            right: 20px;
+            background: var(--current-card);
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+            padding: 1rem;
+            width: 200px;
+            display: none;
+            z-index: 1001;
+            border: 1px solid var(--current-border);
+        }
+        
+        .language-selector.active {
+            display: block;
+        }
+        
+        .language-option {
+            padding: 0.5rem;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .language-option:hover {
+            background: var(--accent-blue-transparent);
+            color: var(--current-accent);
+        }
+        
+        /* Notification */
+        .notification {
+            position: fixed;
+            bottom: 6rem;
+            right: 2rem;
+            background: var(--current-card);
+            color: var(--current-text);
+            padding: 1rem;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            z-index: 999;
+            transform: translateY(20px);
+            opacity: 0;
+            transition: all 0.3s;
+            border: 1px solid var(--current-border);
+            max-width: 300px;
+        }
+        
+        .notification.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        
+        /* Resume Review Modal */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+        }
+        
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .modal-content {
+            background: var(--current-card);
+            border-radius: 12px;
+            padding: 2rem;
+            max-width: 600px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            border: 1px solid var(--current-border);
+        }
+        
+        .modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: transparent;
+            border: none;
+            color: var(--current-text-secondary);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        .modal-title {
+            margin-bottom: 1.5rem;
+            color: var(--current-accent);
+        }
+        
+        .file-upload {
+            border: 2px dashed var(--current-border);
+            border-radius: 8px;
+            padding: 2rem;
+            text-align: center;
+            margin-bottom: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .file-upload:hover {
+            border-color: var(--current-accent);
+            background: var(--accent-blue-transparent);
+        }
+        
+        .file-upload i {
+            font-size: 2rem;
+            color: var(--current-accent);
+            margin-bottom: 1rem;
+        }
+        
+        .file-upload input {
+            display: none;
+        }
+        
+        .resume-tips {
+            background: var(--current-bg);
+            border-radius: 8px;
+            padding: 1rem;
+            margin-top: 1.5rem;
+        }
+        
+        .resume-tips h4 {
+            color: var(--current-accent);
+            margin-bottom: 0.5rem;
+        }
+        
+        .resume-tips ul {
+            padding-left: 1.5rem;
+        }
+        
+        .resume-tips li {
+            margin-bottom: 0.5rem;
+        }
+        
+        /* Summary Modal */
+        .summary-content {
+            max-height: 60vh;
+            overflow-y: auto;
+            padding-right: 1rem;
+        }
+        
+        .summary-content h4 {
+            color: var(--current-accent);
+            margin: 1rem 0 0.5rem;
+        }
+        
+        /* Event Card */
+        .event-card {
+            background: var(--current-bg);
+            border-radius: 8px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border: 1px solid var(--current-border);
+        }
+        
+        .event-card h4 {
+            color: var(--current-accent);
+            margin-bottom: 0.5rem;
+        }
+        
+        .event-card .event-details {
+            display: flex;
+            gap: 1rem;
+            font-size: 0.9rem;
+            color: var(--current-text-secondary);
+            margin-bottom: 0.5rem;
+        }
+        
+        .event-card .event-actions {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+        }
+        
+        .event-card .event-action {
+            background: var(--accent-blue-transparent);
+            color: var(--current-accent);
+            border: none;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            cursor: pointer;
+        }
+        
+        /* Mentor Card */
+        .mentor-card {
+            background: var(--current-bg);
+            border-radius: 8px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border: 1px solid var(--current-border);
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .mentor-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--accent-purple-transparent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent-purple);
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+        
+        .mentor-info {
+            flex-grow: 1;
+        }
+        
+        .mentor-info h4 {
+            color: var(--current-accent);
+            margin-bottom: 0.3rem;
+        }
+        
+        .mentor-info p {
+            font-size: 0.9rem;
+            color: var(--current-text-secondary);
+            margin-bottom: 0.5rem;
+        }
+        
+        .mentor-skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.3rem;
+        }
+        
+        .mentor-skill {
+            background: var(--accent-green-transparent);
+            color: var(--accent-green);
+            padding: 0.2rem 0.6rem;
+            border-radius: 20px;
+            font-size: 0.7rem;
+        }
+        
+        /* Job Details */
+        .job-details {
+            background: var(--current-bg);
+            border-radius: 8px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border: 1px solid var(--current-border);
+        }
+        
+        .job-details h4 {
+            color: var(--current-accent);
+            margin-bottom: 0.5rem;
+        }
+        
+        .job-meta {
+            display: flex;
+            gap: 1rem;
+            font-size: 0.9rem;
+            color: var(--current-text-secondary);
+            margin-bottom: 0.5rem;
+        }
+        
+        .job-description {
+            margin: 1rem 0;
+            font-size: 0.9rem;
+        }
+        
+        .job-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+        
+        .job-action {
+            background: var(--accent-blue-transparent);
+            color: var(--current-accent);
+            border: none;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            cursor: pointer;
+        }
+        
+        /* Why Response Button */
+        .why-response {
+            background: transparent;
+            border: none;
+            color: var(--current-text-secondary);
+            font-size: 0.7rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+            margin-top: 0.5rem;
+        }
+        
+        .why-response:hover {
+            color: var(--current-accent);
+        }
+        
+        .response-source {
+            background: var(--current-bg);
+            border-radius: 8px;
+            padding: 1rem;
+            margin-top: 0.5rem;
+            font-size: 0.8rem;
+            border: 1px solid var(--current-border);
+            display: none;
+        }
+        
+        .response-source.active {
+            display: block;
         }
     </style>
 </head>
@@ -892,16 +1375,17 @@
     <!-- Header -->
     <header>
         <div class="logo">
-            <img src="https://static.wixstatic.com/media/2e2a49_0f0e1c5f8a2a4e1b8e0e3c3e0e3c3e0e~mv2.png/v1/fill/w_120,h_120,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/Asha%20Logo%20New.png" alt="Asha Logo">
+            <img src="assets/images/logo.png" alt="Asha Logo">
             <div class="logo-text">Asha<span>AI</span></div>
         </div>
         
         <nav>
             <ul>
                 <li><a href="#" class="active">Home</a></li>
-                <li><a href="#">Careers</a></li>
-                <li><a href="#">Mentorship</a></li>
-                <li><a href="#">Events</a></li>
+                <li><a href="#jobs">Careers</a></li>
+                <li><a href="#mentorship">Mentorship</a></li>
+                <li><a href="#events">Events</a></li>
+                <li><a href="#communities">Communities</a></li>
             </ul>
         </nav>
         
@@ -927,7 +1411,7 @@
         <p>Empowering women to navigate their career journey with personalized guidance, mentorship connections, and job opportunities tailored just for you.</p>
         
         <div class="hero-buttons">
-            <a href="#" class="btn btn-primary">Get Started</a>
+            <a href="#" class="btn btn-primary" id="startChatBtn">Start Chat</a>
             <a href="#" class="btn btn-outline">How It Works</a>
         </div>
     </section>
@@ -939,12 +1423,12 @@
             <aside class="sidebar">
                 <ul class="sidebar-nav">
                     <li><a href="#" class="active"><i class="fas fa-home"></i> Dashboard</a></li>
-                    <li><a href="#"><i class="fas fa-briefcase"></i> Career Path</a></li>
-                    <li><a href="#"><i class="fas fa-calendar-alt"></i> Events</a></li>
-                    <li><a href="#"><i class="fas fa-hands-helping"></i> Mentorship</a></li>
-                    <li><a href="#"><i class="fas fa-bookmark"></i> Bookmarks</a></li>
-                    <li><a href="#"><i class="fas fa-question-circle"></i> Ask Asha</a></li>
-                    <li><a href="#"><i class="fas fa-cog"></i> Settings</a></li>
+                    <li><a href="#jobs"><i class="fas fa-briefcase"></i> Career Path</a></li>
+                    <li><a href="#events"><i class="fas fa-calendar-alt"></i> Events</a></li>
+                    <li><a href="#mentorship"><i class="fas fa-hands-helping"></i> Mentorship</a></li>
+                    <li><a href="#communities"><i class="fas fa-users"></i> Communities</a></li>
+                    <li><a href="#resources"><i class="fas fa-book"></i> Resources</a></li>
+                    <li><a href="#settings"><i class="fas fa-cog"></i> Settings</a></li>
                 </ul>
             </aside>
             
@@ -1017,6 +1501,35 @@
                         </div>
                     </div>
                 </div>
+                
+                <!-- Events Section -->
+                <h2 style="color: var(--current-text); margin-top: 2rem;">Upcoming Events</h2>
+                <div class="job-listings">
+                    <div class="job-card">
+                        <h3>Women in Tech Conference</h3>
+                        <div class="company">Bangalore, June 15-16</div>
+                        <div class="details">
+                            <span><i class="fas fa-clock"></i> 9:00 AM - 5:00 PM</span>
+                            <span><i class="fas fa-tag"></i> Networking, Workshops</span>
+                        </div>
+                        <div class="tags">
+                            <span class="tag">Free</span>
+                            <span class="tag">In-Person</span>
+                        </div>
+                    </div>
+                    <div class="job-card">
+                        <h3>Leadership Workshop</h3>
+                        <div class="company">Online, July 2</div>
+                        <div class="details">
+                            <span><i class="fas fa-clock"></i> 2:00 PM - 4:00 PM</span>
+                            <span><i class="fas fa-tag"></i> Skill Development</span>
+                        </div>
+                        <div class="tags">
+                            <span class="tag">Free</span>
+                            <span class="tag">Virtual</span>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -1039,13 +1552,192 @@
             <!-- Messages will appear here -->
         </div>
         
+        <div class="chatbot-menu">
+            <button class="menu-button" data-action="jobs">
+                <i class="fas fa-briefcase"></i>
+                <span>Jobs</span>
+            </button>
+            <button class="menu-button" data-action="events">
+                <i class="fas fa-calendar-alt"></i>
+                <span>Events</span>
+            </button>
+            <button class="menu-button" data-action="mentors">
+                <i class="fas fa-hands-helping"></i>
+                <span>Mentors</span>
+            </button>
+            <button class="menu-button" data-action="communities">
+                <i class="fas fa-users"></i>
+                <span>Communities</span>
+            </button>
+            <button class="menu-button" data-action="feedback">
+                <i class="fas fa-comment-alt"></i>
+                <span>Feedback</span>
+            </button>
+        </div>
+        
         <div class="chatbot-input">
+            <button class="voice-input" id="voiceInputBtn">
+                <i class="fas fa-microphone"></i>
+            </button>
+            <button class="emoji-btn" id="emojiBtn">
+                <i class="far fa-smile"></i>
+            </button>
             <input type="text" id="userInput" placeholder="Ask me something...">
+            <button class="language-btn" id="languageBtn">
+                <i class="fas fa-globe"></i>
+            </button>
             <button id="sendButton"><i class="fas fa-paper-plane"></i></button>
+        </div>
+        
+        <div class="emoji-picker" id="emojiPicker">
+            <!-- Emojis will be added by JavaScript -->
+        </div>
+        
+        <div class="language-selector" id="languageSelector">
+            <div class="language-option" data-lang="en">English</div>
+            <div class="language-option" data-lang="hi">हिंदी (Hindi)</div>
+            <div class="language-option" data-lang="kn">ಕನ್ನಡ (Kannada)</div>
+            <div class="language-option" data-lang="ta">தமிழ் (Tamil)</div>
+            <div class="language-option" data-lang="te">తెలుగు (Telugu)</div>
+        </div>
+        
+        <div class="feedback-form" id="feedbackForm">
+            <textarea placeholder="Share your feedback or report an issue..."></textarea>
+            <button id="submitFeedback">Submit</button>
+        </div>
+    </div>
+    
+    <!-- Notification -->
+    <div class="notification" id="notification">
+        <div id="notificationMessage"></div>
+    </div>
+    
+    <!-- Resume Review Modal -->
+    <div class="modal-overlay" id="resumeModal">
+        <div class="modal-content">
+            <button class="modal-close" id="resumeModalClose">
+                <i class="fas fa-times"></i>
+            </button>
+            <h3 class="modal-title">AI Resume Review</h3>
+            <div class="file-upload" id="fileUpload">
+                <i class="fas fa-file-upload"></i>
+                <p>Upload your resume (PDF, DOCX)</p>
+                <p><small>Max file size: 5MB</small></p>
+                <input type="file" id="resumeFile" accept=".pdf,.doc,.docx">
+            </div>
+            <div class="resume-tips">
+                <h4>Resume Tips:</h4>
+                <ul>
+                    <li>Keep it concise (1-2 pages)</li>
+                    <li>Highlight measurable achievements</li>
+                    <li>Use action verbs (led, developed, increased)</li>
+                    <li>Tailor it to the job description</li>
+                    <li>Include relevant keywords</li>
+                </ul>
+            </div>
+            <button class="btn btn-primary" id="analyzeResume" disabled>Analyze Resume</button>
+        </div>
+    </div>
+    
+    <!-- Conversation Summary Modal -->
+    <div class="modal-overlay" id="summaryModal">
+        <div class="modal-content">
+            <button class="modal-close" id="summaryModalClose">
+                <i class="fas fa-times"></i>
+            </button>
+            <h3 class="modal-title">Conversation Summary</h3>
+            <div class="summary-content" id="summaryContent">
+                <!-- Summary content will be added here -->
+            </div>
+            <div class="modal-actions">
+                <button class="btn btn-outline" id="emailSummary">Email Summary</button>
+                <button class="btn btn-primary" id="downloadSummary">Download</button>
+            </div>
         </div>
     </div>
 
     <script>
+        // Emoji list
+        const emojis = [
+            '😀', '😃', '😄', '😁', '😆', '😅', '😂', '🤣', '😊', '😇',
+            '🙂', '🙃', '😉', '😌', '😍', '🥰', '😘', '😗', '😙', '😚',
+            '😋', '😛', '😝', '😜', '🤪', '🤨', '🧐', '🤓', '😎', '🥸',
+            '🤩', '🥳', '😏', '😒', '😞', '😔', '😟', '😕', '🙁', '☹️',
+            '😣', '😖', '😫', '😩', '🥺', '😢', '😭', '😤', '😠', '😡',
+            '🤬', '🤯', '😳', '🥵', '🥶', '😱', '😨', '😰', '😥', '😓',
+            '🤗', '🤔', '🤭', '🤫', '🤥', '😶', '😐', '😑', '😬', '🙄',
+            '😯', '😦', '😧', '😮', '😲', '🥱', '😴', '🤤', '😪', '😵',
+            '🤐', '🥴', '🤢', '🤮', '🤧', '😷', '🤒', '🤕', '🤑', '🤠',
+            '😈', '👿', '👹', '👺', '🤡', '💩', '👻', '💀', '☠️', '👽',
+            '👾', '🤖', '🎃', '😺', '😸', '😹', '😻', '😼', '😽', '🙀',
+            '😿', '😾', '🙈', '🙉', '🙊', '💋', '💌', '💘', '💝', '💖',
+            '💗', '💓', '💞', '💕', '💟', '❣️', '💔', '❤️', '🧡', '💛',
+            '💚', '💙', '💜', '🤎', '🖤', '🤍', '💯', '💢', '💥', '💫',
+            '💦', '💨', '🕳️', '💣', '💬', '👁️‍🗨️', '🗨️', '🗯️', '💭', '💤'
+        ];
+        
+        // Sample data for jobs, events, and mentors
+        const sampleJobs = [
+            {
+                title: "Senior Product Designer",
+                company: "TechFusion India",
+                location: "Bangalore, KA",
+                salary: "₹18L - ₹22L",
+                type: "Full-time",
+                description: "We're looking for an experienced Product Designer to join our team. You'll be responsible for creating user-centered designs by understanding business requirements, and user feedback.",
+                skills: ["UI/UX", "Figma", "User Research", "Prototyping"],
+                posted: "2 days ago"
+            },
+            {
+                title: "Marketing Manager",
+                company: "GrowthMarketing India",
+                location: "Mumbai, MH",
+                salary: "₹15L - ₹20L",
+                type: "Full-time",
+                description: "Seeking a creative Marketing Manager to develop and implement marketing strategies that align with our business goals.",
+                skills: ["Digital Marketing", "SEO", "Content Strategy", "Social Media"],
+                posted: "1 week ago"
+            }
+        ];
+        
+        const sampleEvents = [
+            {
+                title: "Women in Tech Conference",
+                date: "June 15-16, 2023",
+                time: "9:00 AM - 5:00 PM",
+                location: "Bangalore Convention Center",
+                description: "Annual conference bringing together women in technology for networking, workshops, and keynote speeches from industry leaders.",
+                type: "In-Person"
+            },
+            {
+                title: "Leadership Workshop",
+                date: "July 2, 2023",
+                time: "2:00 PM - 4:00 PM",
+                location: "Online",
+                description: "Interactive workshop focused on developing leadership skills for women in mid-career positions.",
+                type: "Virtual"
+            }
+        ];
+        
+        const sampleMentors = [
+            {
+                name: "Dr. Priya Sharma",
+                title: "Senior Director, Product Management",
+                company: "TechSolutions Inc.",
+                skills: ["Product Management", "Leadership", "Career Growth"],
+                experience: "15+ years",
+                availability: "2 slots/week"
+            },
+            {
+                name: "Ananya Patel",
+                title: "UX Design Lead",
+                company: "CreativeMinds",
+                skills: ["UX Design", "Portfolio Review", "Interview Prep"],
+                experience: "8+ years",
+                availability: "3 slots/week"
+            }
+        ];
+        
         document.addEventListener('DOMContentLoaded', function() {
             const chatbotToggle = document.getElementById('chatbotToggle');
             const chatbotContainer = document.getElementById('chatbotContainer');
@@ -1054,6 +1746,75 @@
             const userInput = document.getElementById('userInput');
             const sendButton = document.getElementById('sendButton');
             const themeToggle = document.getElementById('themeToggle');
+            const voiceInputBtn = document.getElementById('voiceInputBtn');
+            const emojiBtn = document.getElementById('emojiBtn');
+            const emojiPicker = document.getElementById('emojiPicker');
+            const languageBtn = document.getElementById('languageBtn');
+            const languageSelector = document.getElementById('languageSelector');
+            const feedbackForm = document.getElementById('feedbackForm');
+            const menuButtons = document.querySelectorAll('.menu-button');
+            const notification = document.getElementById('notification');
+            const notificationMessage = document.getElementById('notificationMessage');
+            const startChatBtn = document.getElementById('startChatBtn');
+            const resumeModal = document.getElementById('resumeModal');
+            const resumeModalClose = document.getElementById('resumeModalClose');
+            const fileUpload = document.getElementById('fileUpload');
+            const resumeFile = document.getElementById('resumeFile');
+            const analyzeResume = document.getElementById('analyzeResume');
+            const summaryModal = document.getElementById('summaryModal');
+            const summaryModalClose = document.getElementById('summaryModalClose');
+            const summaryContent = document.getElementById('summaryContent');
+            
+            // Conversation memory
+            let conversationHistory = [];
+            let currentLanguage = 'en';
+            let isListening = false;
+            let recognition;
+            
+            // Initialize Speech Recognition
+            try {
+                const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+                recognition = new SpeechRecognition();
+                recognition.continuous = false;
+                recognition.interimResults = false;
+                recognition.lang = 'en-US';
+                
+                recognition.onresult = function(event) {
+                    const transcript = event.results[0][0].transcript;
+                    userInput.value = transcript;
+                    sendMessage();
+                };
+                
+                recognition.onerror = function(event) {
+                    console.error('Speech recognition error', event.error);
+                    showNotification('Voice input failed. Please try again.');
+                    voiceInputBtn.classList.remove('listening');
+                    isListening = false;
+                };
+                
+                recognition.onend = function() {
+                    if (isListening) {
+                        recognition.start();
+                    } else {
+                        voiceInputBtn.classList.remove('listening');
+                    }
+                };
+            } catch (e) {
+                console.error('Speech recognition not supported', e);
+                voiceInputBtn.style.display = 'none';
+            }
+            
+            // Initialize emoji picker
+            emojis.forEach(emoji => {
+                const emojiOption = document.createElement('div');
+                emojiOption.className = 'emoji-option';
+                emojiOption.textContent = emoji;
+                emojiOption.addEventListener('click', () => {
+                    userInput.value += emoji;
+                    userInput.focus();
+                });
+                emojiPicker.appendChild(emojiOption);
+            });
             
             // Theme toggle functionality
             themeToggle.addEventListener('click', function() {
@@ -1080,42 +1841,19 @@
             // Toggle chatbot visibility
             chatbotToggle.addEventListener('click', function() {
                 chatbotContainer.classList.toggle('active');
-                if (chatbotContainer.classList.contains('active')) {
+                if (chatbotContainer.classList.contains('active') {
                     // Add welcome message if chat is empty
                     if (chatbotMessages.children.length === 0) {
-                        addBotMessage("Hello! I'm Asha, your AI career companion. How can I assist you today?");
-                        
-                        // Add quick action buttons
-                        setTimeout(() => {
-                            const quickActions = document.createElement('div');
-                            quickActions.className = 'quick-actions';
-                            
-                            const categories = [
-                                {icon: 'briefcase', text: 'Job Search'},
-                                {icon: 'calendar-star', text: 'Upcoming Events'},
-                                {icon: 'hands-helping', text: 'Mentor Matching'},
-                                {icon: 'chart-line', text: 'Career Growth'},
-                                {icon: 'book', text: 'Resources'},
-                                {icon: 'cog', text: 'Settings'}
-                            ];
-                            
-                            categories.forEach(category => {
-                                const button = document.createElement('button');
-                                button.className = 'quick-action';
-                                button.innerHTML = `<i class="fas fa-${category.icon}"></i> ${category.text}`;
-                                button.addEventListener('click', () => {
-                                    handleQuickAction(category.text);
-                                });
-                                quickActions.appendChild(button);
-                            });
-                            
-                            const messageDiv = document.createElement('div');
-                            messageDiv.className = 'message bot-message';
-                            messageDiv.appendChild(quickActions);
-                            chatbotMessages.appendChild(messageDiv);
-                            scrollToBottom();
-                        }, 500);
+                        showWelcomeMessage();
                     }
+                }
+            });
+            
+            startChatBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                chatbotContainer.classList.add('active');
+                if (chatbotMessages.children.length === 0) {
+                    showWelcomeMessage();
                 }
             });
             
@@ -1132,6 +1870,181 @@
                     sendMessage();
                 }
             });
+            
+            // Toggle voice input
+            voiceInputBtn.addEventListener('click', toggleVoiceInput);
+            
+            // Toggle emoji picker
+            emojiBtn.addEventListener('click', function() {
+                emojiPicker.classList.toggle('active');
+                languageSelector.classList.remove('active');
+            });
+            
+            // Toggle language selector
+            languageBtn.addEventListener('click', function() {
+                languageSelector.classList.toggle('active');
+                emojiPicker.classList.remove('active');
+            });
+            
+            // Handle language selection
+            document.querySelectorAll('.language-option').forEach(option => {
+                option.addEventListener('click', function() {
+                    currentLanguage = this.getAttribute('data-lang');
+                    showNotification(`Language changed to ${this.textContent}`);
+                    languageSelector.classList.remove('active');
+                    
+                    // Update welcome message in new language
+                    if (chatbotMessages.children.length <= 1) {
+                        chatbotMessages.innerHTML = '';
+                        showWelcomeMessage();
+                    }
+                });
+            });
+            
+            // Handle menu buttons
+            menuButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const action = this.getAttribute('data-action');
+                    
+                    // Remove active class from all buttons
+                    menuButtons.forEach(btn => btn.classList.remove('active'));
+                    
+                    // Add active class to clicked button
+                    this.classList.add('active');
+                    
+                    // Handle different actions
+                    switch(action) {
+                        case 'jobs':
+                            showJobSuggestions();
+                            break;
+                        case 'events':
+                            showEventSuggestions();
+                            break;
+                        case 'mentors':
+                            showMentorSuggestions();
+                            break;
+                        case 'communities':
+                            showCommunitySuggestions();
+                            break;
+                        case 'feedback':
+                            feedbackForm.classList.toggle('active');
+                            break;
+                    }
+                });
+            });
+            
+            // Handle feedback submission
+            document.getElementById('submitFeedback').addEventListener('click', function() {
+                const feedback = document.querySelector('#feedbackForm textarea').value.trim();
+                if (feedback) {
+                    showNotification('Thank you for your feedback!');
+                    document.querySelector('#feedbackForm textarea').value = '';
+                    feedbackForm.classList.remove('active');
+                    
+                    // Add to conversation history
+                    addUserMessage("Feedback submitted");
+                    addBotMessage("Thank you for your valuable feedback! We'll use this to improve Asha.");
+                    
+                    // In a real app, you would send this to your backend
+                    console.log('Feedback submitted:', feedback);
+                }
+            });
+            
+            // Resume modal functionality
+            fileUpload.addEventListener('click', function() {
+                resumeFile.click();
+            });
+            
+            resumeFile.addEventListener('change', function() {
+                if (this.files && this.files[0]) {
+                    const fileName = this.files[0].name;
+                    fileUpload.innerHTML = `
+                        <i class="fas fa-file-alt"></i>
+                        <p>${fileName}</p>
+                        <p><small>Ready to analyze</small></p>
+                    `;
+                    analyzeResume.disabled = false;
+                }
+            });
+            
+            analyzeResume.addEventListener('click', function() {
+                // In a real app, you would upload and analyze the resume
+                showNotification('Analyzing your resume...');
+                setTimeout(() => {
+                    resumeModal.classList.remove('active');
+                    showNotification('Resume analysis complete!');
+                    
+                    // Show sample analysis (in a real app, this would come from your backend)
+                    addBotMessage("Here's my analysis of your resume:");
+                    
+                    const analysisMessage = document.createElement('div');
+                    analysisMessage.className = 'message bot-message';
+                    analysisMessage.innerHTML = `
+                        <h4>Resume Analysis Results</h4>
+                        <p><strong>Strengths:</strong></p>
+                        <ul>
+                            <li>Clear career progression</li>
+                            <li>Strong action verbs</li>
+                            <li>Good use of metrics</li>
+                        </ul>
+                        <p><strong>Areas for Improvement:</strong></p>
+                        <ul>
+                            <li>Could expand on leadership experience</li>
+                            <li>Add more quantifiable achievements</li>
+                            <li>Consider a skills section</li>
+                        </ul>
+                        <button class="quick-action" style="margin-top: 10px;">
+                            <i class="fas fa-download"></i> Download Analysis Report
+                        </button>
+                    `;
+                    chatbotMessages.appendChild(analysisMessage);
+                    scrollToBottom();
+                }, 2000);
+            });
+            
+            resumeModalClose.addEventListener('click', function() {
+                resumeModal.classList.remove('active');
+            });
+            
+            // Summary modal functionality
+            summaryModalClose.addEventListener('click', function() {
+                summaryModal.classList.remove('active');
+            });
+            
+            function showWelcomeMessage() {
+                addBotMessage("Hello! I'm Asha, your AI career companion. How can I assist you today?");
+                
+                // Add quick action buttons
+                setTimeout(() => {
+                    const quickActions = document.createElement('div');
+                    quickActions.className = 'quick-actions';
+                    
+                    const categories = [
+                        {icon: 'briefcase', text: 'Job Search'},
+                        {icon: 'calendar-star', text: 'Upcoming Events'},
+                        {icon: 'hands-helping', text: 'Mentor Matching'},
+                        {icon: 'chart-line', text: 'Career Growth'},
+                        {icon: 'book', text: 'Resources'},
+                        {icon: 'file-alt', text: 'Resume Review'}
+                    ];
+                    
+                    categories.forEach(category => {
+                        const button = document.createElement('button');
+                        button.className = 'quick-action';
+                        button.innerHTML = `<i class="fas fa-${category.icon}"></i> ${category.text}`;
+                        button.addEventListener('click', () => {
+                            handleQuickAction(category.text);
+                        });
+                        quickActions.appendChild(button);
+                    });
+                    
+                    const messageDiv = document.createElement('div');
+                    messageDiv.className = 'message bot-message';
+                    messageDiv.appendChild(quickActions);
+                    chatbotMessages.appendChild(messageDiv);
+                    scrollToBottom();
+                }, 500);
+            }
             
             function sendMessage() {
                 const message = userInput.value.trim();
@@ -1154,16 +2067,82 @@
                 const messageDiv = document.createElement('div');
                 messageDiv.className = 'message user-message';
                 messageDiv.textContent = text;
+                
+                // Add message controls
+                const controlsDiv = document.createElement('div');
+                controlsDiv.className = 'message-controls';
+                
+                const timeSpan = document.createElement('span');
+                timeSpan.textContent = new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+                timeSpan.style.fontSize = '0.7rem';
+                timeSpan.style.color = 'var(--current-text-secondary)';
+                
+                controlsDiv.appendChild(timeSpan);
+                messageDiv.appendChild(controlsDiv);
+                
                 chatbotMessages.appendChild(messageDiv);
                 scrollToBottom();
+                
+                // Add to conversation history
+                conversationHistory.push({
+                    type: 'user',
+                    content: text,
+                    timestamp: new Date().toISOString()
+                });
             }
             
-            function addBotMessage(text, type) {
+            function addBotMessage(text, options = {}) {
                 const messageDiv = document.createElement('div');
                 messageDiv.className = 'message bot-message';
-                messageDiv.textContent = text;
+                
+                if (typeof text === 'string') {
+                    messageDiv.textContent = text;
+                } else {
+                    messageDiv.appendChild(text);
+                }
+                
+                // Add message controls
+                const controlsDiv = document.createElement('div');
+                controlsDiv.className = 'message-controls';
+                
+                const timeSpan = document.createElement('span');
+                timeSpan.textContent = new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+                timeSpan.style.fontSize = '0.7rem';
+                timeSpan.style.color = 'var(--current-text-secondary)';
+                
+                // Add "Why this response?" button if enabled
+                if (options.showWhy) {
+                    const whyButton = document.createElement('button');
+                    whyButton.className = 'why-response';
+                    whyButton.innerHTML = '<i class="fas fa-info-circle"></i> Why this response?';
+                    whyButton.addEventListener('click', function() {
+                        const sourceDiv = document.createElement('div');
+                        sourceDiv.className = 'response-source';
+                        sourceDiv.textContent = options.whyText || 'This response was generated based on your query and the most relevant information from our knowledge base.';
+                        
+                        // Toggle display
+                        if (sourceDiv.classList.contains('active')) {
+                            sourceDiv.classList.remove('active');
+                        } else {
+                            sourceDiv.classList.add('active');
+                            messageDiv.appendChild(sourceDiv);
+                        }
+                    });
+                    controlsDiv.appendChild(whyButton);
+                }
+                
+                controlsDiv.appendChild(timeSpan);
+                messageDiv.appendChild(controlsDiv);
+                
                 chatbotMessages.appendChild(messageDiv);
                 scrollToBottom();
+                
+                // Add to conversation history
+                conversationHistory.push({
+                    type: 'bot',
+                    content: text.textContent || text,
+                    timestamp: new Date().toISOString()
+                });
             }
             
             function showTypingIndicator() {
@@ -1191,68 +2170,113 @@
                 chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
             }
             
+            function showNotification(message, duration = 3000) {
+                notificationMessage.textContent = message;
+                notification.classList.add('show');
+                
+                setTimeout(() => {
+                    notification.classList.remove('show');
+                }, duration);
+            }
+            
+            function toggleVoiceInput() {
+                if (!recognition) {
+                    showNotification('Voice input is not supported in your browser');
+                    return;
+                }
+                
+                if (isListening) {
+                    recognition.stop();
+                    isListening = false;
+                    voiceInputBtn.classList.remove('listening');
+                } else {
+                    try {
+                        recognition.start();
+                        isListening = true;
+                        voiceInputBtn.classList.add('listening');
+                        showNotification('Listening... Speak now');
+                    } catch (e) {
+                        console.error('Error starting speech recognition:', e);
+                        showNotification('Error starting voice input');
+                    }
+                }
+            }
+            
             function handleUserMessage(message) {
                 message = message.toLowerCase();
                 
+                // Check for conversation reset
+                if (message.includes('reset') || message.includes('start over') || message.includes('clear')) {
+                    conversationHistory = [];
+                    chatbotMessages.innerHTML = '';
+                    showWelcomeMessage();
+                    return;
+                }
+                
+                // Check for conversation summary
+                if (message.includes('summary') || message.includes('recap')) {
+                    showConversationSummary();
+                    return;
+                }
+                
+                // Check for resume review request
+                if (message.includes('resume') || message.includes('cv') || message.includes('review')) {
+                    resumeModal.classList.add('active');
+                    return;
+                }
+                
                 // Simple response logic - in a real app, this would connect to an AI service
                 if (message.includes('hello') || message.includes('hi') || message.includes('hey')) {
-                    addBotMessage("Hello there! How can I assist with your career journey today?");
+                    addBotMessage("Hello there! How can I assist with your career journey today?", {
+                        showWhy: true,
+                        whyText: "I recognized a greeting in your message and responded accordingly."
+                    });
                 } 
-                else if (message.includes('job') || message.includes('career')) {
-                    addBotMessage("I can help you explore job opportunities. What field are you interested in?");
-                    
-                    // Add category buttons
-                    setTimeout(() => {
-                        const categories = [
-                            {icon: 'laptop-code', text: 'Technology'},
-                            {icon: 'chart-pie', text: 'Business'},
-                            {icon: 'flask', text: 'Science'},
-                            {icon: 'palette', text: 'Creative'},
-                            {icon: 'heartbeat', text: 'Healthcare'},
-                            {icon: 'graduation-cap', text: 'Education'}
-                        ];
-                        
-                        const categoryDiv = document.createElement('div');
-                        categoryDiv.className = 'category-buttons';
-                        
-                        categories.forEach(category => {
-                            const button = document.createElement('button');
-                            button.className = 'quick-action';
-                            button.innerHTML = `<i class="fas fa-${category.icon}"></i> ${category.text}`;
-                            button.addEventListener('click', () => {
-                                addUserMessage(`Jobs in ${category.text}`);
-                                showTypingIndicator();
-                                setTimeout(() => {
-                                    removeTypingIndicator();
-                                    addBotMessage(`Here are some opportunities in ${category.text}:\n\n1. Senior ${category.text} Role at TechCorp India - ₹18L-₹25L\n2. ${category.text} Manager at InnovateIndia - ₹15L-₹22L\n3. ${category.text} Specialist at FutureWorks India - ₹12L-₹18L`);
-                                }, 1500);
-                            });
-                            categoryDiv.appendChild(button);
-                        });
-                        
-                        const messageDiv = document.createElement('div');
-                        messageDiv.className = 'message bot-message';
-                        messageDiv.appendChild(categoryDiv);
-                        chatbotMessages.appendChild(messageDiv);
-                        scrollToBottom();
-                    }, 500);
+                else if (message.includes('job') || message.includes('career') || message.includes('opportunity')) {
+                    showJobSuggestions();
                 }
-                else if (message.includes('event') || message.includes('workshop')) {
-                    addBotMessage("Here are upcoming events you might enjoy:\n\n• Women in Tech Conference - June 15 (Bangalore)\n• Leadership Workshop - July 2 (Mumbai)\n• Networking Mixer - June 28 (Delhi)");
+                else if (message.includes('event') || message.includes('workshop') || message.includes('webinar')) {
+                    showEventSuggestions();
                 }
-                else if (message.includes('mentor') || message.includes('guidance')) {
-                    addBotMessage("Our mentorship program connects you with experienced professionals. What specific area are you looking for guidance in?");
+                else if (message.includes('mentor') || message.includes('guidance') || message.includes('advice')) {
+                    showMentorSuggestions();
+                }
+                else if (message.includes('community') || message.includes('network') || message.includes('group')) {
+                    showCommunitySuggestions();
                 }
                 else if (message.includes('thank')) {
                     addBotMessage("You're welcome! Is there anything else I can help with?");
                 }
                 else if (message.includes('help') || message.includes('support')) {
-                    addBotMessage("For direct support, contact help@jobsforher.org. How else may I assist you?");
+                    addBotMessage("For direct support, you can contact help@jobsforher.org. How else may I assist you?");
+                }
+                else if (message.includes('language') || message.includes('hindi') || message.includes('kannada')) {
+                    addBotMessage("I can communicate in multiple languages. Click the globe icon to switch languages.");
+                }
+                else if (message.includes('privacy') || message.includes('security') || message.includes('data')) {
+                    addBotMessage("Your privacy is important. All conversations are anonymized and no personal data is stored. For more details, see our Privacy Policy.", {
+                        showWhy: true,
+                        whyText: "You asked about privacy, so I provided information about our data practices."
+                    });
+                }
+                else if (message.includes('bias') || message.includes('fair') || message.includes('equal')) {
+                    addBotMessage("Asha is designed to promote diversity and inclusion. Our ethical AI layer helps detect and mitigate biases in responses.", {
+                        showWhy: true,
+                        whyText: "You mentioned bias, so I explained our ethical AI features."
+                    });
                 }
                 else {
-                    addBotMessage("I'm here to help with your career journey. You can ask me about jobs, events, mentorship, or career advice.");
+                    // Fallback mechanism
+                    const fallbackResponses = [
+                        "I'm not sure I understand. Could you rephrase that?",
+                        "I'm still learning. Could you ask me something about careers, jobs, or mentorship?",
+                        "I'm here to help with your career journey. Try asking about jobs, events, or mentorship opportunities."
+                    ];
                     
-                    // Add quick actions for clarification
+                    const randomResponse = fallbackResponses[Math.floor(Math.random() * fallbackResponses.length)];
+                    addBotMessage(randomResponse);
+                    
+                    // Add clarifying questions
                     setTimeout(() => {
                         const quickActions = document.createElement('div');
                         quickActions.className = 'quick-actions';
@@ -1292,9 +2316,307 @@
                 showTypingIndicator();
                 setTimeout(() => {
                     removeTypingIndicator();
-                    handleUserMessage(action);
+                    
+                    // Handle different quick actions
+                    switch(action) {
+                        case 'Job Search':
+                            showJobSuggestions();
+                            break;
+                        case 'Upcoming Events':
+                            showEventSuggestions();
+                            break;
+                        case 'Mentor Matching':
+                            showMentorSuggestions();
+                            break;
+                        case 'Career Growth':
+                            addBotMessage("Career growth involves continuous learning and skill development. Here are some tips:");
+                            
+                            const tipsDiv = document.createElement('div');
+                            tipsDiv.innerHTML = `
+                                <ul>
+                                    <li>Set clear career goals</li>
+                                    <li>Seek feedback regularly</li>
+                                    <li>Build a strong professional network</li>
+                                    <li>Develop both technical and soft skills</li>
+                                    <li>Find a mentor in your field</li>
+                                </ul>
+                                <button class="quick-action" style="margin-top: 10px;">
+                                    <i class="fas fa-hands-helping"></i> Find a Mentor
+                                </button>
+                            `;
+                            
+                            setTimeout(() => {
+                                addBotMessage(tipsDiv);
+                            }, 500);
+                            break;
+                        case 'Resources':
+                            addBotMessage("Here are some valuable resources for your career:");
+                            
+                            const resourcesDiv = document.createElement('div');
+                            resourcesDiv.innerHTML = `
+                                <ul>
+                                    <li><a href="#" style="color: var(--current-accent);">Career Development Books</a></li>
+                                    <li><a href="#" style="color: var(--current-accent);">Online Learning Platforms</a></li>
+                                    <li><a href="#" style="color: var(--current-accent);">Industry Reports</a></li>
+                                    <li><a href="#" style="color: var(--current-accent);">Salary Benchmarking Tools</a></li>
+                                </ul>
+                            `;
+                            
+                            setTimeout(() => {
+                                addBotMessage(resourcesDiv);
+                            }, 500);
+                            break;
+                        case 'Resume Review':
+                            resumeModal.classList.add('active');
+                            break;
+                    }
                 }, 1500);
             }
+            
+            function showJobSuggestions() {
+                addBotMessage("I can help you explore job opportunities. What field are you interested in?", {
+                    showWhy: true,
+                    whyText: "You asked about jobs or career opportunities, so I'm offering to help with job search."
+                });
+                
+                // Add category buttons
+                setTimeout(() => {
+                    const categories = [
+                        {icon: 'laptop-code', text: 'Technology'},
+                        {icon: 'chart-pie', text: 'Business'},
+                        {icon: 'flask', text: 'Science'},
+                        {icon: 'palette', text: 'Creative'},
+                        {icon: 'heartbeat', text: 'Healthcare'},
+                        {icon: 'graduation-cap', text: 'Education'}
+                    ];
+                    
+                    const categoryDiv = document.createElement('div');
+                    categoryDiv.className = 'category-buttons';
+                    
+                    categories.forEach(category => {
+                        const button = document.createElement('button');
+                        button.className = 'quick-action';
+                        button.innerHTML = `<i class="fas fa-${category.icon}"></i> ${category.text}`;
+                        button.addEventListener('click', () => {
+                            addUserMessage(`Jobs in ${category.text}`);
+                            showTypingIndicator();
+                            setTimeout(() => {
+                                removeTypingIndicator();
+                                
+                                // Show sample jobs for the category
+                                const jobsDiv = document.createElement('div');
+                                jobsDiv.innerHTML = `
+                                    <h4>Opportunities in ${category.text}:</h4>
+                                    <div class="job-details">
+                                        <h4>Senior ${category.text} Role</h4>
+                                        <div class="job-meta">
+                                            <span><i class="fas fa-building"></i> TechCorp India</span>
+                                            <span><i class="fas fa-map-marker-alt"></i> Bangalore</span>
+                                            <span><i class="fas fa-rupee-sign"></i> ₹18L-₹25L</span>
+                                        </div>
+                                        <div class="job-description">
+                                            Looking for experienced ${category.text} professional to lead our team. Minimum 5 years experience required.
+                                        </div>
+                                        <div class="job-actions">
+                                            <button class="job-action"><i class="fas fa-bookmark"></i> Save</button>
+                                            <button class="job-action"><i class="fas fa-share"></i> Share</button>
+                                            <button class="job-action"><i class="fas fa-arrow-right"></i> View</button>
+                                        </div>
+                                    </div>
+                                    <div class="job-details">
+                                        <h4>${category.text} Manager</h4>
+                                        <div class="job-meta">
+                                            <span><i class="fas fa-building"></i> InnovateIndia</span>
+                                            <span><i class="fas fa-map-marker-alt"></i> Mumbai</span>
+                                            <span><i class="fas fa-rupee-sign"></i> ₹15L-₹22L</span>
+                                        </div>
+                                        <div class="job-description">
+                                            Seeking ${category.text} Manager with leadership experience to oversee our team.
+                                        </div>
+                                        <div class="job-actions">
+                                            <button class="job-action"><i class="fas fa-bookmark"></i> Save</button>
+                                            <button class="job-action"><i class="fas fa-share"></i> Share</button>
+                                            <button class="job-action"><i class="fas fa-arrow-right"></i> View</button>
+                                        </div>
+                                    </div>
+                                    <button class="quick-action" style="margin-top: 10px; width: 100%; text-align: center;">
+                                        <i class="fas fa-search"></i> Show More Jobs
+                                    </button>
+                                `;
+                                
+                                addBotMessage(jobsDiv);
+                            }, 1500);
+                        });
+                        categoryDiv.appendChild(button);
+                    });
+                    
+                    const messageDiv = document.createElement('div');
+                    messageDiv.className = 'message bot-message';
+                    messageDiv.appendChild(categoryDiv);
+                    chatbotMessages.appendChild(messageDiv);
+                    scrollToBottom();
+                }, 500);
+            }
+            
+            function showEventSuggestions() {
+                addBotMessage("Here are upcoming events you might be interested in:", {
+                    showWhy: true,
+                    whyText: "You asked about events, so I'm showing relevant career events."
+                });
+                
+                // Create event cards
+                const eventsDiv = document.createElement('div');
+                eventsDiv.innerHTML = `
+                    <div class="event-card">
+                        <h4>Women in Tech Conference</h4>
+                        <div class="event-details">
+                            <span><i class="fas fa-calendar-alt"></i> June 15-16, 2023</span>
+                            <span><i class="fas fa-clock"></i> 9:00 AM - 5:00 PM</span>
+                            <span><i class="fas fa-map-marker-alt"></i> Bangalore Convention Center</span>
+                        </div>
+                        <p>Annual conference bringing together women in technology for networking, workshops, and keynote speeches.</p>
+                        <div class="event-actions">
+                            <button class="event-action"><i class="fas fa-bookmark"></i> Save</button>
+                            <button class="event-action"><i class="fas fa-calendar-plus"></i> Remind Me</button>
+                            <button class="event-action"><i class="fas fa-ticket-alt"></i> Register</button>
+                        </div>
+                    </div>
+                    <div class="event-card">
+                        <h4>Leadership Workshop</h4>
+                        <div class="event-details">
+                            <span><i class="fas fa-calendar-alt"></i> July 2, 2023</span>
+                            <span><i class="fas fa-clock"></i> 2:00 PM - 4:00 PM</span>
+                            <span><i class="fas fa-video"></i> Online</span>
+                        </div>
+                        <p>Interactive workshop focused on developing leadership skills for women in mid-career positions.</p>
+                        <div class="event-actions">
+                            <button class="event-action"><i class="fas fa-bookmark"></i> Save</button>
+                            <button class="event-action"><i class="fas fa-calendar-plus"></i> Remind Me</button>
+                            <button class="event-action"><i class="fas fa-ticket-alt"></i> Register</button>
+                        </div>
+                    </div>
+                    <button class="quick-action" style="margin-top: 10px; width: 100%; text-align: center;">
+                        <i class="fas fa-calendar-alt"></i> View All Events
+                    </button>
+                `;
+                
+                setTimeout(() => {
+                    addBotMessage(eventsDiv);
+                }, 500);
+            }
+            
+            function showMentorSuggestions() {
+                addBotMessage("Our mentorship program connects you with experienced professionals. Here are some mentors you might like:", {
+                    showWhy: true,
+                    whyText: "You asked about mentorship, so I'm showing available mentors."
+                });
+                
+                // Create mentor cards
+                const mentorsDiv = document.createElement('div');
+                mentorsDiv.innerHTML = `
+                    <div class="mentor-card">
+                        <div class="mentor-avatar">
+                            <i class="fas fa-user-tie"></i>
+                        </div>
+                        <div class="mentor-info">
+                            <h4>Dr. Priya Sharma</h4>
+                            <p>Senior Director, Product Management at TechSolutions Inc.</p>
+                            <div class="mentor-skills">
+                                <span class="mentor-skill">Product Management</span>
+                                <span class="mentor-skill">Leadership</span>
+                                <span class="mentor-skill">Career Growth</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mentor-card">
+                        <div class="mentor-avatar">
+                            <i class="fas fa-user-tie"></i>
+                        </div>
+                        <div class="mentor-info">
+                            <h4>Ananya Patel</h4>
+                            <p>UX Design Lead at CreativeMinds</p>
+                            <div class="mentor-skills">
+                                <span class="mentor-skill">UX Design</span>
+                                <span class="mentor-skill">Portfolio Review</span>
+                                <span class="mentor-skill">Interview Prep</span>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="quick-action" style="margin-top: 10px; width: 100%; text-align: center;">
+                        <i class="fas fa-search"></i> Find More Mentors
+                    </button>
+                    <button class="quick-action" style="margin-top: 10px; width: 100%; text-align: center;">
+                        <i class="fas fa-user-plus"></i> Become a Mentor
+                    </button>
+                `;
+                
+                setTimeout(() => {
+                    addBotMessage(mentorsDiv);
+                }, 500);
+            }
+            
+            function showCommunitySuggestions() {
+                addBotMessage("Joining communities can help you network and grow professionally. Here are some to consider:", {
+                    showWhy: true,
+                    whyText: "You asked about communities, so I'm suggesting relevant professional groups."
+                });
+                
+                // Create community suggestions
+                const communitiesDiv = document.createElement('div');
+                communitiesDiv.innerHTML = `
+                    <ul>
+                        <li><strong>Women in Tech India</strong> - 10,000+ members</li>
+                        <li><strong>Female Entrepreneurs Network</strong> - 5,000+ members</li>
+                        <li><strong>Women in Data Science</strong> - 3,000+ members</li>
+                        <li><strong>Design Ladies</strong> - 2,500+ members</li>
+                    </ul>
+                    <button class="quick-action" style="margin-top: 10px; width: 100%; text-align: center;">
+                        <i class="fas fa-users"></i> Explore All Communities
+                    </button>
+                `;
+                
+                setTimeout(() => {
+                    addBotMessage(communitiesDiv);
+                }, 500);
+            }
+            
+            function showConversationSummary() {
+                summaryContent.innerHTML = `
+                    <h4>Conversation Summary</h4>
+                    <p>Here's a recap of our discussion:</p>
+                    <ul>
+                        ${conversationHistory.slice(0, 10).map(msg => 
+                            `<li><strong>${msg.type === 'user' ? 'You' : 'Asha'}:</strong> ${msg.content.substring(0, 50)}${msg.content.length > 50 ? '...' : ''}</li>`
+                        ).join('')}
+                    </ul>
+                    <div class="resume-tips">
+                        <h4>Next Steps</h4>
+                        <ul>
+                            <li>Review the job opportunities we discussed</li>
+                            <li>Consider registering for the events mentioned</li>
+                            <li>Reach out to potential mentors</li>
+                        </ul>
+                    </div>
+                `;
+                
+                summaryModal.classList.add('active');
+            }
+            
+            // Close modals when clicking outside
+            window.addEventListener('click', function(event) {
+                if (event.target === resumeModal) {
+                    resumeModal.classList.remove('active');
+                }
+                if (event.target === summaryModal) {
+                    summaryModal.classList.remove('active');
+                }
+                if (!event.target.closest('.emoji-picker') && !event.target.closest('.emoji-btn')) {
+                    emojiPicker.classList.remove('active');
+                }
+                if (!event.target.closest('.language-selector') && !event.target.closest('.language-btn')) {
+                    languageSelector.classList.remove('active');
+                }
+            });
             
             // Initialize with chatbot hidden
             chatbotContainer.classList.remove('active');
