@@ -1369,6 +1369,168 @@
         .response-source.active {
             display: block;
         }
+
+        /* Onboarding Flow */
+        .onboarding-flow {
+            background: var(--current-card);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            border: 1px solid var(--current-border);
+        }
+        
+        .onboarding-step {
+            display: none;
+        }
+        
+        .onboarding-step.active {
+            display: block;
+        }
+        
+        .onboarding-actions {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 1.5rem;
+        }
+        
+        /* Career Companion */
+        .companion-goal {
+            background: var(--current-bg);
+            border-radius: 8px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border: 1px solid var(--current-border);
+        }
+        
+        .progress-bar {
+            height: 8px;
+            background: var(--current-bg);
+            border-radius: 4px;
+            margin: 0.5rem 0;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent-blue), var(--accent-teal));
+            border-radius: 4px;
+            transition: width 0.3s ease;
+        }
+        
+        /* Gamification */
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--accent-purple-transparent);
+            color: var(--accent-purple);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-right: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .badge i {
+            font-size: 1rem;
+        }
+        
+        /* Resource Center */
+        .resource-card {
+            background: var(--current-bg);
+            border-radius: 8px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border: 1px solid var(--current-border);
+        }
+        
+        .resource-card h4 {
+            color: var(--current-accent);
+            margin-bottom: 0.5rem;
+        }
+        
+        .resource-card p {
+            font-size: 0.9rem;
+            color: var(--current-text-secondary);
+            margin-bottom: 0.5rem;
+        }
+        
+        .resource-link {
+            color: var(--current-accent);
+            text-decoration: none;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+        
+        .resource-link:hover {
+            text-decoration: underline;
+        }
+        
+        /* Sentiment Detection */
+        .support-message {
+            background: var(--accent-pink-transparent);
+            border: 1px solid rgba(255, 126, 185, 0.3);
+            color: var(--current-text);
+            padding: 1rem;
+            border-radius: 12px;
+            margin: 1rem 0;
+        }
+        
+        /* Multi-language Support */
+        .language-switch {
+            display: flex;
+            gap: 0.5rem;
+            margin: 1rem 0;
+        }
+        
+        .language-btn {
+            background: transparent;
+            border: 1px solid var(--current-border);
+            color: var(--current-text);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .language-btn.active {
+            background: var(--accent-blue-transparent);
+            color: var(--current-accent);
+            border-color: var(--current-accent);
+        }
+        
+        /* Tooltip */
+        .tooltip {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .tooltip .tooltiptext {
+            visibility: hidden;
+            width: 200px;
+            background-color: var(--current-card);
+            color: var(--current-text);
+            text-align: center;
+            border-radius: 6px;
+            padding: 0.5rem;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 50%;
+            margin-left: -100px;
+            opacity: 0;
+            transition: opacity 0.3s;
+            border: 1px solid var(--current-border);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .tooltip:hover .tooltiptext {
+            visibility: visible;
+            opacity: 1;
+        }
     </style>
 </head>
 <body class="dark-mode">
@@ -1386,6 +1548,7 @@
                 <li><a href="#mentorship">Mentorship</a></li>
                 <li><a href="#events">Events</a></li>
                 <li><a href="#communities">Communities</a></li>
+                <li><a href="#resources">Resources</a></li>
             </ul>
         </nav>
         
@@ -1407,7 +1570,7 @@
     
     <!-- Hero Section -->
     <section class="hero">
-        <h1>Meet Asha, Your <span>AI Career Buddy</span></h1>
+        <h1>Meet Asha, Your <span>AI Career Ally</span></h1>
         <p>Empowering women to navigate their career journey with personalized guidance, mentorship connections, and job opportunities tailored just for you.</p>
         
         <div class="hero-buttons">
@@ -1456,6 +1619,19 @@
                         <div class="value">42</div>
                         <div class="change"><i class="fas fa-users"></i> New connections</div>
                     </div>
+                </div>
+                
+                <!-- Career Companion Section -->
+                <h2 style="color: var(--current-text); margin-top: 2rem;">Career Companion</h2>
+                <div class="companion-goal">
+                    <h4>Current Goal: Find a remote job in marketing within 3 months</h4>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 45%"></div>
+                    </div>
+                    <p>45% complete - 1 month 2 weeks remaining</p>
+                    <button class="quick-action" style="margin-top: 10px;">
+                        <i class="fas fa-edit"></i> Update Goal
+                    </button>
                 </div>
                 
                 <!-- Job Listings -->
@@ -1529,6 +1705,19 @@
                             <span class="tag">Virtual</span>
                         </div>
                     </div>
+                </div>
+                
+                <!-- Resource Center -->
+                <h2 style="color: var(--current-text); margin-top: 2rem;">Resource Center</h2>
+                <div class="resource-card">
+                    <h4>Resume Building Guide</h4>
+                    <p>Learn how to create a resume that stands out with our comprehensive guide.</p>
+                    <a href="#" class="resource-link">View Resource <i class="fas fa-external-link-alt"></i></a>
+                </div>
+                <div class="resource-card">
+                    <h4>Interview Tips for Women</h4>
+                    <p>Strategies to confidently navigate interviews and showcase your strengths.</p>
+                    <a href="#" class="resource-link">View Resource <i class="fas fa-external-link-alt"></i></a>
                 </div>
             </div>
         </div>
@@ -1656,6 +1845,59 @@
         </div>
     </div>
 
+    <!-- Onboarding Modal -->
+    <div class="modal-overlay" id="onboardingModal">
+        <div class="modal-content">
+            <button class="modal-close" id="onboardingModalClose">
+                <i class="fas fa-times"></i>
+            </button>
+            <h3 class="modal-title">Welcome to Asha AI</h3>
+            <div class="onboarding-flow" id="onboardingFlow">
+                <div class="onboarding-step active" id="step1">
+                    <p>Hi there! I'm Asha, your AI career companion. Let's get to know each other better.</p>
+                    <p>What best describes your current career stage?</p>
+                    <div class="quick-actions" style="margin-top: 1rem;">
+                        <button class="quick-action" data-stage="student">Student</button>
+                        <button class="quick-action" data-stage="early-career">Early Career (0-5 years)</button>
+                        <button class="quick-action" data-stage="mid-career">Mid Career (5-15 years)</button>
+                        <button class="quick-action" data-stage="returning">Returning to Workforce</button>
+                    </div>
+                </div>
+                <div class="onboarding-step" id="step2">
+                    <p>Great! What are your primary career interests?</p>
+                    <div class="quick-actions" style="margin-top: 1rem;">
+                        <button class="quick-action" data-interest="tech">Technology</button>
+                        <button class="quick-action" data-interest="business">Business</button>
+                        <button class="quick-action" data-interest="creative">Creative Fields</button>
+                        <button class="quick-action" data-interest="science">Science/Research</button>
+                        <button class="quick-action" data-interest="healthcare">Healthcare</button>
+                        <button class="quick-action" data-interest="education">Education</button>
+                    </div>
+                </div>
+                <div class="onboarding-step" id="step3">
+                    <p>Almost done! What kind of support are you looking for?</p>
+                    <div class="quick-actions" style="margin-top: 1rem;">
+                        <button class="quick-action" data-support="jobs">Job Search</button>
+                        <button class="quick-action" data-support="mentorship">Mentorship</button>
+                        <button class="quick-action" data-support="skills">Skill Development</button>
+                        <button class="quick-action" data-support="career-change">Career Change</button>
+                        <button class="quick-action" data-support="networking">Networking</button>
+                    </div>
+                </div>
+                <div class="onboarding-step" id="step4">
+                    <p>Thank you! Based on your responses, I'll personalize your experience.</p>
+                    <p>Here's what I recommend to get started:</p>
+                    <ul style="margin: 1rem 0;">
+                        <li>Explore curated job opportunities</li>
+                        <li>Connect with relevant mentors</li>
+                        <li>Join communities of like-minded women</li>
+                    </ul>
+                    <button class="btn btn-primary" id="completeOnboarding">Let's Get Started!</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script>
         // Emoji list
         const emojis = [
@@ -1737,6 +1979,39 @@
                 availability: "3 slots/week"
             }
         ];
+
+        // User profile data
+        const userProfile = {
+            name: "Priya K.",
+            careerStage: "",
+            interests: [],
+            supportNeeds: [],
+            badges: ["Career Explorer", "Mentorship Seeker"],
+            goals: [
+                {
+                    title: "Find a remote job in marketing within 3 months",
+                    progress: 45,
+                    deadline: "2023-09-30"
+                }
+            ],
+            conversationHistory: [],
+            savedJobs: [],
+            savedEvents: []
+        };
+
+        // Motivational quotes
+        const motivationalQuotes = [
+            "The question isn't who's going to let me; it's who's going to stop me. - Ayn Rand",
+            "We need women who are so strong they can be gentle, so educated they can be humble, so fierce they can be compassionate, so passionate they can be rational, and so disciplined they can be free. - Kavita Ramdas",
+            "There is no limit to what we, as women, can accomplish. - Michelle Obama",
+            "The most common way people give up their power is by thinking they don't have any. - Alice Walker",
+            "Success is only meaningful and enjoyable if it feels like your own. - Michelle Obama",
+            "You don't have to be perfect to be amazing. - Unknown",
+            "The future belongs to those who believe in the beauty of their dreams. - Eleanor Roosevelt",
+            "You are more powerful than you know; you are beautiful just as you are. - Melissa Etheridge",
+            "Women who seek to be equal with men lack ambition. - Marilyn Monroe",
+            "The strongest actions for a woman is to love herself, be herself and shine amongst those who never believed she could. - Unknown"
+        ];
         
         document.addEventListener('DOMContentLoaded', function() {
             const chatbotToggle = document.getElementById('chatbotToggle');
@@ -1764,12 +2039,21 @@
             const summaryModal = document.getElementById('summaryModal');
             const summaryModalClose = document.getElementById('summaryModalClose');
             const summaryContent = document.getElementById('summaryContent');
+            const onboardingModal = document.getElementById('onboardingModal');
+            const onboardingModalClose = document.getElementById('onboardingModalClose');
+            const onboardingFlow = document.getElementById('onboardingFlow');
+            const completeOnboarding = document.getElementById('completeOnboarding');
+            
+            // Initialize onboarding steps
+            const onboardingSteps = document.querySelectorAll('.onboarding-step');
+            let currentStep = 0;
             
             // Conversation memory
             let conversationHistory = [];
             let currentLanguage = 'en';
             let isListening = false;
             let recognition;
+            let messageCount = 0;
             
             // Initialize Speech Recognition
             try {
@@ -2011,15 +2295,71 @@
                 summaryModal.classList.remove('active');
             });
             
-            function showWelcomeMessage() {
-                addBotMessage("Hello! I'm Asha, your AI career companion. How can I assist you today?");
+            // Onboarding functionality
+            function showOnboarding() {
+                // Only show onboarding if user hasn't completed it
+                if (!localStorage.getItem('onboardingComplete')) {
+                    onboardingModal.classList.add('active');
+                }
+            }
+            
+            // Handle onboarding step navigation
+            document.querySelectorAll('.onboarding-step .quick-action').forEach(button => {
+                button.addEventListener('click', function() {
+                    const step = this.closest('.onboarding-step');
+                    const nextStep = step.nextElementSibling;
+                    
+                    // Save user responses
+                    if (step.id === 'step1') {
+                        userProfile.careerStage = this.getAttribute('data-stage');
+                    } else if (step.id === 'step2') {
+                        userProfile.interests.push(this.getAttribute('data-interest'));
+                    } else if (step.id === 'step3') {
+                        userProfile.supportNeeds.push(this.getAttribute('data-support'));
+                    }
+                    
+                    // Move to next step
+                    if (nextStep) {
+                        step.classList.remove('active');
+                        nextStep.classList.add('active');
+                    }
+                });
+            });
+            
+            completeOnboarding.addEventListener('click', function() {
+                onboardingModal.classList.remove('active');
+                localStorage.setItem('onboardingComplete', 'true');
+                showNotification('Welcome to Asha! Your experience has been personalized.');
                 
-                // Add quick action buttons
+                // Show personalized welcome message
+                if (chatbotMessages.children.length <= 1) {
+                    chatbotMessages.innerHTML = '';
+                    showWelcomeMessage();
+                }
+            });
+            
+            onboardingModalClose.addEventListener('click', function() {
+                onboardingModal.classList.remove('active');
+                localStorage.setItem('onboardingComplete', 'true');
+            });
+            
+            function showWelcomeMessage() {
+                // Personalized welcome based on onboarding
+                let welcomeMessage = "Hello! I'm Asha, your AI career companion. How can I assist you today?";
+                
+                if (userProfile.careerStage) {
+                    welcomeMessage = `Hello ${userProfile.name}! I see you're ${getCareerStageDescription(userProfile.careerStage)}. `;
+                    welcomeMessage += "How can I assist with your career journey today?";
+                }
+                
+                addBotMessage(welcomeMessage);
+                
+                // Add quick action buttons based on user's needs
                 setTimeout(() => {
                     const quickActions = document.createElement('div');
                     quickActions.className = 'quick-actions';
                     
-                    const categories = [
+                    let categories = [
                         {icon: 'briefcase', text: 'Job Search'},
                         {icon: 'calendar-star', text: 'Upcoming Events'},
                         {icon: 'hands-helping', text: 'Mentor Matching'},
@@ -2027,6 +2367,15 @@
                         {icon: 'book', text: 'Resources'},
                         {icon: 'file-alt', text: 'Resume Review'}
                     ];
+                    
+                    // Prioritize based on user's support needs
+                    if (userProfile.supportNeeds.length > 0) {
+                        categories.sort((a, b) => {
+                            const aIndex = userProfile.supportNeeds.includes(a.text.toLowerCase().replace(' ', '-')) ? -1 : 1;
+                            const bIndex = userProfile.supportNeeds.includes(b.text.toLowerCase().replace(' ', '-')) ? -1 : 1;
+                            return aIndex - bIndex;
+                        });
+                    }
                     
                     categories.forEach(category => {
                         const button = document.createElement('button');
@@ -2044,6 +2393,21 @@
                     chatbotMessages.appendChild(messageDiv);
                     scrollToBottom();
                 }, 500);
+            }
+            
+            function getCareerStageDescription(stage) {
+                switch(stage) {
+                    case 'student':
+                        return 'a student';
+                    case 'early-career':
+                        return 'in the early stages of your career';
+                    case 'mid-career':
+                        return 'in the middle of your career journey';
+                    case 'returning':
+                        return 'returning to the workforce';
+                    default:
+                        return '';
+                }
             }
             
             function sendMessage() {
@@ -2089,6 +2453,30 @@
                     content: text,
                     timestamp: new Date().toISOString()
                 });
+                
+                // Add to user profile conversation history
+                userProfile.conversationHistory.push({
+                    type: 'user',
+                    content: text,
+                    timestamp: new Date().toISOString()
+                });
+                
+                // Increment message count for gamification
+                messageCount++;
+                
+                // Check for motivational message trigger
+                if (messageCount % 5 === 0) {
+                    setTimeout(() => {
+                        showMotivationalMessage();
+                    }, 1500);
+                }
+                
+                // Check for sentiment
+                if (detectNegativeSentiment(text)) {
+                    setTimeout(() => {
+                        showSupportMessage();
+                    }, 1500);
+                }
             }
             
             function addBotMessage(text, options = {}) {
@@ -2139,6 +2527,13 @@
                 
                 // Add to conversation history
                 conversationHistory.push({
+                    type: 'bot',
+                    content: text.textContent || text,
+                    timestamp: new Date().toISOString()
+                });
+                
+                // Add to user profile conversation history
+                userProfile.conversationHistory.push({
                     type: 'bot',
                     content: text.textContent || text,
                     timestamp: new Date().toISOString()
@@ -2222,6 +2617,30 @@
                 // Check for resume review request
                 if (message.includes('resume') || message.includes('cv') || message.includes('review')) {
                     resumeModal.classList.add('active');
+                    return;
+                }
+                
+                // Check for onboarding request
+                if (message.includes('onboarding') || message.includes('setup') || message.includes('profile')) {
+                    showOnboarding();
+                    return;
+                }
+                
+                // Check for career companion request
+                if (message.includes('goal') || message.includes('target') || message.includes('objective')) {
+                    showCareerCompanion();
+                    return;
+                }
+                
+                // Check for resource request
+                if (message.includes('resource') || message.includes('learn') || message.includes('guide')) {
+                    showResourceCenter();
+                    return;
+                }
+                
+                // Check for badge request
+                if (message.includes('badge') || message.includes('achievement') || message.includes('progress')) {
+                    showBadges();
                     return;
                 }
                 
@@ -2350,21 +2769,7 @@
                             }, 500);
                             break;
                         case 'Resources':
-                            addBotMessage("Here are some valuable resources for your career:");
-                            
-                            const resourcesDiv = document.createElement('div');
-                            resourcesDiv.innerHTML = `
-                                <ul>
-                                    <li><a href="#" style="color: var(--current-accent);">Career Development Books</a></li>
-                                    <li><a href="#" style="color: var(--current-accent);">Online Learning Platforms</a></li>
-                                    <li><a href="#" style="color: var(--current-accent);">Industry Reports</a></li>
-                                    <li><a href="#" style="color: var(--current-accent);">Salary Benchmarking Tools</a></li>
-                                </ul>
-                            `;
-                            
-                            setTimeout(() => {
-                                addBotMessage(resourcesDiv);
-                            }, 500);
+                            showResourceCenter();
                             break;
                         case 'Resume Review':
                             resumeModal.classList.add('active');
@@ -2389,6 +2794,15 @@
                         {icon: 'heartbeat', text: 'Healthcare'},
                         {icon: 'graduation-cap', text: 'Education'}
                     ];
+                    
+                    // Prioritize based on user's interests
+                    if (userProfile.interests.length > 0) {
+                        categories.sort((a, b) => {
+                            const aIndex = userProfile.interests.includes(a.text.toLowerCase()) ? -1 : 1;
+                            const bIndex = userProfile.interests.includes(b.text.toLowerCase()) ? -1 : 1;
+                            return aIndex - bIndex;
+                        });
+                    }
                     
                     const categoryDiv = document.createElement('div');
                     categoryDiv.className = 'category-buttons';
@@ -2445,6 +2859,11 @@
                                 `;
                                 
                                 addBotMessage(jobsDiv);
+                                
+                                // Show related recommendations
+                                setTimeout(() => {
+                                    showRelatedRecommendations(category.text);
+                                }, 500);
                             }, 1500);
                         });
                         categoryDiv.appendChild(button);
@@ -2458,8 +2877,50 @@
                 }, 500);
             }
             
-            function showEventSuggestions() {
-                addBotMessage("Here are upcoming events you might be interested in:", {
+            function showRelatedRecommendations(category) {
+                const recommendationsDiv = document.createElement('div');
+                recommendationsDiv.className = 'message bot-message';
+                recommendationsDiv.innerHTML = `
+                    <p>Based on your interest in ${category}, you might also find these helpful:</p>
+                    <div class="quick-actions" style="margin-top: 10px;">
+                        <button class="quick-action">
+                            <i class="fas fa-calendar-alt"></i> Upcoming ${category} Events
+                        </button>
+                        <button class="quick-action">
+                            <i class="fas fa-hands-helping"></i> ${category} Mentors
+                        </button>
+                        <button class="quick-action">
+                            <i class="fas fa-book"></i> ${category} Learning Resources
+                        </button>
+                    </div>
+                `;
+                
+                // Add event listeners to the buttons
+                recommendationsDiv.querySelectorAll('.quick-action').forEach(button => {
+                    button.addEventListener('click', () => {
+                        const action = button.textContent.trim();
+                        addUserMessage(action);
+                        showTypingIndicator();
+                        setTimeout(() => {
+                            removeTypingIndicator();
+                            
+                            if (action.includes('Events')) {
+                                showEventSuggestions(category);
+                            } else if (action.includes('Mentors')) {
+                                showMentorSuggestions(category);
+                            } else if (action.includes('Resources')) {
+                                showResourceCenter(category);
+                            }
+                        }, 1500);
+                    });
+                });
+                
+                chatbotMessages.appendChild(recommendationsDiv);
+                scrollToBottom();
+            }
+            
+            function showEventSuggestions(category = '') {
+                addBotMessage(`Here are upcoming ${category ? category + ' ' : ''}events you might be interested in:`, {
                     showWhy: true,
                     whyText: "You asked about events, so I'm showing relevant career events."
                 });
@@ -2502,11 +2963,19 @@
                 
                 setTimeout(() => {
                     addBotMessage(eventsDiv);
+                    
+                    // Add badge for exploring events
+                    if (!userProfile.badges.includes("Event Explorer")) {
+                        userProfile.badges.push("Event Explorer");
+                        setTimeout(() => {
+                            showBadgeNotification("Event Explorer");
+                        }, 1000);
+                    }
                 }, 500);
             }
             
-            function showMentorSuggestions() {
-                addBotMessage("Our mentorship program connects you with experienced professionals. Here are some mentors you might like:", {
+            function showMentorSuggestions(category = '') {
+                addBotMessage(`Our mentorship program connects you with experienced ${category ? category + ' ' : ''}professionals. Here are some mentors you might like:`, {
                     showWhy: true,
                     whyText: "You asked about mentorship, so I'm showing available mentors."
                 });
@@ -2580,6 +3049,189 @@
                 }, 500);
             }
             
+            function showResourceCenter(category = '') {
+                addBotMessage(`Here are some valuable ${category ? category + ' ' : ''}resources for your career:`, {
+                    showWhy: true,
+                    whyText: "You asked about resources, so I'm showing relevant career development materials."
+                });
+                
+                // Create resource cards
+                const resourcesDiv = document.createElement('div');
+                resourcesDiv.innerHTML = `
+                    <div class="resource-card">
+                        <h4>${category || 'Career'} Development Guide</h4>
+                        <p>Comprehensive guide to advancing your ${category ? category + ' ' : ''}career with actionable strategies.</p>
+                        <a href="#" class="resource-link">View Resource <i class="fas fa-external-link-alt"></i></a>
+                    </div>
+                    <div class="resource-card">
+                        <h4>Interview Preparation</h4>
+                        <p>Master the interview process with our ${category ? category + ' ' : ''}interview preparation kit.</p>
+                        <a href="#" class="resource-link">View Resource <i class="fas fa-external-link-alt"></i></a>
+                    </div>
+                    <div class="resource-card">
+                        <h4>Salary Negotiation Tips</h4>
+                        <p>Learn how to negotiate your salary with confidence.</p>
+                        <a href="#" class="resource-link">View Resource <i class="fas fa-external-link-alt"></i></a>
+                    </div>
+                    <button class="quick-action" style="margin-top: 10px; width: 100%; text-align: center;">
+                        <i class="fas fa-book"></i> View All Resources
+                    </button>
+                `;
+                
+                setTimeout(() => {
+                    addBotMessage(resourcesDiv);
+                }, 500);
+            }
+            
+            function showCareerCompanion() {
+                addBotMessage("Your Career Companion helps you stay on track with your professional goals. Here's your current progress:");
+                
+                const companionDiv = document.createElement('div');
+                companionDiv.innerHTML = `
+                    <div class="companion-goal">
+                        <h4>Current Goal: ${userProfile.goals[0].title}</h4>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: ${userProfile.goals[0].progress}%"></div>
+                        </div>
+                        <p>${userProfile.goals[0].progress}% complete - ${calculateTimeRemaining(userProfile.goals[0].deadline)} remaining</p>
+                        <div class="quick-actions" style="margin-top: 10px;">
+                            <button class="quick-action"><i class="fas fa-edit"></i> Update Goal</button>
+                            <button class="quick-action"><i class="fas fa-tasks"></i> Action Items</button>
+                            <button class="quick-action"><i class="fas fa-calendar-check"></i> Schedule Check-in</button>
+                        </div>
+                    </div>
+                `;
+                
+                setTimeout(() => {
+                    addBotMessage(companionDiv);
+                }, 500);
+            }
+            
+            function calculateTimeRemaining(deadline) {
+                const today = new Date();
+                const deadlineDate = new Date(deadline);
+                const diffTime = deadlineDate - today;
+                const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+                
+                if (diffDays <= 0) {
+                    return "deadline passed";
+                }
+                
+                const weeks = Math.floor(diffDays / 7);
+                const days = diffDays % 7;
+                
+                if (weeks > 0 && days > 0) {
+                    return `${weeks} week${weeks > 1 ? 's' : ''} ${days} day${days > 1 ? 's' : ''}`;
+                } else if (weeks > 0) {
+                    return `${weeks} week${weeks > 1 ? 's' : ''}`;
+                } else {
+                    return `${days} day${days > 1 ? 's' : ''}`;
+                }
+            }
+            
+            function showBadges() {
+                addBotMessage("You've earned these badges for your career exploration:");
+                
+                const badgesDiv = document.createElement('div');
+                badgesDiv.className = 'quick-actions';
+                
+                userProfile.badges.forEach(badge => {
+                    const badgeElement = document.createElement('span');
+                    badgeElement.className = 'badge';
+                    
+                    let icon = '';
+                    if (badge.includes("Explorer")) {
+                        icon = '<i class="fas fa-compass"></i>';
+                    } else if (badge.includes("Mentorship")) {
+                        icon = '<i class="fas fa-hands-helping"></i>';
+                    } else {
+                        icon = '<i class="fas fa-award"></i>';
+                    }
+                    
+                    badgeElement.innerHTML = `${icon} ${badge}`;
+                    badgesDiv.appendChild(badgeElement);
+                });
+                
+                const messageDiv = document.createElement('div');
+                messageDiv.className = 'message bot-message';
+                messageDiv.appendChild(badgesDiv);
+                
+                setTimeout(() => {
+                    chatbotMessages.appendChild(messageDiv);
+                    scrollToBottom();
+                }, 500);
+            }
+            
+            function showBadgeNotification(badgeName) {
+                const notificationDiv = document.createElement('div');
+                notificationDiv.className = 'message bot-message';
+                notificationDiv.innerHTML = `
+                    <p>🎉 Congratulations! You've earned the <strong>${badgeName}</strong> badge!</p>
+                    <p>Keep exploring to earn more achievements.</p>
+                `;
+                
+                chatbotMessages.appendChild(notificationDiv);
+                scrollToBottom();
+            }
+            
+            function showMotivationalMessage() {
+                const randomQuote = motivationalQuotes[Math.floor(Math.random() * motivationalQuotes.length)];
+                
+                const quoteDiv = document.createElement('div');
+                quoteDiv.className = 'message bot-message';
+                quoteDiv.style.backgroundColor = 'var(--accent-pink-transparent)';
+                quoteDiv.style.borderColor = 'rgba(255, 126, 185, 0.3)';
+                quoteDiv.innerHTML = `
+                    <p><strong>💖 Motivational Moment:</strong></p>
+                    <p><em>"${randomQuote}"</em></p>
+                `;
+                
+                chatbotMessages.appendChild(quoteDiv);
+                scrollToBottom();
+            }
+            
+            function detectNegativeSentiment(text) {
+                const negativeWords = ['frustrated', 'lost', 'confused', 'difficult', 'hard', 'struggle', 'help', 'problem'];
+                return negativeWords.some(word => text.toLowerCase().includes(word));
+            }
+            
+            function showSupportMessage() {
+                const supportDiv = document.createElement('div');
+                supportDiv.className = 'message bot-message support-message';
+                supportDiv.innerHTML = `
+                    <p>I sense you might be feeling a bit frustrated. Remember, career journeys have ups and downs.</p>
+                    <p>Would you like me to:</p>
+                    <div class="quick-actions" style="margin-top: 10px;">
+                        <button class="quick-action"><i class="fas fa-hands-helping"></i> Connect you with a mentor</button>
+                        <button class="quick-action"><i class="fas fa-users"></i> Suggest support communities</button>
+                        <button class="quick-action"><i class="fas fa-headset"></i> Connect with human support</button>
+                    </div>
+                `;
+                
+                // Add event listeners to the buttons
+                supportDiv.querySelectorAll('.quick-action').forEach(button => {
+                    button.addEventListener('click', () => {
+                        const action = button.textContent.trim();
+                        addUserMessage(action);
+                        showTypingIndicator();
+                        setTimeout(() => {
+                            removeTypingIndicator();
+                            
+                            if (action.includes('mentor')) {
+                                showMentorSuggestions();
+                            } else if (action.includes('communities')) {
+                                showCommunitySuggestions();
+                            } else if (action.includes('human')) {
+                                addBotMessage("I'll connect you with a JobsForHer support specialist. Please hold on...");
+                            }
+                        }, 1500);
+                    });
+                });
+                
+                chatbotMessages.appendChild(supportDiv);
+                scrollToBottom();
+            }
+            
             function showConversationSummary() {
                 summaryContent.innerHTML = `
                     <h4>Conversation Summary</h4>
@@ -2595,6 +3247,7 @@
                             <li>Review the job opportunities we discussed</li>
                             <li>Consider registering for the events mentioned</li>
                             <li>Reach out to potential mentors</li>
+                            <li>Explore the recommended resources</li>
                         </ul>
                     </div>
                 `;
@@ -2610,6 +3263,9 @@
                 if (event.target === summaryModal) {
                     summaryModal.classList.remove('active');
                 }
+                if (event.target === onboardingModal) {
+                    onboardingModal.classList.remove('active');
+                }
                 if (!event.target.closest('.emoji-picker') && !event.target.closest('.emoji-btn')) {
                     emojiPicker.classList.remove('active');
                 }
@@ -2620,6 +3276,9 @@
             
             // Initialize with chatbot hidden
             chatbotContainer.classList.remove('active');
+            
+            // Show onboarding if not completed
+            showOnboarding();
         });
     </script>
 </body>
