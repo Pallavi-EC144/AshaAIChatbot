@@ -1,137 +1,670 @@
 <!DOCTYPE html>
- <html lang="en">
- <head>
-     <meta charset="UTF-8">
-     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <meta name="description" content="Asha AI Chatbot - Enhancing women careers with JobsForHer Foundation">
-     <title>Asha AI Chatbot</title>
-    <link rel="stylesheet" href="styles.css">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="AshaAI - Empowering Indian Women in Tech with Career Discovery, Mentorship & Community">
+    <title>AshaAI - Your Career Companion</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --primary: #6a1b9a;
-            --secondary: #9c27b0;
-            --accent: #e91e63;
-            --light: #f5f5f5;
-            --dark: #333;
-            --success: #4caf50;
-            --warning: #ff9800;
-            --info: #2196f3;
-            --error: #f44336;
+            /* Professional Dark Theme */
+            --bg-dark: #0E0E10;
+            --card-dark: #1C1C1E;
+            --text-light: #F5F5F7;
+            --text-secondary: #9A9A9A;
+            --accent-blue: #4FD1FF;
+            --accent-green: #8FFFAB;
+            --accent-purple: #A88BFF;
+            --accent-teal: #4FE3C2;
+            --accent-pink: #FF7EB9;
+            --accent-orange: #FFA85C;
+            --accent-blue-transparent: rgba(79, 209, 255, 0.2);
+            --accent-purple-transparent: rgba(168, 139, 255, 0.2);
+            --accent-green-transparent: rgba(143, 255, 171, 0.2);
+            --accent-teal-transparent: rgba(79, 227, 194, 0.2);
+            
+            /* Light Mode Palette */
+            --bg-light: #F8F9FB;
+            --card-light: #FFFFFF;
+            --border-light: #E4E6EB;
+            --text-dark: #2D2D2D;
+            --text-secondary-light: #6A6A6A;
+            --accent-blue-light: #3C91E6;
+            --accent-green-light: #61D199;
+            --accent-purple-light: #B28DFF;
+            --accent-pink-light: #FF6B9E;
+            --accent-orange-light: #FF9147;
+            --accent-blue-light-transparent: rgba(60, 145, 230, 0.15);
+            
+            /* Current theme variables */
+            --current-bg: var(--bg-dark);
+            --current-card: var(--card-dark);
+            --current-text: var(--text-light);
+            --current-text-secondary: var(--text-secondary);
+            --current-accent: var(--accent-blue);
+            --current-border: rgba(245, 245, 247, 0.1);
         }
         
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Montserrat', 'Segoe UI', sans-serif;
+            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
         }
+        
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
         
         body {
-            background-color: #f9f3ff;
-            color: var(--dark);
+            background-color: var(--current-bg);
+            color: var(--current-text);
             line-height: 1.6;
+            min-height: 100vh;
         }
-        
+
+        /* Header */
         header {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: white;
-            text-align: center;
-            padding: 2rem 1rem;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            background-color: var(--current-card);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid var(--current-border);
         }
         
-        header h1 {
-            font-size: 2.5rem;
-            margin-bottom: 0.5rem;
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
         
-        header p {
-            font-size: 1.1rem;
+        .logo img {
+            height: 40px;
+            filter: drop-shadow(0 0 5px var(--current-accent));
+        }
+        
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--current-text);
+        }
+        
+        .logo-text span {
+            color: var(--accent-purple);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+        
+        nav a {
+            text-decoration: none;
+            color: var(--current-text);
+            font-weight: 500;
+            transition: all 0.3s;
+            position: relative;
             opacity: 0.9;
         }
         
-        .container {
+        nav a:hover {
+            color: var(--current-accent);
+            opacity: 1;
+        }
+        
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--current-accent);
+            transition: width 0.3s;
+        }
+        
+        nav a:hover::after {
+            width: 100%;
+        }
+        
+        .nav-buttons {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+        
+        .btn {
+            padding: 0.6rem 1.2rem;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn-outline {
+            border: 2px solid var(--current-accent);
+            color: var(--current-accent);
+            background: transparent;
+        }
+        
+        .btn-outline:hover {
+            background-color: var(--accent-blue-transparent);
+            box-shadow: 0 0 15px var(--accent-blue-transparent);
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-teal));
+            color: var(--current-bg);
+            border: none;
+        }
+        
+        .btn-primary:hover {
+            box-shadow: 0 0 20px var(--accent-blue-transparent);
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        .hero {
+            margin-top: 80px;
+            padding: 6rem 2rem;
+            text-align: center;
+            background: linear-gradient(135deg, rgba(79, 209, 255, 0.1), rgba(168, 139, 255, 0.1));
+            position: relative;
+            overflow: hidden;
+            min-height: 80vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 70% 30%, rgba(79, 209, 255, 0.05) 0%, transparent 50%),
+                        radial-gradient(circle at 30% 70%, rgba(168, 139, 255, 0.05) 0%, transparent 50%);
+            z-index: -1;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            color: var(--current-text);
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            max-width: 900px;
+        }
+        
+        .hero h1 span {
+            background: linear-gradient(90deg, var(--accent-blue), var(--accent-teal));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .hero p {
+            font-size: 1.4rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            color: var(--current-text-secondary);
+        }
+        
+        .hero-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        /* Quotes Banner */
+        .quotes-banner {
+            background: linear-gradient(135deg, var(--accent-purple-transparent), var(--accent-teal-transparent));
+            padding: 1.5rem;
+            text-align: center;
+            font-size: 1.2rem;
+            font-weight: 500;
+            border-top: 1px solid var(--current-border);
+            border-bottom: 1px solid var(--current-border);
+            margin-bottom: 3rem;
+        }
+        
+        .quote {
+            display: none;
+            animation: fadeIn 1s ease;
+        }
+        
+        .quote.active {
+            display: block;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Features Section */
+        .features {
+            padding: 4rem 2rem;
             max-width: 1200px;
-            margin: 2rem auto;
-            padding: 0 1rem;
+            margin: 0 auto;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: var(--current-text);
+        }
+        
+        .section-title span {
+            color: var(--current-accent);
         }
         
         .features-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1.5rem;
-            margin-bottom: 3rem;
+            gap: 2rem;
         }
         
         .feature-card {
-            background: white;
-            border-radius: 10px;
-            padding: 1.5rem;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            background-color: var(--current-card);
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border: 1px solid var(--current-border);
+            transition: transform 0.3s;
+            text-align: center;
         }
         
         .feature-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
         }
         
-        .feature-card i {
-            font-size: 2rem;
-            color: var(--secondary);
-            margin-bottom: 1rem;
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            color: var(--current-accent);
         }
         
         .feature-card h3 {
-            color: var(--primary);
-            margin-bottom: 0.5rem;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--current-text);
         }
         
-        /* Chatbot Button */
-        .chatbot-toggle {
-            position: fixed;
-            bottom: 2rem;
-            right: 2rem;
-            background: var(--primary);
-            color: white;
-            width: 60px;
-            height: 60px;
+        .feature-card p {
+            color: var(--current-text-secondary);
+            margin-bottom: 1.5rem;
+        }
+
+        /* Dashboard Grid */
+        .dashboard {
+            padding: 4rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            display: none; /* Hidden by default, shown after login */
+        }
+        
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            gap: 2rem;
+        }
+        
+        /* Sidebar */
+        .sidebar {
+            background-color: var(--current-card);
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border: 1px solid var(--current-border);
+        }
+        
+        .sidebar-nav {
+            list-style: none;
+        }
+        
+        .sidebar-nav li {
+            margin-bottom: 1rem;
+            position: relative;
+        }
+        
+        .sidebar-nav a {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            padding: 0.8rem 1rem;
+            color: var(--current-text);
+            text-decoration: none;
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+        
+        .sidebar-nav a:hover, .sidebar-nav a.active {
+            background-color: var(--accent-blue-transparent);
+            color: var(--current-accent);
+        }
+        
+        /* Category dots */
+        .sidebar-nav li:nth-child(1) a::before,
+        .sidebar-nav li:nth-child(2) a::before {
+            background: var(--accent-blue);
+        }
+        .sidebar-nav li:nth-child(3) a::before {
+            background: var(--accent-green);
+        }
+        .sidebar-nav li:nth-child(4) a::before {
+            background: var(--accent-purple);
+        }
+        .sidebar-nav li:nth-child(5) a::before {
+            background: var(--accent-teal);
+        }
+        
+        .sidebar-nav a::before {
+            content: '';
+            width: 8px;
+            height: 8px;
             border-radius: 50%;
+            margin-right: 10px;
+            display: inline-block;
+        }
+        
+        .sidebar-nav i {
+            width: 20px;
+            text-align: center;
+        }
+        
+        /* Main Content */
+        .main-content {
+            display: grid;
+            gap: 2rem;
+        }
+        
+        /* Stats Cards */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .stat-card {
+            background-color: var(--current-card);
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border: 1px solid var(--current-border);
+            transition: transform 0.3s;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
+        
+        .stat-card h3 {
+            font-size: 0.9rem;
+            color: var(--current-accent);
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .stat-card .value {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(90deg, var(--accent-blue), var(--accent-teal));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .stat-card .change {
+            font-size: 0.8rem;
+            color: var(--accent-green);
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+        
+        /* Search Bar */
+        .search-bar {
+            position: relative;
+        }
+        
+        .search-bar input {
+            width: 100%;
+            padding: 1rem 1.5rem;
+            background-color: var(--current-card);
+            border: 1px solid var(--current-border);
+            border-radius: 30px;
+            color: var(--current-text);
+            font-size: 1rem;
+            outline: none;
+            transition: all 0.3s;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .search-bar input:focus {
+            border-color: var(--current-accent);
+            box-shadow: 0 0 0 2px var(--accent-blue-transparent);
+        }
+        
+        .search-bar i {
+            position: absolute;
+            right: 1.5rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--current-accent);
+        }
+        
+        /* Job Listings */
+        .job-listings {
+            display: grid;
+            gap: 1.5rem;
+        }
+        
+        .job-card {
+            background-color: var(--current-card);
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border: 1px solid var(--current-border);
+            transition: all 0.3s;
+        }
+        
+        .job-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+        
+        .job-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: var(--current-text);
+        }
+        
+        .job-card .company {
+            color: var(--current-accent);
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+        
+        .job-card .details {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+            color: var(--current-text-secondary);
+        }
+        
+        .job-card .tags {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+        
+        .job-card .tag {
+            background-color: var(--accent-purple-transparent);
+            color: var(--accent-purple);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+        }
+        
+        /* User Profile */
+        .user-profile {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-left: auto;
+        }
+        
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--accent-blue-transparent);
             display: flex;
             align-items: center;
             justify-content: center;
+            color: var(--current-accent);
             cursor: pointer;
-            box-shadow: 0 4px 12px rgba(106, 27, 154, 0.3);
-            z-index: 1000;
-            transition: all 0.3s ease;
+            transition: all 0.3s;
         }
         
-        .chatbot-toggle:hover {
-            background: var(--secondary);
+        .user-avatar:hover {
+            background-color: var(--accent-purple-transparent);
+            color: var(--accent-purple);
             transform: scale(1.1);
         }
         
-        .chatbot-toggle i {
+        /* Login Modal */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+        }
+        
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .modal-content {
+            background: var(--current-card);
+            border-radius: 12px;
+            padding: 2rem;
+            max-width: 500px;
+            width: 90%;
+            position: relative;
+            border: 1px solid var(--current-border);
+        }
+        
+        .modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: transparent;
+            border: none;
+            color: var(--current-text-secondary);
             font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        .modal-title {
+            margin-bottom: 1.5rem;
+            color: var(--current-accent);
+            text-align: center;
+            font-size: 1.8rem;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--current-text);
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 1px solid var(--current-border);
+            border-radius: 8px;
+            background: var(--current-bg);
+            color: var(--current-text);
+            font-size: 1rem;
+        }
+        
+        .form-group input:focus {
+            border-color: var(--current-accent);
+            outline: none;
+            box-shadow: 0 0 0 2px var(--accent-blue-transparent);
+        }
+        
+        .form-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 2rem;
+        }
+        
+        .form-footer {
+            text-align: center;
+            margin-top: 1.5rem;
+            color: var(--current-text-secondary);
+        }
+        
+        .form-footer a {
+            color: var(--current-accent);
+            text-decoration: none;
         }
         
         /* Chatbot Container */
         .chatbot-container {
             position: fixed;
-            bottom: 5rem;
+            bottom: 2rem;
             right: 2rem;
-            width: 350px;
+            width: 380px;
             max-width: 90%;
-            background: white;
-            border-radius: 15px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+            background: var(--current-card);
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
             overflow: hidden;
             transform: translateY(20px);
             opacity: 0;
             visibility: hidden;
             transition: all 0.3s ease;
             z-index: 1000;
+            border: 1px solid var(--current-border);
         }
         
         .chatbot-container.active {
@@ -141,190 +674,188 @@
         }
         
         .chatbot-header {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: white;
-            padding: 1rem;
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-teal));
+            color: var(--current-bg);
+            padding: 1rem 1.5rem;
             display: flex;
             align-items: center;
             justify-content: space-between;
         }
         
         .chatbot-header h3 {
-            font-weight: 500;
+            font-weight: 600;
+            font-size: 1.1rem;
         }
         
         .chatbot-close {
             background: none;
             border: none;
-            color: white;
+            color: var(--current-bg);
             font-size: 1.2rem;
             cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+        
+        .chatbot-close:hover {
+            transform: rotate(90deg);
         }
         
         .chatbot-messages {
-            height: 350px;
+            height: 400px;
             overflow-y: auto;
-            padding: 1rem;
-            background: #fafafa;
+            padding: 1.5rem;
+            background: var(--current-card);
+            scrollbar-width: thin;
+            scrollbar-color: var(--current-accent) var(--current-bg);
+        }
+        
+        .chatbot-messages::-webkit-scrollbar {
+            width: 6px;
+        }
+        
+        .chatbot-messages::-webkit-scrollbar-track {
+            background: var(--current-bg);
+        }
+        
+        .chatbot-messages::-webkit-scrollbar-thumb {
+            background-color: var(--current-accent);
+            border-radius: 3px;
         }
         
         .message {
-            margin-bottom: 1rem;
-            max-width: 80%;
-            padding: 0.8rem 1rem;
-            border-radius: 15px;
-            font-size: 0.9rem;
-            line-height: 1.4;
+            margin-bottom: 1.2rem;
+            max-width: 85%;
+            padding: 1rem;
+            border-radius: 12px;
+            font-size: 0.95rem;
+            line-height: 1.5;
             position: relative;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
         
         .bot-message {
-            background: white;
-            color: var(--dark);
-            border: 1px solid #eee;
+            background: var(--accent-blue-transparent);
+            color: var(--current-text);
             border-bottom-left-radius: 5px;
             align-self: flex-start;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            border: 1px solid rgba(79, 209, 255, 0.3);
         }
         
         .user-message {
-            background: var(--primary);
-            color: white;
+            background: var(--accent-purple-transparent);
+            color: var(--current-text);
             border-bottom-right-radius: 5px;
             align-self: flex-end;
             margin-left: auto;
+            border: 1px solid rgba(168, 139, 255, 0.3);
         }
         
         .quick-actions {
             display: flex;
             flex-wrap: wrap;
-            gap: 0.5rem;
-            margin-top: 1rem;
+            gap: 0.6rem;
+            margin-top: 1.2rem;
         }
         
         .quick-action {
-            background: rgba(156, 39, 176, 0.1);
-            color: var(--primary);
-            border: none;
+            background: var(--accent-blue-transparent);
+            color: var(--current-accent);
+            border: 1px solid rgba(79, 209, 255, 0.3);
             border-radius: 20px;
-            padding: 0.5rem 1rem;
-            font-size: 0.8rem;
+            padding: 0.6rem 1.2rem;
+            font-size: 0.85rem;
             cursor: pointer;
-            transition: background 0.2s ease;
+            transition: all 0.2s ease;
         }
         
         .quick-action:hover {
-            background: rgba(156, 39, 176, 0.2);
+            background: var(--accent-blue-light-transparent);
+            transform: translateY(-2px);
         }
         
         .chatbot-input {
             display: flex;
-            padding: 0.8rem;
-            border-top: 1px solid #eee;
-            background: white;
+            padding: 1rem;
+            border-top: 1px solid var(--current-border);
+            background: var(--current-card);
+            position: relative;
+        }
+        
+        .chatbot-input::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--current-accent), transparent);
         }
         
         .chatbot-input input {
             flex: 1;
-            padding: 0.8rem;
-            border: 1px solid #ddd;
-            border-radius: 25px;
+            padding: 0.9rem 1.2rem;
+            border: 1px solid var(--current-border);
+            border-radius: 30px;
             outline: none;
-            font-size: 0.9rem;
+            font-size: 0.95rem;
+            color: var(--current-text);
+            background: var(--current-bg);
+            transition: all 0.3s ease;
+        }
+        
+        .chatbot-input input:focus {
+            border-color: var(--current-accent);
+            box-shadow: 0 0 0 2px var(--accent-blue-transparent);
+        }
+        
+        .chatbot-input input::placeholder {
+            color: var(--current-text-secondary);
+            opacity: 0.7;
         }
         
         .chatbot-input button {
-            background: var(--primary);
-            color: white;
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-teal));
+            color: var(--current-bg);
             border: none;
             border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            margin-left: 0.5rem;
+            width: 45px;
+            height: 45px;
+            margin-left: 0.8rem;
             cursor: pointer;
-            transition: background 0.2s ease;
+            transition: all 0.3s ease;
+            box-shadow: 0 3px 10px rgba(79, 209, 255, 0.3);
         }
         
         .chatbot-input button:hover {
-            background: var(--secondary);
-        }
-        
-        .feedback-buttons {
-            display: flex;
-            justify-content: flex-end;
-            margin-top: 0.5rem;
-            gap: 0.5rem;
-        }
-        
-        .feedback-button {
-            background: none;
-            border: none;
-            color: #aaa;
-            cursor: pointer;
-            font-size: 0.8rem;
-            transition: color 0.2s ease;
-        }
-        
-        .feedback-button:hover {
-            color: var(--primary);
-        }
-        
-        .category-buttons {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 0.5rem;
-            margin-top: 1rem;
-        }
-        
-        .category-button {
-            background: rgba(156, 39, 176, 0.1);
-            color: var(--primary);
-            border: none;
-            border-radius: 8px;
-            padding: 0.6rem;
-            font-size: 0.8rem;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-        }
-        
-        .category-button i {
-            margin-right: 0.3rem;
-        }
-        
-        .category-button:hover {
-            background: rgba(156, 39, 176, 0.2);
-            transform: translateY(-2px);
-        }
-        
-        footer {
-            background: var(--dark);
-            color: white;
-            text-align: center;
-            padding: 2rem 1rem;
-            margin-top: 3rem;
-        }
-        
-        footer p {
-            opacity: 0.8;
-            font-size: 0.9rem;
+            transform: rotate(15deg) scale(1.1);
+            box-shadow: 0 5px 15px rgba(79, 209, 255, 0.4);
         }
         
         .typing-indicator {
             display: flex;
-            padding: 0.8rem 1rem;
+            padding: 1rem;
+            align-items: center;
+        }
+        
+        .typing-text {
+            margin-right: 0.8rem;
+            color: var(--current-accent);
+            font-size: 0.8rem;
         }
         
         .typing-dot {
             width: 8px;
             height: 8px;
-            background: #ccc;
+            background: var(--current-accent);
             border-radius: 50%;
-            margin: 0 2px;
+            margin: 0 3px;
             animation: typingAnimation 1.4s infinite ease-in-out;
+            opacity: 0.7;
         }
         
         .typing-dot:nth-child(1) {
@@ -342,91 +873,1344 @@
         @keyframes typingAnimation {
             0%, 60%, 100% {
                 transform: translateY(0);
+                background: var(--current-accent);
             }
             30% {
                 transform: translateY(-5px);
+                background: var(--accent-purple);
             }
+        }
+        
+        /* Chatbot Toggle Button */
+        .chatbot-toggle {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-teal));
+            color: var(--current-bg);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: 0 5px 20px rgba(79, 209, 255, 0.4);
+            z-index: 999;
+            transition: all 0.3s ease;
+        }
+        
+        .chatbot-toggle:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 25px rgba(79, 209, 255, 0.5);
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(79, 209, 255, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(79, 209, 255, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(79, 209, 255, 0); }
+        }
+        
+        /* Message Controls */
+        .message-controls {
+            display: flex;
+            justify-content: flex-end;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+        }
+        
+        .message-control {
+            background: transparent;
+            border: none;
+            color: var(--current-text-secondary);
+            font-size: 0.7rem;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+        
+        .message-control:hover {
+            color: var(--current-accent);
+        }
+        
+        /* Chatbot Menu */
+        .chatbot-menu {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.5rem 1rem;
+            background: var(--current-card);
+            border-top: 1px solid var(--current-border);
+        }
+        
+        .menu-button {
+            background: transparent;
+            border: none;
+            color: var(--current-text-secondary);
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            padding: 0.5rem;
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.3rem;
+        }
+        
+        .menu-button:hover, .menu-button.active {
+            color: var(--current-accent);
+            background: var(--accent-blue-transparent);
+        }
+        
+        .menu-button i {
+            font-size: 1.1rem;
+        }
+        
+        /* Feedback Form */
+        .feedback-form {
+            padding: 1rem;
+            background: var(--current-card);
+            border-top: 1px solid var(--current-border);
+            display: none;
+        }
+        
+        .feedback-form.active {
+            display: block;
+        }
+        
+        .feedback-form textarea {
+            width: 100%;
+            padding: 1rem;
+            border-radius: 8px;
+            border: 1px solid var(--current-border);
+            background: var(--current-bg);
+            color: var(--current-text);
+            margin-bottom: 0.5rem;
+            resize: none;
+        }
+        
+        .feedback-form button {
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-teal));
+            color: var(--current-bg);
+            border: none;
+            padding: 0.6rem 1.2rem;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .feedback-form button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(79, 209, 255, 0.3);
+        }
+        
+        /* Light Mode Styles */
+        .light-mode {
+            --current-bg: var(--bg-light);
+            --current-card: var(--card-light);
+            --current-text: var(--text-dark);
+            --current-text-secondary: var(--text-secondary-light);
+            --current-accent: var(--accent-blue-light);
+            --current-border: var(--border-light);
+            
+            /* Adjust accent colors for light mode */
+            --accent-blue: var(--accent-blue-light);
+            --accent-green: var(--accent-green-light);
+            --accent-purple: var(--accent-purple-light);
+            --accent-pink: var(--accent-pink-light);
+            --accent-orange: var(--accent-orange-light);
+            --accent-blue-transparent: var(--accent-blue-light-transparent);
+        }
+        
+        .light-mode .hero {
+            background: linear-gradient(135deg, rgba(60, 145, 230, 0.1), rgba(178, 141, 255, 0.1));
+        }
+        
+        .light-mode .hero h1 span {
+            background: linear-gradient(90deg, var(--accent-blue-light), var(--accent-green-light));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .light-mode .btn-outline {
+            border: 2px solid var(--accent-blue-light);
+            color: var(--accent-blue-light);
+            background: transparent;
+        }
+        
+        .light-mode .btn-outline:hover {
+            background-color: var(--accent-blue-light-transparent);
+            box-shadow: 0 0 15px var(--accent-blue-light-transparent);
+        }
+        
+        .light-mode .btn-primary {
+            background: linear-gradient(135deg, var(--accent-blue-light), var(--accent-green-light));
+            color: var(--current-bg);
+        }
+        
+        .light-mode .sidebar-nav a:hover, 
+        .light-mode .sidebar-nav a.active {
+            background-color: var(--accent-blue-light-transparent);
+            color: var(--accent-blue-light);
+        }
+        
+        .light-mode .stat-card .value {
+            background: linear-gradient(90deg, var(--accent-blue-light), var(--accent-green-light));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .light-mode .search-bar input:focus {
+            border-color: var(--accent-blue-light);
+            box-shadow: 0 0 0 2px var(--accent-blue-light-transparent);
+        }
+        
+        .light-mode .job-card .company {
+            color: var(--accent-blue-light);
+        }
+        
+        .light-mode .job-card .tag {
+            background-color: rgba(97, 209, 153, 0.1);
+            color: var(--accent-green-light);
+            border: 1px solid rgba(97, 209, 153, 0.3);
+        }
+        
+        .light-mode .user-avatar {
+            background-color: rgba(60, 145, 230, 0.1);
+            color: var(--accent-blue-light);
+        }
+        
+        .light-mode .user-avatar:hover {
+            background-color: rgba(178, 141, 255, 0.1);
+            color: var(--accent-purple-light);
+        }
+        
+        .light-mode .bot-message {
+            background: var(--accent-blue-light-transparent);
+            color: var(--current-text);
+            border: 1px solid rgba(60, 145, 230, 0.3);
+        }
+        
+        .light-mode .user-message {
+            background: var(--accent-purple-transparent);
+            color: var(--current-text);
+            border: 1px solid rgba(178, 141, 255, 0.3);
+        }
+        
+        .light-mode .quick-action {
+            background: var(--accent-blue-light-transparent);
+            color: var(--accent-blue-light);
+            border: 1px solid rgba(60, 145, 230, 0.3);
+        }
+        
+        .light-mode .quick-action:hover {
+            background: rgba(60, 145, 230, 0.2);
         }
         
         /* Responsive Design */
+        @media (max-width: 1024px) {
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .sidebar {
+                display: none;
+            }
+        }
+        
         @media (max-width: 768px) {
-            header h1 {
-                font-size: 2rem;
+            header {
+                flex-direction: column;
+                padding: 1rem;
+                gap: 1rem;
+            }
+            
+            nav ul {
+                gap: 1rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+                gap: 1rem;
             }
             
             .chatbot-container {
-                width: 90%;
-                right: 5%;
+                width: 95%;
+                right: 2.5%;
+                bottom: 1rem;
             }
             
-            .category-buttons {
-                grid-template-columns: 1fr;
+            .chatbot-toggle {
+                bottom: 1rem;
+                right: 1rem;
             }
+        }
+        
+        /* Voice Input Button */
+        .voice-input {
+            background: transparent;
+            border: none;
+            color: var(--current-text-secondary);
+            font-size: 1.2rem;
+            cursor: pointer;
+            margin-right: 0.5rem;
+            transition: all 0.3s;
+        }
+        
+        .voice-input:hover {
+            color: var(--current-accent);
+        }
+        
+        .voice-input.listening {
+            color: var(--accent-pink);
+            animation: pulse 1.5s infinite;
+        }
+        
+        /* Emoji Picker */
+        .emoji-picker {
+            position: absolute;
+            bottom: 70px;
+            right: 20px;
+            background: var(--current-card);
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+            padding: 1rem;
+            width: 300px;
+            max-height: 300px;
+            overflow-y: auto;
+            display: none;
+            z-index: 1001;
+            border: 1px solid var(--current-border);
+        }
+        
+        .emoji-picker.active {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 0.5rem;
+        }
+        
+        .emoji-option {
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: transform 0.2s;
+            text-align: center;
+        }
+        
+        .emoji-option:hover {
+            transform: scale(1.2);
+        }
+        
+        /* Language Selector */
+        .language-selector {
+            position: absolute;
+            bottom: 70px;
+            right: 20px;
+            background: var(--current-card);
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+            padding: 1rem;
+            width: 200px;
+            display: none;
+            z-index: 1001;
+            border: 1px solid var(--current-border);
+        }
+        
+        .language-selector.active {
+            display: block;
+        }
+        
+        .language-option {
+            padding: 0.5rem;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .language-option:hover {
+            background: var(--accent-blue-transparent);
+            color: var(--current-accent);
+        }
+        
+        /* Notification */
+        .notification {
+            position: fixed;
+            bottom: 6rem;
+            right: 2rem;
+            background: var(--current-card);
+            color: var(--current-text);
+            padding: 1rem;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            z-index: 999;
+            transform: translateY(20px);
+            opacity: 0;
+            transition: all 0.3s;
+            border: 1px solid var(--current-border);
+            max-width: 300px;
+        }
+        
+        .notification.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        
+        /* Resume Review Modal */
+        .resume-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+        }
+        
+        .resume-modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .resume-content {
+            background: var(--current-card);
+            border-radius: 12px;
+            padding: 2rem;
+            max-width: 600px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            border: 1px solid var(--current-border);
+        }
+        
+        .modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: transparent;
+            border: none;
+            color: var(--current-text-secondary);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        .modal-title {
+            margin-bottom: 1.5rem;
+            color: var(--current-accent);
+        }
+        
+        .file-upload {
+            border: 2px dashed var(--current-border);
+            border-radius: 8px;
+            padding: 2rem;
+            text-align: center;
+            margin-bottom: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .file-upload:hover {
+            border-color: var(--current-accent);
+            background: var(--accent-blue-transparent);
+        }
+        
+        .file-upload i {
+            font-size: 2rem;
+            color: var(--current-accent);
+            margin-bottom: 1rem;
+        }
+        
+        .file-upload input {
+            display: none;
+        }
+        
+        .resume-tips {
+            background: var(--current-bg);
+            border-radius: 8px;
+            padding: 1rem;
+            margin-top: 1.5rem;
+        }
+        
+        .resume-tips h4 {
+            color: var(--current-accent);
+            margin-bottom: 0.5rem;
+        }
+        
+        .resume-tips ul {
+            padding-left: 1.5rem;
+        }
+        
+        .resume-tips li {
+            margin-bottom: 0.5rem;
+        }
+        
+        /* Summary Modal */
+        .summary-content {
+            max-height: 60vh;
+            overflow-y: auto;
+            padding-right: 1rem;
+        }
+        
+        .summary-content h4 {
+            color: var(--current-accent);
+            margin: 1rem 0 0.5rem;
+        }
+        
+        /* Event Card */
+        .event-card {
+            background: var(--current-bg);
+            border-radius: 8px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border: 1px solid var(--current-border);
+        }
+        
+        .event-card h4 {
+            color: var(--current-accent);
+            margin-bottom: 0.5rem;
+        }
+        
+        .event-card .event-details {
+            display: flex;
+            gap: 1rem;
+            font-size: 0.9rem;
+            color: var(--current-text-secondary);
+            margin-bottom: 0.5rem;
+        }
+        
+        .event-card .event-actions {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+        }
+        
+        .event-card .event-action {
+            background: var(--accent-blue-transparent);
+            color: var(--current-accent);
+            border: none;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            cursor: pointer;
+        }
+        
+        /* Mentor Card */
+        .mentor-card {
+            background: var(--current-bg);
+            border-radius: 8px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border: 1px solid var(--current-border);
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .mentor-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--accent-purple-transparent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent-purple);
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+        
+        .mentor-info {
+            flex-grow: 1;
+        }
+        
+        .mentor-info h4 {
+            color: var(--current-accent);
+            margin-bottom: 0.3rem;
+        }
+        
+        .mentor-info p {
+            font-size: 0.9rem;
+            color: var(--current-text-secondary);
+            margin-bottom: 0.5rem;
+        }
+        
+        .mentor-skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.3rem;
+        }
+        
+        .mentor-skill {
+            background: var(--accent-green-transparent);
+            color: var(--accent-green);
+            padding: 0.2rem 0.6rem;
+            border-radius: 20px;
+            font-size: 0.7rem;
+        }
+        
+        /* Job Details */
+        .job-details {
+            background: var(--current-bg);
+            border-radius: 8px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border: 1px solid var(--current-border);
+        }
+        
+        .job-details h4 {
+            color: var(--current-accent);
+            margin-bottom: 0.5rem;
+        }
+        
+        .job-meta {
+            display: flex;
+            gap: 1rem;
+            font-size: 0.9rem;
+            color: var(--current-text-secondary);
+            margin-bottom: 0.5rem;
+        }
+        
+        .job-description {
+            margin: 1rem 0;
+            font-size: 0.9rem;
+        }
+        
+        .job-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+        
+        .job-action {
+            background: var(--accent-blue-transparent);
+            color: var(--current-accent);
+            border: none;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            cursor: pointer;
+        }
+        
+        /* Why Response Button */
+        .why-response {
+            background: transparent;
+            border: none;
+            color: var(--current-text-secondary);
+            font-size: 0.7rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+            margin-top: 0.5rem;
+        }
+        
+        .why-response:hover {
+            color: var(--current-accent);
+        }
+        
+        .response-source {
+            background: var(--current-bg);
+            border-radius: 8px;
+            padding: 1rem;
+            margin-top: 0.5rem;
+            font-size: 0.8rem;
+            border: 1px solid var(--current-border);
+            display: none;
+        }
+        
+        .response-source.active {
+            display: block;
+        }
+
+        /* Onboarding Flow */
+        .onboarding-flow {
+            background: var(--current-card);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            border: 1px solid var(--current-border);
+        }
+        
+        .onboarding-step {
+            display: none;
+        }
+        
+        .onboarding-step.active {
+            display: block;
+        }
+        
+        .onboarding-actions {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 1.5rem;
+        }
+        
+        /* Career Companion */
+        .companion-goal {
+            background: var(--current-bg);
+            border-radius: 8px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border: 1px solid var(--current-border);
+        }
+        
+        .progress-bar {
+            height: 8px;
+            background: var(--current-bg);
+            border-radius: 4px;
+            margin: 0.5rem 0;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent-blue), var(--accent-teal));
+            border-radius: 4px;
+            transition: width 0.3s ease;
+        }
+        
+        /* Gamification */
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--accent-purple-transparent);
+            color: var(--accent-purple);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-right: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .badge i {
+            font-size: 1rem;
+        }
+        
+        /* Resource Center */
+        .resource-card {
+            background: var(--current-bg);
+            border-radius: 8px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border: 1px solid var(--current-border);
+        }
+        
+        .resource-card h4 {
+            color: var(--current-accent);
+            margin-bottom: 0.5rem;
+        }
+        
+        .resource-card p {
+            font-size: 0.9rem;
+            color: var(--current-text-secondary);
+            margin-bottom: 0.5rem;
+        }
+        
+        .resource-link {
+            color: var(--current-accent);
+            text-decoration: none;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+        
+        .resource-link:hover {
+            text-decoration: underline;
+        }
+        
+        /* Sentiment Detection */
+        .support-message {
+            background: var(--accent-pink-transparent);
+            border: 1px solid rgba(255, 126, 185, 0.3);
+            color: var(--current-text);
+            padding: 1rem;
+            border-radius: 12px;
+            margin: 1rem 0;
+        }
+        
+        /* Multi-language Support */
+        .language-switch {
+            display: flex;
+            gap: 0.5rem;
+            margin: 1rem 0;
+        }
+        
+        .language-btn {
+            background: transparent;
+            border: 1px solid var(--current-border);
+            color: var(--current-text);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .language-btn.active {
+            background: var(--accent-blue-transparent);
+            color: var(--current-accent);
+            border-color: var(--current-accent);
+        }
+        
+        /* Tooltip */
+        .tooltip {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .tooltip .tooltiptext {
+            visibility: hidden;
+            width: 200px;
+            background-color: var(--current-card);
+            color: var(--current-text);
+            text-align: center;
+            border-radius: 6px;
+            padding: 0.5rem;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 50%;
+            margin-left: -100px;
+            opacity: 0;
+            transition: opacity 0.3s;
+            border: 1px solid var(--current-border);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .tooltip:hover .tooltiptext {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        /* Career Path Section */
+        .career-path {
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            display: none; /* Hidden by default, shown after login */
+        }
+
+        .path-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .path-card {
+            background: var(--current-card);
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border: 1px solid var(--current-border);
+            transition: all 0.3s;
+        }
+
+        .path-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+
+        .path-card h3 {
+            color: var(--current-accent);
+            margin-bottom: 1rem;
+        }
+
+        .path-card .salary {
+            color: var(--accent-green);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .path-card .locations {
+            color: var(--current-text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .path-card .skills {
+            margin-top: 1rem;
+        }
+
+        .path-card .skill {
+            display: inline-block;
+            background: var(--accent-blue-transparent);
+            color: var(--current-accent);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-right: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Login/Signup Section */
+        .auth-section {
+            display: none;
+            padding: 4rem 2rem;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .auth-form {
+            background: var(--current-card);
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border: 1px solid var(--current-border);
+        }
+
+        .auth-tabs {
+            display: flex;
+            margin-bottom: 2rem;
+            border-bottom: 1px solid var(--current-border);
+        }
+
+        .auth-tab {
+            padding: 0.8rem 1.5rem;
+            cursor: pointer;
+            border-bottom: 2px solid transparent;
+            transition: all 0.3s;
+        }
+
+        .auth-tab.active {
+            border-bottom: 2px solid var(--current-accent);
+            color: var(--current-accent);
+        }
+
+        .auth-tab:hover {
+            color: var(--current-accent);
+        }
+
+        /* Confetti Effect */
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            background-color: var(--accent-pink);
+            opacity: 0;
+            z-index: 9999;
+            animation: confetti-fall 5s ease-out;
+        }
+
+        @keyframes confetti-fall {
+            0% {
+                transform: translateY(-100vh) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Emotional Selling Line */
+        .emotional-line {
+            text-align: center;
+            font-size: 1.2rem;
+            font-style: italic;
+            margin: 3rem 0;
+            padding: 1.5rem;
+            border-radius: 12px;
+            background: var(--accent-purple-transparent);
+            border: 1px solid var(--current-border);
+            color: var(--current-text);
         }
     </style>
 </head>
-<body>
+<body class="dark-mode">
+    <!-- Header -->
     <header>
-        <h1>Asha AI Chatbot</h1>
-        <p>Your AI-powered guide to women careers, jobs, mentorships, and events.</p>
+        <div class="logo">
+            <img src="assets/images/logo.png" alt="Asha Logo">
+            <div class="logo-text">Asha<span>AI</span></div>
+        </div>
+        
+        <nav>
+            <ul>
+                <li><a href="#" class="active">Home</a></li>
+                <li><a href="#careers">Careers</a></li>
+                <li><a href="#mentorship">Mentorship</a></li>
+                <li><a href="#events">Events</a></li>
+                <li><a href="#communities">Communities</a></li>
+                <li><a href="#resources">Resources</a></li>
+                <li><a href="#about">About Us</a></li>
+            </ul>
+        </nav>
+        
+        <div class="nav-buttons">
+            <button class="btn btn-outline" id="loginBtn">Login</button>
+            <button class="btn btn-primary" id="signupBtn">Sign Up</button>
+            <button class="theme-toggle" id="themeToggle">
+                <i class="fas fa-sun"></i>
+            </button>
+        </div>
     </header>
+    
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <h1>Your Dreams Are Valid. <span>Your Journey Starts Here.</span></h1>
+        <p>Career discovery, mentorship, community, and opportunities tailored for ambitious women across India.</p>
+        
+        <div class="hero-buttons">
+            <a href="#" class="btn btn-primary" id="startJourneyBtn">Start My Journey</a>
+            <a href="#" class="btn btn-outline" id="exploreBtn">Explore Opportunities</a>
+        </div>
+    </section>
 
-    <main>
-        <div id="chat-container">
-            <div id="chat-window">
-                <div id="chat-messages"></div>
-    <div class="container">
-        <h2 style="text-align: center; color: var(--primary); margin-bottom: 2rem;">How Asha Can Help You</h2>
+    <!-- Quotes Banner -->
+    <div class="quotes-banner">
+        <div class="quote active">"She remembered who she was and the game changed."</div>
+        <div class="quote">"The future is female."</div>
+        <div class="quote">"Behind every successful woman is HERSELF."</div>
+        <div class="quote">"Be the woman who fixes another woman's crown."</div>
+    </div>
+
+    <!-- Features Section -->
+    <section class="features">
+        <h2 class="section-title">How <span>AshaAI</span> Empowers You</h2>
         
         <div class="features-grid">
             <div class="feature-card">
-                <i class="fas fa-briefcase"></i>
-                <h3>Career Exploration</h3>
-                <p>Discover various career paths tailored for women with insights into growth opportunities and required skills.</p>
-            </div>
-            <div id="chat-input-section">
-                <input type="text" id="user-input" placeholder="Ask me something...">
-                <button id="send-button">Send</button>
-            
-            <div class="feature-card">
-                <i class="fas fa-search-dollar"></i>
-                <h3>Job Listings</h3>
-                <p>Access real-time job opportunities from top companies committed to diversity and inclusion.</p>
+                <div class="feature-icon">
+                    <i class="fas fa-briefcase"></i>
+                </div>
+                <h3>Career Path</h3>
+                <p>Discover personalized career paths with salary expectations, required skills, and growth opportunities in the Indian market.</p>
             </div>
             
             <div class="feature-card">
-                <i class="fas fa-calendar-alt"></i>
-                <h3>Community Events</h3>
-                <p>Stay updated with upcoming networking events, workshops, and career development sessions.</p>
+                <div class="feature-icon">
+                    <i class="fas fa-hands-helping"></i>
+                </div>
+                <h3>Mentorship</h3>
+                <p>Connect with experienced mentors who can guide you through your career journey and personal growth.</p>
             </div>
             
             <div class="feature-card">
-                <i class="fas fa-hands-helping"></i>
-                <h3>Mentorship Programs</h3>
-                <p>Connect with experienced mentors who can guide you through your career journey.</p>
+                <div class="feature-icon">
+                    <i class="fas fa-calendar-star"></i>
+                </div>
+                <h3>Events</h3>
+                <p>Access exclusive workshops, webinars, and networking events designed for women in tech across India.</p>
             </div>
             
             <div class="feature-card">
-                <i class="fas fa-chalkboard-teacher"></i>
-                <h3>Sessions & Workshops</h3>
-                <p>Learn new skills through our curated webinars and training programs.</p>
+                <div class="feature-icon">
+                    <i class="fas fa-users"></i>
+                </div>
+                <h3>Communities</h3>
+                <p>Join supportive communities of like-minded women to share experiences, ask questions, and grow together.</p>
             </div>
             
             <div class="feature-card">
-                <i class="fas fa-book-open"></i>
+                <div class="feature-icon">
+                    <i class="fas fa-book"></i>
+                </div>
                 <h3>Resources</h3>
-                <p>Access articles, research papers, and guides on career advancement and workplace success.</p>
+                <p>Get access to free courses, resume templates, interview guides, and scholarship information.</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-robot"></i>
+                </div>
+                <h3>AI Companion</h3>
+                <p>24/7 support from Asha, your AI career assistant, ready to answer questions and provide guidance.</p>
             </div>
         </div>
+    </section>
+
+    <!-- Emotional Selling Line -->
+    <div class="emotional-line">
+        "Dear woman, you are powerful, you are capable, and your dreams are valid. Let's build your future — together."
     </div>
+
+    <!-- Dashboard Section (Hidden before login) -->
+    <section class="dashboard" id="dashboard">
+        <div class="dashboard-grid">
+            <!-- Sidebar Navigation -->
+            <aside class="sidebar">
+                <ul class="sidebar-nav">
+                    <li><a href="#" class="active"><i class="fas fa-home"></i> Dashboard</a></li>
+                    <li><a href="#career-path"><i class="fas fa-briefcase"></i> Career Path</a></li>
+                    <li><a href="#job-search"><i class="fas fa-search"></i> Job Search</a></li>
+                    <li><a href="#mentorship"><i class="fas fa-hands-helping"></i> Mentorship</a></li>
+                    <li><a href="#events"><i class="fas fa-calendar-alt"></i> Events</a></li>
+                    <li><a href="#communities"><i class="fas fa-users"></i> Communities</a></li>
+                    <li><a href="#resources"><i class="fas fa-book"></i> Resources</a></li>
+                    <li><a href="#achievements"><i class="fas fa-trophy"></i> My Achievements</a></li>
+                    <li><a href="#notifications"><i class="fas fa-bell"></i> Notifications</a></li>
+                    <li><a href="#settings"><i class="fas fa-cog"></i> Settings</a></li>
+                </ul>
+            </aside>
+            
+            <!-- Main Content -->
+            <div class="main-content">
+                <div class="welcome-message">
+                    <h2>Welcome, <span id="userName">Priya</span>!</h2>
+                    <p>Your personalized dashboard is ready to help you achieve your career goals.</p>
+                </div>
+                
+                <!-- Weekly Goals -->
+                <div class="stat-card">
+                    <h3>Your Weekly Goal</h3>
+                    <p>Apply for 3 jobs | Attend 1 event | Connect with 1 mentor</p>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 45%"></div>
+                    </div>
+                </div>
+                
+                <!-- Quick Stats -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <h3>Jobs Applied</h3>
+                        <div class="value">2</div>
+                        <div class="change">this week</div>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Mentors Contacted</h3>
+                        <div class="value">1</div>
+                        <div class="change">this week</div>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Events Registered</h3>
+                        <div class="value">1</div>
+                        <div class="change">this week</div>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Profile Completion</h3>
+                        <div class="value">80%</div>
+                        <div class="change">almost there!</div>
+                    </div>
+                </div>
+                
+                <!-- Recommended Jobs -->
+                <h2>Recommended Jobs For You</h2>
+                <div class="job-listings">
+                    <div class="job-card">
+                        <h3>Frontend Developer</h3>
+                        <div class="company">TechSolutions India</div>
+                        <div class="details">
+                            <span><i class="fas fa-map-marker-alt"></i> Bangalore, KA</span>
+                            <span><i class="fas fa-rupee-sign"></i> ₹6L - ₹8L</span>
+                            <span><i class="fas fa-clock"></i> Full-time</span>
+                        </div>
+                        <div class="tags">
+                            <span class="tag">React</span>
+                            <span class="tag">JavaScript</span>
+                            <span class="tag">Fresher</span>
+                        </div>
+                    </div>
+                    <div class="job-card">
+                        <h3>UX Designer</h3>
+                        <div class="company">DesignHub India</div>
+                        <div class="details">
+                            <span><i class="fas fa-map-marker-alt"></i> Remote</span>
+                            <span><i class="fas fa-rupee-sign"></i> ₹5L - ₹7L</span>
+                            <span><i class="fas fa-clock"></i> Full-time</span>
+                        </div>
+                        <div class="tags">
+                            <span class="tag">Figma</span>
+                            <span class="tag">UI/UX</span>
+                            <span class="tag">0-2 years</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Upcoming Events -->
+                <h2>Upcoming Events</h2>
+                <div class="job-listings">
+                    <div class="job-card">
+                        <h3>Women in Tech Conference</h3>
+                        <div class="company">Bangalore, June 15-16</div>
+                        <div class="details">
+                            <span><i class="fas fa-clock"></i> 9:00 AM - 5:00 PM</span>
+                            <span><i class="fas fa-tag"></i> Networking, Workshops</span>
+                        </div>
+                        <div class="tags">
+                            <span class="tag">Free</span>
+                            <span class="tag">In-Person</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Career Path Section (Hidden before login) -->
+    <section class="career-path" id="career-path">
+        <h2 class="section-title">Map Your Journey <span>With Confidence</span></h2>
+        <p>Whether you're just starting, switching careers, or returning after a break, we have customized paths for you.</p>
+        
+        <div class="path-options">
+            <div class="path-card">
+                <h3>Software Developer</h3>
+                <div class="salary">Starting salary: ₹6-8 LPA</div>
+                <div class="locations">Best Locations: Bengaluru, Pune, Hyderabad</div>
+                <p>Build applications and systems that power our digital world.</p>
+                <div class="skills">
+                    <span class="skill">HTML/CSS</span>
+                    <span class="skill">JavaScript</span>
+                    <span class="skill">React</span>
+                    <span class="skill">Node.js</span>
+                </div>
+            </div>
+            
+            <div class="path-card">
+                <h3>Data Analyst</h3>
+                <div class="salary">Starting salary: ₹5.5 LPA</div>
+                <div class="locations">Best Locations: Gurgaon, Noida, Chennai</div>
+                <p>Turn data into insights that drive business decisions.</p>
+                <div class="skills">
+                    <span class="skill">Python</span>
+                    <span class="skill">SQL</span>
+                    <span class="skill">Excel</span>
+                    <span class="skill">Tableau</span>
+                </div>
+            </div>
+            
+            <div class="path-card">
+                <h3>Product Manager</h3>
+                <div class="salary">Starting salary: ₹8-10 LPA</div>
+                <div class="locations">Best Locations: Mumbai, Bengaluru, Delhi</div>
+                <p>Lead product development from conception to launch.</p>
+                <div class="skills">
+                    <span class="skill">Market Research</span>
+                    <span class="skill">Agile</span>
+                    <span class="skill">UX Basics</span>
+                    <span class="skill">Leadership</span>
+                </div>
+            </div>
+            
+            <div class="path-card">
+                <h3>UX/UI Designer</h3>
+                <div class="salary">Starting salary: ₹5-7 LPA</div>
+                <div class="locations">Best Locations: Bengaluru, Pune, Hyderabad</div>
+                <p>Create intuitive and beautiful digital experiences.</p>
+                <div class="skills">
+                    <span class="skill">Figma</span>
+                    <span class="skill">User Research</span>
+                    <span class="skill">Wireframing</span>
+                    <span class="skill">Prototyping</span>
+                </div>
+            </div>
+            
+            <div class="path-card">
+                <h3>Cloud Architect</h3>
+                <div class="salary">Starting salary: ₹10-12 LPA</div>
+                <div class="locations">Best Locations: Bengaluru, Pune, Hyderabad</div>
+                <p>Design and implement cloud solutions for businesses.</p>
+                <div class="skills">
+                    <span class="skill">AWS</span>
+                    <span class="skill">Azure</span>
+                    <span class="skill">DevOps</span>
+                    <span class="skill">Networking</span>
+                </div>
+            </div>
+            
+            <div class="path-card">
+                <h3>Cybersecurity Analyst</h3>
+                <div class="salary">Starting salary: ₹7-9 LPA</div>
+                <div class="locations">Best Locations: Mumbai, Delhi, Bengaluru</div>
+                <p>Protect systems and networks from digital attacks.</p>
+                <div class="skills">
+                    <span class="skill">Ethical Hacking</span>
+                    <span class="skill">Network Security</span>
+                    <span class="skill">Risk Assessment</span>
+                    <span class="skill">Incident Response</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Login/Signup Section -->
+    <section class="auth-section" id="auth-section">
+        <div class="auth-form">
+            <div class="auth-tabs">
+                <div class="auth-tab active" id="loginTab">Login</div>
+                <div class="auth-tab" id="signupTab">Sign Up</div>
+            </div>
+            
+            <div id="loginForm">
+                <div class="form-group">
+                    <label for="loginEmail">Email</label>
+                    <input type="email" id="loginEmail" placeholder="Enter your email">
+                </div>
+                
+                <div class="form-group">
+                    <label for="loginPassword">Password</label>
+                    <input type="password" id="loginPassword" placeholder="Enter your password">
+                </div>
+                
+                <div class="form-actions">
+                    <button class="btn btn-primary">Login</button>
+                    <a href="#" class="forgot-password">Forgot Password?</a>
+                </div>
+                
+                <div class="form-footer">
+                    Don't have an account? <a href="#" id="switchToSignup">Sign Up</a>
+                </div>
+            </div>
+            
+            <div id="signupForm" style="display: none;">
+                <div class="form-group">
+                    <label for="signupName">Full Name</label>
+                    <input type="text" id="signupName" placeholder="Enter your full name">
+                </div>
+                
+                <div class="form-group">
+                    <label for="signupEmail">Email</label>
+                    <input type="email" id="signupEmail" placeholder="Enter your email">
+                </div>
+                
+                <div class="form-group">
+                    <label for="signupPassword">Password</label>
+                    <input type="password" id="signupPassword" placeholder="Create a password">
+                </div>
+                
+                <div class="form-group">
+                    <label for="signupConfirmPassword">Confirm Password</label>
+                    <input type="password" id="signupConfirmPassword" placeholder="Confirm your password">
+                </div>
+                
+                <div class="form-actions">
+                    <button class="btn btn-primary">Sign Up</button>
+                </div>
+                
+                <div class="form-footer">
+                    Already have an account? <a href="#" id="switchToLogin">Login</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Chatbot Toggle Button -->
     <div class="chatbot-toggle" id="chatbotToggle">
-        <i class="fas fa-comments"></i>
+        <i class="fas fa-comment-dots"></i>
     </div>
+
     <!-- Chatbot Container -->
     <div class="chatbot-container" id="chatbotContainer">
         <div class="chatbot-header">
-            <h3>Asha AI Assistant</h3>
+            <h3>ASHA AI ASSISTANT</h3>
             <button class="chatbot-close" id="chatbotClose">
                 <i class="fas fa-times"></i>
             </button>
@@ -436,20 +2220,278 @@
             <!-- Messages will appear here -->
         </div>
         
+        <div class="chatbot-menu">
+            <button class="menu-button" data-action="jobs">
+                <i class="fas fa-briefcase"></i>
+                <span>Jobs</span>
+            </button>
+            <button class="menu-button" data-action="events">
+                <i class="fas fa-calendar-alt"></i>
+                <span>Events</span>
+            </button>
+            <button class="menu-button" data-action="mentors">
+                <i class="fas fa-hands-helping"></i>
+                <span>Mentors</span>
+            </button>
+            <button class="menu-button" data-action="communities">
+                <i class="fas fa-users"></i>
+                <span>Communities</span>
+            </button>
+            <button class="menu-button" data-action="feedback">
+                <i class="fas fa-comment-alt"></i>
+                <span>Feedback</span>
+            </button>
+        </div>
+        
         <div class="chatbot-input">
+            <button class="voice-input" id="voiceInputBtn">
+                <i class="fas fa-microphone"></i>
+            </button>
+            <button class="emoji-btn" id="emojiBtn">
+                <i class="far fa-smile"></i>
+            </button>
             <input type="text" id="userInput" placeholder="Ask me something...">
+            <button class="language-btn" id="languageBtn">
+                <i class="fas fa-globe"></i>
+            </button>
             <button id="sendButton"><i class="fas fa-paper-plane"></i></button>
         </div>
-    </main>
+        
+        <div class="emoji-picker" id="emojiPicker">
+            <!-- Emojis will be added by JavaScript -->
+        </div>
+        
+        <div class="language-selector" id="languageSelector">
+            <div class="language-option" data-lang="en">English</div>
+            <div class="language-option" data-lang="hi">हिंदी (Hindi)</div>
+            <div class="language-option" data-lang="kn">ಕನ್ನಡ (Kannada)</div>
+            <div class="language-option" data-lang="ta">தமிழ் (Tamil)</div>
+            <div class="language-option" data-lang="te">తెలుగు (Telugu)</div>
+        </div>
+        
+        <div class="feedback-form" id="feedbackForm">
+            <textarea placeholder="Share your feedback or report an issue..."></textarea>
+            <button id="submitFeedback">Submit</button>
+        </div>
+    </div>
+    
+    <!-- Notification -->
+    <div class="notification" id="notification">
+        <div id="notificationMessage"></div>
+    </div>
+    
+    <!-- Resume Review Modal -->
+    <div class="resume-modal" id="resumeModal">
+        <div class="resume-content">
+            <button class="modal-close" id="resumeModalClose">
+                <i class="fas fa-times"></i>
+            </button>
+            <h3 class="modal-title">AI Resume Review</h3>
+            <div class="file-upload" id="fileUpload">
+                <i class="fas fa-file-upload"></i>
+                <p>Upload your resume (PDF, DOCX)</p>
+                <p><small>Max file size: 5MB</small></p>
+                <input type="file" id="resumeFile" accept=".pdf,.doc,.docx">
+            </div>
+            <div class="resume-tips">
+                <h4>Resume Tips:</h4>
+                <ul>
+                    <li>Keep it concise (1-2 pages)</li>
+                    <li>Highlight measurable achievements</li>
+                    <li>Use action verbs (led, developed, increased)</li>
+                    <li>Tailor it to the job description</li>
+                    <li>Include relevant keywords</li>
+                </ul>
+            </div>
+            <button class="btn btn-primary" id="analyzeResume" disabled>Analyze Resume</button>
+        </div>
+    </div>
+    
+    <!-- Conversation Summary Modal -->
+    <div class="modal-overlay" id="summaryModal">
+        <div class="modal-content">
+            <button class="modal-close" id="summaryModalClose">
+                <i class="fas fa-times"></i>
+            </button>
+            <h3 class="modal-title">Conversation Summary</h3>
+            <div class="summary-content" id="summaryContent">
+                <!-- Summary content will be added here -->
+            </div>
+            <div class="modal-actions">
+                <button class="btn btn-outline" id="emailSummary">Email Summary</button>
+                <button class="btn btn-primary" id="downloadSummary">Download</button>
+            </div>
+        </div>
     </div>
 
-    <footer>
-        <p>Powered by ethical AI principles | JobsForHer Foundation</p>
-        <p style="margin-top: 0.5rem;">© 2023 All Rights Reserved</p>
-    </footer>
+    <!-- Onboarding Modal -->
+    <div class="modal-overlay" id="onboardingModal">
+        <div class="modal-content">
+            <button class="modal-close" id="onboardingModalClose">
+                <i class="fas fa-times"></i>
+            </button>
+            <h3 class="modal-title">Welcome to Asha AI</h3>
+            <div class="onboarding-flow" id="onboardingFlow">
+                <div class="onboarding-step active" id="step1">
+                    <p>Hi there! I'm Asha, your AI career companion. Let's get to know each other better.</p>
+                    <p>What best describes your current career stage?</p>
+                    <div class="quick-actions" style="margin-top: 1rem;">
+                        <button class="quick-action" data-stage="student">Student</button>
+                        <button class="quick-action" data-stage="early-career">Early Career (0-5 years)</button>
+                        <button class="quick-action" data-stage="mid-career">Mid Career (5-15 years)</button>
+                        <button class="quick-action" data-stage="returning">Returning to Workforce</button>
+                    </div>
+                </div>
+                <div class="onboarding-step" id="step2">
+                    <p>Great! What are your primary career interests?</p>
+                    <div class="quick-actions" style="margin-top: 1rem;">
+                        <button class="quick-action" data-interest="tech">Technology</button>
+                        <button class="quick-action" data-interest="business">Business</button>
+                        <button class="quick-action" data-interest="creative">Creative Fields</button>
+                        <button class="quick-action" data-interest="science">Science/Research</button>
+                        <button class="quick-action" data-interest="healthcare">Healthcare</button>
+                        <button class="quick-action" data-interest="education">Education</button>
+                    </div>
+                </div>
+                <div class="onboarding-step" id="step3">
+                    <p>Almost done! What kind of support are you looking for?</p>
+                    <div class="quick-actions" style="margin-top: 1rem;">
+                        <button class="quick-action" data-support="jobs">Job Search</button>
+                        <button class="quick-action" data-support="mentorship">Mentorship</button>
+                        <button class="quick-action" data-support="skills">Skill Development</button>
+                        <button class="quick-action" data-support="career-change">Career Change</button>
+                        <button class="quick-action" data-support="networking">Networking</button>
+                    </div>
+                </div>
+                <div class="onboarding-step" id="step4">
+                    <p>Thank you! Based on your responses, I'll personalize your experience.</p>
+                    <p>Here's what I recommend to get started:</p>
+                    <ul style="margin: 1rem 0;">
+                        <li>Explore curated job opportunities</li>
+                        <li>Connect with relevant mentors</li>
+                        <li>Join communities of like-minded women</li>
+                    </ul>
+                    <button class="btn btn-primary" id="completeOnboarding">Let's Get Started!</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
-    <script src="script.js"></script>
     <script>
+        // Emoji list
+        const emojis = [
+            '😀', '😃', '😄', '😁', '😆', '😅', '😂', '🤣', '😊', '😇',
+            '🙂', '🙃', '😉', '😌', '😍', '🥰', '😘', '😗', '😙', '😚',
+            '😋', '😛', '😝', '😜', '🤪', '🤨', '🧐', '🤓', '😎', '🥸',
+            '🤩', '🥳', '😏', '😒', '😞', '😔', '😟', '😕', '🙁', '☹️',
+            '😣', '😖', '😫', '😩', '🥺', '😢', '😭', '😤', '😠', '😡',
+            '🤬', '🤯', '😳', '🥵', '🥶', '😱', '😨', '😰', '😥', '😓',
+            '🤗', '🤔', '🤭', '🤫', '🤥', '😶', '😐', '😑', '😬', '🙄',
+            '😯', '😦', '😧', '😮', '😲', '🥱', '😴', '🤤', '😪', '😵',
+            '🤐', '🥴', '🤢', '🤮', '🤧', '😷', '🤒', '🤕', '🤑', '🤠',
+            '😈', '👿', '👹', '👺', '🤡', '💩', '👻', '💀', '☠️', '👽',
+            '👾', '🤖', '🎃', '😺', '😸', '😹', '😻', '😼', '😽', '🙀',
+            '😿', '😾', '🙈', '🙉', '🙊', '💋', '💌', '💘', '💝', '💖',
+            '💗', '💓', '💞', '💕', '💟', '❣️', '💔', '❤️', '🧡', '💛',
+            '💚', '💙', '💜', '🤎', '🖤', '🤍', '💯', '💢', '💥', '💫',
+            '💦', '💨', '🕳️', '💣', '💬', '👁️‍🗨️', '🗨️', '🗯️', '💭', '💤'
+        ];
+        
+        // Sample data for jobs, events, and mentors
+        const sampleJobs = [
+            {
+                title: "Senior Product Designer",
+                company: "TechFusion India",
+                location: "Bangalore, KA",
+                salary: "₹18L - ₹22L",
+                type: "Full-time",
+                description: "We're looking for an experienced Product Designer to join our team. You'll be responsible for creating user-centered designs by understanding business requirements, and user feedback.",
+                skills: ["UI/UX", "Figma", "User Research", "Prototyping"],
+                posted: "2 days ago"
+            },
+            {
+                title: "Marketing Manager",
+                company: "GrowthMarketing India",
+                location: "Mumbai, MH",
+                salary: "₹15L - ₹20L",
+                type: "Full-time",
+                description: "Seeking a creative Marketing Manager to develop and implement marketing strategies that align with our business goals.",
+                skills: ["Digital Marketing", "SEO", "Content Strategy", "Social Media"],
+                posted: "1 week ago"
+            }
+        ];
+        
+        const sampleEvents = [
+            {
+                title: "Women in Tech Conference",
+                date: "June 15-16, 2023",
+                time: "9:00 AM - 5:00 PM",
+                location: "Bangalore Convention Center",
+                description: "Annual conference bringing together women in technology for networking, workshops, and keynote speeches from industry leaders.",
+                type: "In-Person"
+            },
+            {
+                title: "Leadership Workshop",
+                date: "July 2, 2023",
+                time: "2:00 PM - 4:00 PM",
+                location: "Online",
+                description: "Interactive workshop focused on developing leadership skills for women in mid-career positions.",
+                type: "Virtual"
+            }
+        ];
+        
+        const sampleMentors = [
+            {
+                name: "Dr. Priya Sharma",
+                title: "Senior Director, Product Management",
+                company: "TechSolutions Inc.",
+                skills: ["Product Management", "Leadership", "Career Growth"],
+                experience: "15+ years",
+                availability: "2 slots/week"
+            },
+            {
+                name: "Ananya Patel",
+                title: "UX Design Lead",
+                company: "CreativeMinds",
+                skills: ["UX Design", "Portfolio Review", "Interview Prep"],
+                experience: "8+ years",
+                availability: "3 slots/week"
+            }
+        ];
+
+        // User profile data
+        const userProfile = {
+            name: "Priya K.",
+            careerStage: "",
+            interests: [],
+            supportNeeds: [],
+            badges: ["Career Explorer", "Mentorship Seeker"],
+            goals: [
+                {
+                    title: "Find a remote job in marketing within 3 months",
+                    progress: 45,
+                    deadline: "2023-09-30"
+                }
+            ],
+            conversationHistory: [],
+            savedJobs: [],
+            savedEvents: []
+        };
+
+        // Motivational quotes
+        const motivationalQuotes = [
+            "The question isn't who's going to let me; it's who's going to stop me. - Ayn Rand",
+            "We need women who are so strong they can be gentle, so educated they can be humble, so fierce they can be compassionate, so passionate they can be rational, and so disciplined they can be free. - Kavita Ramdas",
+            "There is no limit to what we, as women, can accomplish. - Michelle Obama",
+            "The most common way people give up their power is by thinking they don't have any. - Alice Walker",
+            "Success is only meaningful and enjoyable if it feels like your own. - Michelle Obama",
+            "You don't have to be perfect to be amazing. - Unknown",
+            "The future belongs to those who believe in the beauty of their dreams. - Eleanor Roosevelt",
+            "You are more powerful than you know; you are beautiful just as you are. - Melissa Etheridge",
+            "Women who seek to be equal with men lack ambition. - Marilyn Monroe",
+            "The strongest actions for a woman is to love herself, be herself and shine amongst those who never believed she could. - Unknown"
+        ];
+        
         document.addEventListener('DOMContentLoaded', function() {
             const chatbotToggle = document.getElementById('chatbotToggle');
             const chatbotContainer = document.getElementById('chatbotContainer');
@@ -457,52 +2499,339 @@
             const chatbotMessages = document.getElementById('chatbotMessages');
             const userInput = document.getElementById('userInput');
             const sendButton = document.getElementById('sendButton');
+            const themeToggle = document.getElementById('themeToggle');
+            const voiceInputBtn = document.getElementById('voiceInputBtn');
+            const emojiBtn = document.getElementById('emojiBtn');
+            const emojiPicker = document.getElementById('emojiPicker');
+            const languageBtn = document.getElementById('languageBtn');
+            const languageSelector = document.getElementById('languageSelector');
+            const feedbackForm = document.getElementById('feedbackForm');
+            const menuButtons = document.querySelectorAll('.menu-button');
+            const notification = document.getElementById('notification');
+            const notificationMessage = document.getElementById('notificationMessage');
+            const startChatBtn = document.getElementById('startJourneyBtn');
+            const exploreBtn = document.getElementById('exploreBtn');
+            const loginBtn = document.getElementById('loginBtn');
+            const signupBtn = document.getElementById('signupBtn');
+            const authSection = document.getElementById('auth-section');
+            const loginTab = document.getElementById('loginTab');
+            const signupTab = document.getElementById('signupTab');
+            const loginForm = document.getElementById('loginForm');
+            const signupForm = document.getElementById('signupForm');
+            const switchToLogin = document.getElementById('switchToLogin');
+            const switchToSignup = document.getElementById('switchToSignup');
+            const dashboard = document.getElementById('dashboard');
+            const careerPathSection = document.getElementById('career-path');
+            const quotes = document.querySelectorAll('.quote');
+            const resumeModal = document.getElementById('resumeModal');
+            const resumeModalClose = document.getElementById('resumeModalClose');
+            const fileUpload = document.getElementById('fileUpload');
+            const resumeFile = document.getElementById('resumeFile');
+            const analyzeResume = document.getElementById('analyzeResume');
+            const summaryModal = document.getElementById('summaryModal');
+            const summaryModalClose = document.getElementById('summaryModalClose');
+            const summaryContent = document.getElementById('summaryContent');
+            const onboardingModal = document.getElementById('onboardingModal');
+            const onboardingModalClose = document.getElementById('onboardingModalClose');
+            const onboardingFlow = document.getElementById('onboardingFlow');
+            const completeOnboarding = document.getElementById('completeOnboarding');
+            
+            // Initialize onboarding steps
+            const onboardingSteps = document.querySelectorAll('.onboarding-step');
+            let currentStep = 0;
+            
+            // Conversation memory
+            let conversationHistory = [];
+            let currentLanguage = 'en';
+            let isListening = false;
+            let recognition;
+            let messageCount = 0;
+            let isLoggedIn = false;
+            let currentQuote = 0;
+            
+            // Rotate quotes every 5 seconds
+            function rotateQuotes() {
+                quotes[currentQuote].classList.remove('active');
+                currentQuote = (currentQuote + 1) % quotes.length;
+                quotes[currentQuote].classList.add('active');
+            }
+            
+            // Start quote rotation
+            setInterval(rotateQuotes, 5000);
+            
+            // Initialize Speech Recognition
+            try {
+                const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+                recognition = new SpeechRecognition();
+                recognition.continuous = false;
+                recognition.interimResults = false;
+                recognition.lang = 'en-US';
+                
+                recognition.onresult = function(event) {
+                    const transcript = event.results[0][0].transcript;
+                    userInput.value = transcript;
+                    sendMessage();
+                };
+                
+                recognition.onerror = function(event) {
+                    console.error('Speech recognition error', event.error);
+                    showNotification('Voice input failed. Please try again.');
+                    voiceInputBtn.classList.remove('listening');
+                    isListening = false;
+                };
+                
+                recognition.onend = function() {
+                    if (isListening) {
+                        recognition.start();
+                    } else {
+                        voiceInputBtn.classList.remove('listening');
+                    }
+                };
+            } catch (e) {
+                console.error('Speech recognition not supported', e);
+                voiceInputBtn.style.display = 'none';
+            }
+            
+            // Initialize emoji picker
+            emojis.forEach(emoji => {
+                const emojiOption = document.createElement('div');
+                emojiOption.className = 'emoji-option';
+                emojiOption.textContent = emoji;
+                emojiOption.addEventListener('click', () => {
+                    userInput.value += emoji;
+                    userInput.focus();
+                });
+                emojiPicker.appendChild(emojiOption);
+            });
+            
+            // Theme toggle functionality
+            themeToggle.addEventListener('click', function() {
+                document.body.classList.toggle('light-mode');
+                
+                // Change icon based on theme
+                if (document.body.classList.contains('light-mode')) {
+                    themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+                } else {
+                    themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+                }
+                
+                // Save preference to localStorage
+                const isLightMode = document.body.classList.contains('light-mode');
+                localStorage.setItem('lightMode', isLightMode);
+            });
+            
+            // Check for saved theme preference
+            if (localStorage.getItem('lightMode') === 'true') {
+                document.body.classList.add('light-mode');
+                themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+            }
             
             // Toggle chatbot visibility
             chatbotToggle.addEventListener('click', function() {
                 chatbotContainer.classList.toggle('active');
-                if (chatbotContainer.classList.contains('active') {
+                if (chatbotContainer.classList.contains('active')) {
                     // Add welcome message if chat is empty
                     if (chatbotMessages.children.length === 0) {
-                        addBotMessage("Hi there! 👋 I'm Asha, your AI career assistant. How can I help you today?");
-                        
-                        // Add quick action buttons
-                        setTimeout(() => {
-                            const quickActions = document.createElement('div');
-                            quickActions.className = 'quick-actions';
-                            
-                            const categories = [
-                                {icon: 'briefcase', text: 'Career Guidance'},
-                                {icon: 'search-dollar', text: 'Job Listings'},
-                                {icon: 'calendar-alt', text: 'Upcoming Events'},
-                                {icon: 'hands-helping', text: 'Mentorship'},
-                                {icon: 'chalkboard-teacher', text: 'Workshops'},
-                                {icon: 'book-open', text: 'Resources'}
-                            ];
-                            
-                            categories.forEach(category => {
-                                const button = document.createElement('button');
-                                button.className = 'quick-action';
-                                button.innerHTML = `<i class="fas fa-${category.icon}"></i> ${category.text}`;
-                                button.addEventListener('click', () => {
-                                    handleQuickAction(category.text);
-                                });
-                                quickActions.appendChild(button);
-                            });
-                            
-                            const messageDiv = document.createElement('div');
-                            messageDiv.className = 'message bot-message';
-                            messageDiv.appendChild(quickActions);
-                            chatbotMessages.appendChild(messageDiv);
-                            scrollToBottom();
-                        }, 500);
+                        showWelcomeMessage();
                     }
                 }
+            });
+            
+            startChatBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                chatbotContainer.classList.add('active');
+                if (chatbotMessages.children.length === 0) {
+                    showWelcomeMessage();
+                }
+            });
+            
+            exploreBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                // Show some featured opportunities without requiring login
+                addBotMessage("Here are some featured opportunities you can explore:");
+                
+                const opportunitiesDiv = document.createElement('div');
+                opportunitiesDiv.innerHTML = `
+                    <div class="quick-actions">
+                        <button class="quick-action"><i class="fas fa-briefcase"></i> Featured Jobs</button>
+                        <button class="quick-action"><i class="fas fa-calendar-alt"></i> Upcoming Events</button>
+                        <button class="quick-action"><i class="fas fa-book"></i> Free Resources</button>
+                    </div>
+                `;
+                
+                setTimeout(() => {
+                    addBotMessage(opportunitiesDiv);
+                }, 500);
             });
             
             chatbotClose.addEventListener('click', function() {
                 chatbotContainer.classList.remove('active');
             });
+            
+            // Login/Signup functionality
+            loginBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                authSection.style.display = 'block';
+                loginForm.style.display = 'block';
+                signupForm.style.display = 'none';
+                loginTab.classList.add('active');
+                signupTab.classList.remove('active');
+                document.body.style.overflow = 'hidden';
+            });
+            
+            signupBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                authSection.style.display = 'block';
+                loginForm.style.display = 'none';
+                signupForm.style.display = 'block';
+                loginTab.classList.remove('active');
+                signupTab.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            });
+            
+            loginTab.addEventListener('click', function() {
+                loginForm.style.display = 'block';
+                signupForm.style.display = 'none';
+                loginTab.classList.add('active');
+                signupTab.classList.remove('active');
+            });
+            
+            signupTab.addEventListener('click', function() {
+                loginForm.style.display = 'none';
+                signupForm.style.display = 'block';
+                loginTab.classList.remove('active');
+                signupTab.classList.add('active');
+            });
+            
+            switchToLogin.addEventListener('click', function(e) {
+                e.preventDefault();
+                loginForm.style.display = 'block';
+                signupForm.style.display = 'none';
+                loginTab.classList.add('active');
+                signupTab.classList.remove('active');
+            });
+            
+            switchToSignup.addEventListener('click', function(e) {
+                e.preventDefault();
+                loginForm.style.display = 'none';
+                signupForm.style.display = 'block';
+                loginTab.classList.remove('active');
+                signupTab.classList.add('active');
+            });
+            
+            // Simulate login (in a real app, this would be handled by your backend)
+            document.querySelector('#loginForm .btn-primary').addEventListener('click', function() {
+                // Validate inputs
+                const email = document.getElementById('loginEmail').value;
+                const password = document.getElementById('loginPassword').value;
+                
+                if (!email || !password) {
+                    showNotification('Please fill in all fields');
+                    return;
+                }
+                
+                // Simulate successful login
+                isLoggedIn = true;
+                authSection.style.display = 'none';
+                document.body.style.overflow = 'auto';
+                
+                // Show dashboard and hide other sections
+                dashboard.style.display = 'block';
+                careerPathSection.style.display = 'block';
+                document.querySelector('header .nav-buttons').innerHTML = `
+                    <div class="user-profile">
+                        <div class="user-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                    </div>
+                    <button class="theme-toggle" id="themeToggle">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                `;
+                
+                // Show welcome notification
+                showNotification('Welcome back! Your dashboard is ready.');
+                
+                // Show onboarding if not completed
+                if (!localStorage.getItem('onboardingComplete')) {
+                    setTimeout(() => {
+                        onboardingModal.classList.add('active');
+                    }, 1000);
+                }
+            });
+            
+            // Simulate signup (in a real app, this would be handled by your backend)
+            document.querySelector('#signupForm .btn-primary').addEventListener('click', function() {
+                // Validate inputs
+                const name = document.getElementById('signupName').value;
+                const email = document.getElementById('signupEmail').value;
+                const password = document.getElementById('signupPassword').value;
+                const confirmPassword = document.getElementById('signupConfirmPassword').value;
+                
+                if (!name || !email || !password || !confirmPassword) {
+                    showNotification('Please fill in all fields');
+                    return;
+                }
+                
+                if (password !== confirmPassword) {
+                    showNotification('Passwords do not match');
+                    return;
+                }
+                
+                // Simulate successful signup
+                isLoggedIn = true;
+                authSection.style.display = 'none';
+                document.body.style.overflow = 'auto';
+                userProfile.name = name.split(' ')[0]; // Use first name
+                
+                // Show dashboard and hide other sections
+                dashboard.style.display = 'block';
+                careerPathSection.style.display = 'block';
+                document.querySelector('header .nav-buttons').innerHTML = `
+                    <div class="user-profile">
+                        <div class="user-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                    </div>
+                    <button class="theme-toggle" id="themeToggle">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                `;
+                
+                // Update welcome message with user's name
+                document.getElementById('userName').textContent = userProfile.name;
+                
+                // Show welcome notification
+                showNotification(`Welcome ${userProfile.name}! Let's get started with your career journey.`);
+                
+                // Show onboarding
+                setTimeout(() => {
+                    onboardingModal.classList.add('active');
+                }, 1000);
+                
+                // Create confetti effect
+                createConfetti();
+            });
+            
+            // Function to create confetti effect
+            function createConfetti() {
+                const colors = ['#4FD1FF', '#A88BFF', '#8FFFAB', '#FF7EB9', '#FFA85C'];
+                
+                for (let i = 0; i < 100; i++) {
+                    const confetti = document.createElement('div');
+                    confetti.className = 'confetti';
+                    confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                    confetti.style.left = Math.random() * 100 + 'vw';
+                    confetti.style.animationDuration = Math.random() * 3 + 2 + 's';
+                    confetti.style.animationDelay = Math.random() * 5 + 's';
+                    document.body.appendChild(confetti);
+                    
+                    // Remove confetti after animation completes
+                    setTimeout(() => {
+                        confetti.remove();
+                    }, 7000);
+                }
+            }
             
             // Send message when button is clicked
             sendButton.addEventListener('click', sendMessage);
@@ -513,6 +2842,261 @@
                     sendMessage();
                 }
             });
+            
+            // Toggle voice input
+            voiceInputBtn.addEventListener('click', toggleVoiceInput);
+            
+            // Toggle emoji picker
+            emojiBtn.addEventListener('click', function() {
+                emojiPicker.classList.toggle('active');
+                languageSelector.classList.remove('active');
+            });
+            
+            // Toggle language selector
+            languageBtn.addEventListener('click', function() {
+                languageSelector.classList.toggle('active');
+                emojiPicker.classList.remove('active');
+            });
+            
+            // Handle language selection
+            document.querySelectorAll('.language-option').forEach(option => {
+                option.addEventListener('click', function() {
+                    currentLanguage = this.getAttribute('data-lang');
+                    showNotification(`Language changed to ${this.textContent}`);
+                    languageSelector.classList.remove('active');
+                    
+                    // Update welcome message in new language
+                    if (chatbotMessages.children.length <= 1) {
+                        chatbotMessages.innerHTML = '';
+                        showWelcomeMessage();
+                    }
+                });
+            });
+            
+            // Handle menu buttons
+            menuButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const action = this.getAttribute('data-action');
+                    
+                    // Remove active class from all buttons
+                    menuButtons.forEach(btn => btn.classList.remove('active'));
+                    
+                    // Add active class to clicked button
+                    this.classList.add('active');
+                    
+                    // Handle different actions
+                    switch(action) {
+                        case 'jobs':
+                            showJobSuggestions();
+                            break;
+                        case 'events':
+                            showEventSuggestions();
+                            break;
+                        case 'mentors':
+                            showMentorSuggestions();
+                            break;
+                        case 'communities':
+                            showCommunitySuggestions();
+                            break;
+                        case 'feedback':
+                            feedbackForm.classList.toggle('active');
+                            break;
+                    }
+                });
+            });
+            
+            // Handle feedback submission
+            document.getElementById('submitFeedback').addEventListener('click', function() {
+                const feedback = document.querySelector('#feedbackForm textarea').value.trim();
+                if (feedback) {
+                    showNotification('Thank you for your feedback!');
+                    document.querySelector('#feedbackForm textarea').value = '';
+                    feedbackForm.classList.remove('active');
+                    
+                    // Add to conversation history
+                    addUserMessage("Feedback submitted");
+                    addBotMessage("Thank you for your valuable feedback! We'll use this to improve Asha.");
+                    
+                    // In a real app, you would send this to your backend
+                    console.log('Feedback submitted:', feedback);
+                }
+            });
+            
+            // Resume modal functionality
+            fileUpload.addEventListener('click', function() {
+                resumeFile.click();
+            });
+            
+            resumeFile.addEventListener('change', function() {
+                if (this.files && this.files[0]) {
+                    const fileName = this.files[0].name;
+                    fileUpload.innerHTML = `
+                        <i class="fas fa-file-alt"></i>
+                        <p>${fileName}</p>
+                        <p><small>Ready to analyze</small></p>
+                    `;
+                    analyzeResume.disabled = false;
+                }
+            });
+            
+            analyzeResume.addEventListener('click', function() {
+                // In a real app, you would upload and analyze the resume
+                showNotification('Analyzing your resume...');
+                setTimeout(() => {
+                    resumeModal.classList.remove('active');
+                    showNotification('Resume analysis complete!');
+                    
+                    // Show sample analysis (in a real app, this would come from your backend)
+                    addBotMessage("Here's my analysis of your resume:");
+                    
+                    const analysisMessage = document.createElement('div');
+                    analysisMessage.className = 'message bot-message';
+                    analysisMessage.innerHTML = `
+                        <h4>Resume Analysis Results</h4>
+                        <p><strong>Strengths:</strong></p>
+                        <ul>
+                            <li>Clear career progression</li>
+                            <li>Strong action verbs</li>
+                            <li>Good use of metrics</li>
+                        </ul>
+                        <p><strong>Areas for Improvement:</strong></p>
+                        <ul>
+                            <li>Could expand on leadership experience</li>
+                            <li>Add more quantifiable achievements</li>
+                            <li>Consider a skills section</li>
+                        </ul>
+                        <button class="quick-action" style="margin-top: 10px;">
+                            <i class="fas fa-download"></i> Download Analysis Report
+                        </button>
+                    `;
+                    chatbotMessages.appendChild(analysisMessage);
+                    scrollToBottom();
+                }, 2000);
+            });
+            
+            resumeModalClose.addEventListener('click', function() {
+                resumeModal.classList.remove('active');
+            });
+            
+            // Summary modal functionality
+            summaryModalClose.addEventListener('click', function() {
+                summaryModal.classList.remove('active');
+            });
+            
+            // Onboarding functionality
+            function showOnboarding() {
+                // Only show onboarding if user hasn't completed it
+                if (!localStorage.getItem('onboardingComplete')) {
+                    onboardingModal.classList.add('active');
+                }
+            }
+            
+            // Handle onboarding step navigation
+            document.querySelectorAll('.onboarding-step .quick-action').forEach(button => {
+                button.addEventListener('click', function() {
+                    const step = this.closest('.onboarding-step');
+                    const nextStep = step.nextElementSibling;
+                    
+                    // Save user responses
+                    if (step.id === 'step1') {
+                        userProfile.careerStage = this.getAttribute('data-stage');
+                    } else if (step.id === 'step2') {
+                        userProfile.interests.push(this.getAttribute('data-interest'));
+                    } else if (step.id === 'step3') {
+                        userProfile.supportNeeds.push(this.getAttribute('data-support'));
+                    }
+                    
+                    // Move to next step
+                    if (nextStep) {
+                        step.classList.remove('active');
+                        nextStep.classList.add('active');
+                    }
+                });
+            });
+            
+            completeOnboarding.addEventListener('click', function() {
+                onboardingModal.classList.remove('active');
+                localStorage.setItem('onboardingComplete', 'true');
+                showNotification('Welcome to Asha! Your experience has been personalized.');
+                
+                // Show personalized welcome message
+                if (chatbotMessages.children.length <= 1) {
+                    chatbotMessages.innerHTML = '';
+                    showWelcomeMessage();
+                }
+            });
+            
+            onboardingModalClose.addEventListener('click', function() {
+                onboardingModal.classList.remove('active');
+                localStorage.setItem('onboardingComplete', 'true');
+            });
+            
+            function showWelcomeMessage() {
+                // Personalized welcome based on onboarding
+                let welcomeMessage = "Hello! I'm Asha, your AI career companion. How can I assist you today?";
+                
+                if (userProfile.careerStage) {
+                    welcomeMessage = `Hello ${userProfile.name}! I see you're ${getCareerStageDescription(userProfile.careerStage)}. `;
+                    welcomeMessage += "How can I assist with your career journey today?";
+                }
+                
+                addBotMessage(welcomeMessage);
+                
+                // Add quick action buttons based on user's needs
+                setTimeout(() => {
+                    const quickActions = document.createElement('div');
+                    quickActions.className = 'quick-actions';
+                    
+                    let categories = [
+                        {icon: 'briefcase', text: 'Find Tech Jobs'},
+                        {icon: 'calendar-star', text: 'Upcoming Events'},
+                        {icon: 'hands-helping', text: 'Match Me With A Mentor'},
+                        {icon: 'chart-line', text: 'Career Growth Advice'},
+                        {icon: 'book', text: 'Learning Resources'},
+                        {icon: 'file-alt', text: 'Resume Review'}
+                    ];
+                    
+                    // Prioritize based on user's support needs
+                    if (userProfile.supportNeeds.length > 0) {
+                        categories.sort((a, b) => {
+                            const aIndex = userProfile.supportNeeds.includes(a.text.toLowerCase().replace(' ', '-')) ? -1 : 1;
+                            const bIndex = userProfile.supportNeeds.includes(b.text.toLowerCase().replace(' ', '-')) ? -1 : 1;
+                            return aIndex - bIndex;
+                        });
+                    }
+                    
+                    categories.forEach(category => {
+                        const button = document.createElement('button');
+                        button.className = 'quick-action';
+                        button.innerHTML = `<i class="fas fa-${category.icon}"></i> ${category.text}`;
+                        button.addEventListener('click', () => {
+                            handleQuickAction(category.text);
+                        });
+                        quickActions.appendChild(button);
+                    });
+                    
+                    const messageDiv = document.createElement('div');
+                    messageDiv.className = 'message bot-message';
+                    messageDiv.appendChild(quickActions);
+                    chatbotMessages.appendChild(messageDiv);
+                    scrollToBottom();
+                }, 500);
+            }
+            
+            function getCareerStageDescription(stage) {
+                switch(stage) {
+                    case 'student':
+                        return 'a student';
+                    case 'early-career':
+                        return 'in the early stages of your career';
+                    case 'mid-career':
+                        return 'in the middle of your career journey';
+                    case 'returning':
+                        return 'returning to the workforce';
+                    default:
+                        return '';
+                }
+            }
             
             function sendMessage() {
                 const message = userInput.value.trim();
@@ -535,25 +3119,113 @@
                 const messageDiv = document.createElement('div');
                 messageDiv.className = 'message user-message';
                 messageDiv.textContent = text;
-                chatbotMessages.appendChild(messageDiv);
-                scrollToBottom();
-            }
-            
-            function addBotMessage(text) {
-                const messageDiv = document.createElement('div');
-                messageDiv.className = 'message bot-message';
-                messageDiv.textContent = text;
+                
+                // Add message controls
+                const controlsDiv = document.createElement('div');
+                controlsDiv.className = 'message-controls';
+                
+                const timeSpan = document.createElement('span');
+                timeSpan.textContent = new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+                timeSpan.style.fontSize = '0.7rem';
+                timeSpan.style.color = 'var(--current-text-secondary)';
+                
+                controlsDiv.appendChild(timeSpan);
+                messageDiv.appendChild(controlsDiv);
+                
                 chatbotMessages.appendChild(messageDiv);
                 scrollToBottom();
                 
-                // Add feedback buttons
-                const feedbackDiv = document.createElement('div');
-                feedbackDiv.className = 'feedback-buttons';
-                feedbackDiv.innerHTML = `
-                    <button class="feedback-button" title="Helpful"><i class="fas fa-thumbs-up"></i></button>
-                    <button class="feedback-button" title="Not helpful"><i class="fas fa-thumbs-down"></i></button>
-                `;
-                messageDiv.appendChild(feedbackDiv);
+                // Add to conversation history
+                conversationHistory.push({
+                    type: 'user',
+                    content: text,
+                    timestamp: new Date().toISOString()
+                });
+                
+                // Add to user profile conversation history
+                userProfile.conversationHistory.push({
+                    type: 'user',
+                    content: text,
+                    timestamp: new Date().toISOString()
+                });
+                
+                // Increment message count for gamification
+                messageCount++;
+                
+                // Check for motivational message trigger
+                if (messageCount % 5 === 0) {
+                    setTimeout(() => {
+                        showMotivationalMessage();
+                    }, 1500);
+                }
+                
+                // Check for sentiment
+                if (detectNegativeSentiment(text)) {
+                    setTimeout(() => {
+                        showSupportMessage();
+                    }, 1500);
+                }
+            }
+            
+            function addBotMessage(text, options = {}) {
+                const messageDiv = document.createElement('div');
+                messageDiv.className = 'message bot-message';
+                
+                if (typeof text === 'string') {
+                    messageDiv.textContent = text;
+                } else {
+                    messageDiv.appendChild(text);
+                }
+                
+                // Add message controls
+                const controlsDiv = document.createElement('div');
+                controlsDiv.className = 'message-controls';
+                
+                const timeSpan = document.createElement('span');
+                timeSpan.textContent = new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+                timeSpan.style.fontSize = '0.7rem';
+                timeSpan.style.color = 'var(--current-text-secondary)';
+                
+                // Add "Why this response?" button if enabled
+                if (options.showWhy) {
+                    const whyButton = document.createElement('button');
+                    whyButton.className = 'why-response';
+                    whyButton.innerHTML = '<i class="fas fa-info-circle"></i> Why this response?';
+                    whyButton.addEventListener('click', function() {
+                        const sourceDiv = document.createElement('div');
+                        sourceDiv.className = 'response-source';
+                        sourceDiv.textContent = options.whyText || 'This response was generated based on your query and the most relevant information from our knowledge base.';
+                        
+                        // Toggle display
+                        if (sourceDiv.classList.contains('active')) {
+                            sourceDiv.classList.remove('active');
+                        } else {
+                            sourceDiv.classList.add('active');
+                            messageDiv.appendChild(sourceDiv);
+                        }
+                    });
+                    controlsDiv.appendChild(whyButton);
+                }
+                
+                controlsDiv.appendChild(timeSpan);
+                messageDiv.appendChild(controlsDiv);
+                
+                chatbotMessages.appendChild(messageDiv);
+                scrollToBottom();
+                
+                // Add to conversation history
+                conversationHistory.push({
+                    type: 'bot',
+                    content: text.textContent || text,
+                    timestamp: new Date().toISOString()
+                });
+                
+                // Add to user profile conversation history
+                userProfile.conversationHistory.push({
+                    type: 'bot',
+                    content: text.textContent || text,
+                    timestamp: new Date().toISOString()
+                });
             }
             
             function showTypingIndicator() {
@@ -561,6 +3233,7 @@
                 typingDiv.className = 'typing-indicator';
                 typingDiv.id = 'typingIndicator';
                 typingDiv.innerHTML = `
+                    <span class="typing-text">Asha is typing</span>
                     <div class="typing-dot"></div>
                     <div class="typing-dot"></div>
                     <div class="typing-dot"></div>
@@ -580,86 +3253,145 @@
                 chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
             }
             
+            function showNotification(message, duration = 3000) {
+                notificationMessage.textContent = message;
+                notification.classList.add('show');
+                
+                setTimeout(() => {
+                    notification.classList.remove('show');
+                }, duration);
+            }
+            
+            function toggleVoiceInput() {
+                if (!recognition) {
+                    showNotification('Voice input is not supported in your browser');
+                    return;
+                }
+                
+                if (isListening) {
+                    recognition.stop();
+                    isListening = false;
+                    voiceInputBtn.classList.remove('listening');
+                } else {
+                    try {
+                        recognition.start();
+                        isListening = true;
+                        voiceInputBtn.classList.add('listening');
+                        showNotification('Listening... Speak now');
+                    } catch (e) {
+                        console.error('Error starting speech recognition:', e);
+                        showNotification('Error starting voice input');
+                    }
+                }
+            }
+            
             function handleUserMessage(message) {
                 message = message.toLowerCase();
                 
+                // Check for conversation reset
+                if (message.includes('reset') || message.includes('start over') || message.includes('clear')) {
+                    conversationHistory = [];
+                    chatbotMessages.innerHTML = '';
+                    showWelcomeMessage();
+                    return;
+                }
+                
+                // Check for conversation summary
+                if (message.includes('summary') || message.includes('recap')) {
+                    showConversationSummary();
+                    return;
+                }
+                
+                // Check for resume review request
+                if (message.includes('resume') || message.includes('cv') || message.includes('review')) {
+                    resumeModal.classList.add('active');
+                    return;
+                }
+                
+                // Check for onboarding request
+                if (message.includes('onboarding') || message.includes('setup') || message.includes('profile')) {
+                    showOnboarding();
+                    return;
+                }
+                
+                // Check for career companion request
+                if (message.includes('goal') || message.includes('target') || message.includes('objective')) {
+                    showCareerCompanion();
+                    return;
+                }
+                
+                // Check for resource request
+                if (message.includes('resource') || message.includes('learn') || message.includes('guide')) {
+                    showResourceCenter();
+                    return;
+                }
+                
+                // Check for badge request
+                if (message.includes('badge') || message.includes('achievement') || message.includes('progress')) {
+                    showBadges();
+                    return;
+                }
+                
                 // Simple response logic - in a real app, this would connect to an AI service
                 if (message.includes('hello') || message.includes('hi') || message.includes('hey')) {
-                    addBotMessage("Hello! 😊 How can I assist you with your career journey today?");
+                    addBotMessage("Hello there! How can I assist with your career journey today?", {
+                        showWhy: true,
+                        whyText: "I recognized a greeting in your message and responded accordingly."
+                    });
                 } 
-                else if (message.includes('job') || message.includes('career')) {
-                    addBotMessage("I can help you explore various job opportunities. What field are you interested in?");
-                    
-                    // Add category buttons
-                    setTimeout(() => {
-                        const categories = [
-                            {icon: 'laptop-code', text: 'Technology'},
-                            {icon: 'chart-line', text: 'Business'},
-                            {icon: 'flask', text: 'Science'},
-                            {icon: 'paint-brush', text: 'Creative Arts'},
-                            {icon: 'heart', text: 'Healthcare'},
-                            {icon: 'graduation-cap', text: 'Education'}
-                        ];
-                        
-                        const categoryDiv = document.createElement('div');
-                        categoryDiv.className = 'category-buttons';
-                        
-                        categories.forEach(category => {
-                            const button = document.createElement('button');
-                            button.className = 'category-button';
-                            button.innerHTML = `<i class="fas fa-${category.icon}"></i> ${category.text}`;
-                            button.addEventListener('click', () => {
-                                addUserMessage(`Jobs in ${category.text}`);
-                                showTypingIndicator();
-                                setTimeout(() => {
-                                    removeTypingIndicator();
-                                    addBotMessage(`Here are some recent job opportunities in ${category.text}:\n\n1. Senior ${category.text} Consultant at Diversity Inc.\n2. ${category.text} Team Lead at EmpowerHer\n3. Junior ${category.text} Associate at WomenFirst\n\nWould you like more details about any of these?`);
-                                }, 1500);
-                            });
-                            categoryDiv.appendChild(button);
-                        });
-                        
-                        const messageDiv = document.createElement('div');
-                        messageDiv.className = 'message bot-message';
-                        messageDiv.appendChild(categoryDiv);
-                        chatbotMessages.appendChild(messageDiv);
-                        scrollToBottom();
-                    }, 500);
+                else if (message.includes('job') || message.includes('career') || message.includes('opportunity')) {
+                    showJobSuggestions();
                 }
-                else if (message.includes('event') || message.includes('workshop')) {
-                    addBotMessage("We have several upcoming events you might be interested in:");
-                    
-                    // Simulate event data
-                    setTimeout(() => {
-                        const events = [
-                            "Women in Tech Conference - June 15",
-                            "Leadership Workshop - July 2",
-                            "Networking Mixer - June 28",
-                            "Salary Negotiation Seminar - July 10"
-                        ];
-                        
-                        let eventList = events.map(event => `• ${event}`).join('\n');
-                        addBotMessage(`${eventList}\n\nWould you like to register for any of these?`);
-                    }, 800);
+                else if (message.includes('event') || message.includes('workshop') || message.includes('webinar')) {
+                    showEventSuggestions();
                 }
-                else if (message.includes('mentor') || message.includes('guidance')) {
-                    addBotMessage("Our mentorship program connects you with experienced professionals in your field. What specific area are you looking for guidance in?");
+                else if (message.includes('mentor') || message.includes('guidance') || message.includes('advice')) {
+                    showMentorSuggestions();
+                }
+                else if (message.includes('community') || message.includes('network') || message.includes('group')) {
+                    showCommunitySuggestions();
                 }
                 else if (message.includes('thank')) {
-                    addBotMessage("You're welcome! 😊 Is there anything else I can help you with?");
+                    addBotMessage("You're welcome! Is there anything else I can help with?");
+                }
+                else if (message.includes('help') || message.includes('support')) {
+                    addBotMessage("For direct support, you can contact help@jobsforher.org. How else may I assist you?");
+                }
+                else if (message.includes('language') || message.includes('hindi') || message.includes('kannada')) {
+                    addBotMessage("I can communicate in multiple languages. Click the globe icon to switch languages.");
+                }
+                else if (message.includes('privacy') || message.includes('security') || message.includes('data')) {
+                    addBotMessage("Your privacy is important. All conversations are anonymized and no personal data is stored. For more details, see our Privacy Policy.", {
+                        showWhy: true,
+                        whyText: "You asked about privacy, so I provided information about our data practices."
+                    });
+                }
+                else if (message.includes('bias') || message.includes('fair') || message.includes('equal')) {
+                    addBotMessage("Asha is designed to promote diversity and inclusion. Our ethical AI layer helps detect and mitigate biases in responses.", {
+                        showWhy: true,
+                        whyText: "You mentioned bias, so I explained our ethical AI features."
+                    });
                 }
                 else {
-                    addBotMessage("I'm here to help with career-related questions. You can ask me about jobs, events, mentorship programs, or career advice. What would you like to know?");
+                    // Fallback mechanism
+                    const fallbackResponses = [
+                        "I'm not sure I understand. Could you rephrase that?",
+                        "I'm still learning. Could you ask me something about careers, jobs, or mentorship?",
+                        "I'm here to help with your career journey. Try asking about jobs, events, or mentorship opportunities."
+                    ];
                     
-                    // Add quick actions for clarification
+                    const randomResponse = fallbackResponses[Math.floor(Math.random() * fallbackResponses.length)];
+                    addBotMessage(randomResponse);
+                    
+                    // Add clarifying questions
                     setTimeout(() => {
                         const quickActions = document.createElement('div');
                         quickActions.className = 'quick-actions';
                         
                         const suggestions = [
-                            "How do I prepare for a tech interview?",
-                            "What are some high-growth careers for women?",
-                            "How can I improve my leadership skills?"
+                            "How do I prepare for an interview?",
+                            "What are high-growth careers?",
+                            "How to improve leadership skills?"
                         ];
                         
                         suggestions.forEach(suggestion => {
@@ -691,9 +3423,548 @@
                 showTypingIndicator();
                 setTimeout(() => {
                     removeTypingIndicator();
-                    handleUserMessage(action);
+                    
+                    // Handle different quick actions
+                    switch(action) {
+                        case 'Find Tech Jobs':
+                            showJobSuggestions();
+                            break;
+                        case 'Upcoming Events':
+                            showEventSuggestions();
+                            break;
+                        case 'Match Me With A Mentor':
+                            showMentorSuggestions();
+                            break;
+                        case 'Career Growth Advice':
+                            addBotMessage("Career growth involves continuous learning and skill development. Here are some tips:");
+                            
+                            const tipsDiv = document.createElement('div');
+                            tipsDiv.innerHTML = `
+                                <ul>
+                                    <li>Set clear career goals</li>
+                                    <li>Seek feedback regularly</li>
+                                    <li>Build a strong professional network</li>
+                                    <li>Develop both technical and soft skills</li>
+                                    <li>Find a mentor in your field</li>
+                                </ul>
+                                <button class="quick-action" style="margin-top: 10px;">
+                                    <i class="fas fa-hands-helping"></i> Find a Mentor
+                                </button>
+                            `;
+                            
+                            setTimeout(() => {
+                                addBotMessage(tipsDiv);
+                            }, 500);
+                            break;
+                        case 'Learning Resources':
+                            showResourceCenter();
+                            break;
+                        case 'Resume Review':
+                            resumeModal.classList.add('active');
+                            break;
+                    }
                 }, 1500);
             }
+            
+            function showJobSuggestions() {
+                addBotMessage("I can help you explore job opportunities. What field are you interested in?", {
+                    showWhy: true,
+                    whyText: "You asked about jobs or career opportunities, so I'm offering to help with job search."
+                });
+                
+                // Add category buttons
+                setTimeout(() => {
+                    const categories = [
+                        {icon: 'laptop-code', text: 'Technology'},
+                        {icon: 'chart-pie', text: 'Business'},
+                        {icon: 'flask', text: 'Science'},
+                        {icon: 'palette', text: 'Creative'},
+                        {icon: 'heartbeat', text: 'Healthcare'},
+                        {icon: 'graduation-cap', text: 'Education'}
+                    ];
+                    
+                    // Prioritize based on user's interests
+                    if (userProfile.interests.length > 0) {
+                        categories.sort((a, b) => {
+                            const aIndex = userProfile.interests.includes(a.text.toLowerCase()) ? -1 : 1;
+                            const bIndex = userProfile.interests.includes(b.text.toLowerCase()) ? -1 : 1;
+                            return aIndex - bIndex;
+                        });
+                    }
+                    
+                    const categoryDiv = document.createElement('div');
+                    categoryDiv.className = 'category-buttons';
+                    
+                    categories.forEach(category => {
+                        const button = document.createElement('button');
+                        button.className = 'quick-action';
+                        button.innerHTML = `<i class="fas fa-${category.icon}"></i> ${category.text}`;
+                        button.addEventListener('click', () => {
+                            addUserMessage(`Jobs in ${category.text}`);
+                            showTypingIndicator();
+                            setTimeout(() => {
+                                removeTypingIndicator();
+                                
+                                // Show sample jobs for the category
+                                const jobsDiv = document.createElement('div');
+                                jobsDiv.innerHTML = `
+                                    <h4>Opportunities in ${category.text}:</h4>
+                                    <div class="job-details">
+                                        <h4>Senior ${category.text} Role</h4>
+                                        <div class="job-meta">
+                                            <span><i class="fas fa-building"></i> TechCorp India</span>
+                                            <span><i class="fas fa-map-marker-alt"></i> Bangalore</span>
+                                            <span><i class="fas fa-rupee-sign"></i> ₹18L-₹25L</span>
+                                        </div>
+                                        <div class="job-description">
+                                            Looking for experienced ${category.text} professional to lead our team. Minimum 5 years experience required.
+                                        </div>
+                                        <div class="job-actions">
+                                            <button class="job-action"><i class="fas fa-bookmark"></i> Save</button>
+                                            <button class="job-action"><i class="fas fa-share"></i> Share</button>
+                                            <button class="job-action"><i class="fas fa-arrow-right"></i> View</button>
+                                        </div>
+                                    </div>
+                                    <div class="job-details">
+                                        <h4>${category.text} Manager</h4>
+                                        <div class="job-meta">
+                                            <span><i class="fas fa-building"></i> InnovateIndia</span>
+                                            <span><i class="fas fa-map-marker-alt"></i> Mumbai</span>
+                                            <span><i class="fas fa-rupee-sign"></i> ₹15L-₹22L</span>
+                                        </div>
+                                        <div class="job-description">
+                                            Seeking ${category.text} Manager with leadership experience to oversee our team.
+                                        </div>
+                                        <div class="job-actions">
+                                            <button class="job-action"><i class="fas fa-bookmark"></i> Save</button>
+                                            <button class="job-action"><i class="fas fa-share"></i> Share</button>
+                                            <button class="job-action"><i class="fas fa-arrow-right"></i> View</button>
+                                        </div>
+                                    </div>
+                                    <button class="quick-action" style="margin-top: 10px; width: 100%; text-align: center;">
+                                        <i class="fas fa-search"></i> Show More Jobs
+                                    </button>
+                                `;
+                                
+                                addBotMessage(jobsDiv);
+                                
+                                // Show related recommendations
+                                setTimeout(() => {
+                                    showRelatedRecommendations(category.text);
+                                }, 500);
+                            }, 1500);
+                        });
+                        categoryDiv.appendChild(button);
+                    });
+                    
+                    const messageDiv = document.createElement('div');
+                    messageDiv.className = 'message bot-message';
+                    messageDiv.appendChild(categoryDiv);
+                    chatbotMessages.appendChild(messageDiv);
+                    scrollToBottom();
+                }, 500);
+            }
+            
+            function showRelatedRecommendations(category) {
+                const recommendationsDiv = document.createElement('div');
+                recommendationsDiv.className = 'message bot-message';
+                recommendationsDiv.innerHTML = `
+                    <p>Based on your interest in ${category}, you might also find these helpful:</p>
+                    <div class="quick-actions" style="margin-top: 10px;">
+                        <button class="quick-action">
+                            <i class="fas fa-calendar-alt"></i> Upcoming ${category} Events
+                        </button>
+                        <button class="quick-action">
+                            <i class="fas fa-hands-helping"></i> ${category} Mentors
+                        </button>
+                        <button class="quick-action">
+                            <i class="fas fa-book"></i> ${category} Learning Resources
+                        </button>
+                    </div>
+                `;
+                
+                // Add event listeners to the buttons
+                recommendationsDiv.querySelectorAll('.quick-action').forEach(button => {
+                    button.addEventListener('click', () => {
+                        const action = button.textContent.trim();
+                        addUserMessage(action);
+                        showTypingIndicator();
+                        setTimeout(() => {
+                            removeTypingIndicator();
+                            
+                            if (action.includes('Events')) {
+                                showEventSuggestions(category);
+                            } else if (action.includes('Mentors')) {
+                                showMentorSuggestions(category);
+                            } else if (action.includes('Resources')) {
+                                showResourceCenter(category);
+                            }
+                        }, 1500);
+                    });
+                });
+                
+                chatbotMessages.appendChild(recommendationsDiv);
+                scrollToBottom();
+            }
+            
+            function showEventSuggestions(category = '') {
+                addBotMessage(`Here are upcoming ${category ? category + ' ' : ''}events you might be interested in:`, {
+                    showWhy: true,
+                    whyText: "You asked about events, so I'm showing relevant career events."
+                });
+                
+                // Create event cards
+                const eventsDiv = document.createElement('div');
+                eventsDiv.innerHTML = `
+                    <div class="event-card">
+                        <h4>Women in Tech Conference</h4>
+                        <div class="event-details">
+                            <span><i class="fas fa-calendar-alt"></i> June 15-16, 2023</span>
+                            <span><i class="fas fa-clock"></i> 9:00 AM - 5:00 PM</span>
+                            <span><i class="fas fa-map-marker-alt"></i> Bangalore Convention Center</span>
+                        </div>
+                        <p>Annual conference bringing together women in technology for networking, workshops, and keynote speeches.</p>
+                        <div class="event-actions">
+                            <button class="event-action"><i class="fas fa-bookmark"></i> Save</button>
+                            <button class="event-action"><i class="fas fa-calendar-plus"></i> Remind Me</button>
+                            <button class="event-action"><i class="fas fa-ticket-alt"></i> Register</button>
+                        </div>
+                    </div>
+                    <div class="event-card">
+                        <h4>Leadership Workshop</h4>
+                        <div class="event-details">
+                            <span><i class="fas fa-calendar-alt"></i> July 2, 2023</span>
+                            <span><i class="fas fa-clock"></i> 2:00 PM - 4:00 PM</span>
+                            <span><i class="fas fa-video"></i> Online</span>
+                        </div>
+                        <p>Interactive workshop focused on developing leadership skills for women in mid-career positions.</p>
+                        <div class="event-actions">
+                            <button class="event-action"><i class="fas fa-bookmark"></i> Save</button>
+                            <button class="event-action"><i class="fas fa-calendar-plus"></i> Remind Me</button>
+                            <button class="event-action"><i class="fas fa-ticket-alt"></i> Register</button>
+                        </div>
+                    </div>
+                    <button class="quick-action" style="margin-top: 10px; width: 100%; text-align: center;">
+                        <i class="fas fa-calendar-alt"></i> View All Events
+                    </button>
+                `;
+                
+                setTimeout(() => {
+                    addBotMessage(eventsDiv);
+                    
+                    // Add badge for exploring events
+                    if (!userProfile.badges.includes("Event Explorer")) {
+                        userProfile.badges.push("Event Explorer");
+                        setTimeout(() => {
+                            showBadgeNotification("Event Explorer");
+                        }, 1000);
+                    }
+                }, 500);
+            }
+            
+            function showMentorSuggestions(category = '') {
+                addBotMessage(`Our mentorship program connects you with experienced ${category ? category + ' ' : ''}professionals. Here are some mentors you might like:`, {
+                    showWhy: true,
+                    whyText: "You asked about mentorship, so I'm showing available mentors."
+                });
+                
+                // Create mentor cards
+                const mentorsDiv = document.createElement('div');
+                mentorsDiv.innerHTML = `
+                    <div class="mentor-card">
+                        <div class="mentor-avatar">
+                            <i class="fas fa-user-tie"></i>
+                        </div>
+                        <div class="mentor-info">
+                            <h4>Dr. Priya Sharma</h4>
+                            <p>Senior Director, Product Management at TechSolutions Inc.</p>
+                            <div class="mentor-skills">
+                                <span class="mentor-skill">Product Management</span>
+                                <span class="mentor-skill">Leadership</span>
+                                <span class="mentor-skill">Career Growth</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mentor-card">
+                        <div class="mentor-avatar">
+                            <i class="fas fa-user-tie"></i>
+                        </div>
+                        <div class="mentor-info">
+                            <h4>Ananya Patel</h4>
+                            <p>UX Design Lead at CreativeMinds</p>
+                            <div class="mentor-skills">
+                                <span class="mentor-skill">UX Design</span>
+                                <span class="mentor-skill">Portfolio Review</span>
+                                <span class="mentor-skill">Interview Prep</span>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="quick-action" style="margin-top: 10px; width: 100%; text-align: center;">
+                        <i class="fas fa-search"></i> Find More Mentors
+                    </button>
+                    <button class="quick-action" style="margin-top: 10px; width: 100%; text-align: center;">
+                        <i class="fas fa-user-plus"></i> Become a Mentor
+                    </button>
+                `;
+                
+                setTimeout(() => {
+                    addBotMessage(mentorsDiv);
+                }, 500);
+            }
+            
+            function showCommunitySuggestions() {
+                addBotMessage("Joining communities can help you network and grow professionally. Here are some to consider:", {
+                    showWhy: true,
+                    whyText: "You asked about communities, so I'm suggesting relevant professional groups."
+                });
+                
+                // Create community suggestions
+                const communitiesDiv = document.createElement('div');
+                communitiesDiv.innerHTML = `
+                    <ul>
+                        <li><strong>Women in Tech India</strong> - 10,000+ members</li>
+                        <li><strong>Female Entrepreneurs Network</strong> - 5,000+ members</li>
+                        <li><strong>Women in Data Science</strong> - 3,000+ members</li>
+                        <li><strong>Design Ladies</strong> - 2,500+ members</li>
+                    </ul>
+                    <button class="quick-action" style="margin-top: 10px; width: 100%; text-align: center;">
+                        <i class="fas fa-users"></i> Explore All Communities
+                    </button>
+                `;
+                
+                setTimeout(() => {
+                    addBotMessage(communitiesDiv);
+                }, 500);
+            }
+            
+            function showResourceCenter(category = '') {
+                addBotMessage(`Here are some valuable ${category ? category + ' ' : ''}resources for your career:`, {
+                    showWhy: true,
+                    whyText: "You asked about resources, so I'm showing relevant career development materials."
+                });
+                
+                // Create resource cards
+                const resourcesDiv = document.createElement('div');
+                resourcesDiv.innerHTML = `
+                    <div class="resource-card">
+                        <h4>${category || 'Career'} Development Guide</h4>
+                        <p>Learn how to create a resume that stands out with our comprehensive guide.</p>
+                        <a href="#" class="resource-link">View Resource <i class="fas fa-external-link-alt"></i></a>
+                    </div>
+                    <div class="resource-card">
+                        <h4>Interview Preparation</h4>
+                        <p>Master the interview process with our ${category ? category + ' ' : ''}interview preparation kit.</p>
+                        <a href="#" class="resource-link">View Resource <i class="fas fa-external-link-alt"></i></a>
+                    </div>
+                    <div class="resource-card">
+                        <h4>Salary Negotiation Tips</h4>
+                        <p>Learn how to negotiate your salary with confidence.</p>
+                        <a href="#" class="resource-link">View Resource <i class="fas fa-external-link-alt"></i></a>
+                    </div>
+                    <button class="quick-action" style="margin-top: 10px; width: 100%; text-align: center;">
+                        <i class="fas fa-book"></i> View All Resources
+                    </button>
+                `;
+                
+                setTimeout(() => {
+                    addBotMessage(resourcesDiv);
+                }, 500);
+            }
+            
+            function showCareerCompanion() {
+                addBotMessage("Your Career Companion helps you stay on track with your professional goals. Here's your current progress:");
+                
+                const companionDiv = document.createElement('div');
+                companionDiv.innerHTML = `
+                    <div class="companion-goal">
+                        <h4>Current Goal: ${userProfile.goals[0].title}</h4>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: ${userProfile.goals[0].progress}%"></div>
+                        </div>
+                        <p>${userProfile.goals[0].progress}% complete - ${calculateTimeRemaining(userProfile.goals[0].deadline)} remaining</p>
+                        <div class="quick-actions" style="margin-top: 10px;">
+                            <button class="quick-action"><i class="fas fa-edit"></i> Update Goal</button>
+                            <button class="quick-action"><i class="fas fa-tasks"></i> Action Items</button>
+                            <button class="quick-action"><i class="fas fa-calendar-check"></i> Schedule Check-in</button>
+                        </div>
+                    </div>
+                `;
+                
+                setTimeout(() => {
+                    addBotMessage(companionDiv);
+                }, 500);
+            }
+            
+            function calculateTimeRemaining(deadline) {
+                const today = new Date();
+                const deadlineDate = new Date(deadline);
+                const diffTime = deadlineDate - today;
+                const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+                
+                if (diffDays <= 0) {
+                    return "deadline passed";
+                }
+                
+                const weeks = Math.floor(diffDays / 7);
+                const days = diffDays % 7;
+                
+                if (weeks > 0 && days > 0) {
+                    return `${weeks} week${weeks > 1 ? 's' : ''} ${days} day${days > 1 ? 's' : ''}`;
+                } else if (weeks > 0) {
+                    return `${weeks} week${weeks > 1 ? 's' : ''}`;
+                } else {
+                    return `${days} day${days > 1 ? 's' : ''}`;
+                }
+            }
+            
+            function showBadges() {
+                addBotMessage("You've earned these badges for your career exploration:");
+                
+                const badgesDiv = document.createElement('div');
+                badgesDiv.className = 'quick-actions';
+                
+                userProfile.badges.forEach(badge => {
+                    const badgeElement = document.createElement('span');
+                    badgeElement.className = 'badge';
+                    
+                    let icon = '';
+                    if (badge.includes("Explorer")) {
+                        icon = '<i class="fas fa-compass"></i>';
+                    } else if (badge.includes("Mentorship")) {
+                        icon = '<i class="fas fa-hands-helping"></i>';
+                    } else {
+                        icon = '<i class="fas fa-award"></i>';
+                    }
+                    
+                    badgeElement.innerHTML = `${icon} ${badge}`;
+                    badgesDiv.appendChild(badgeElement);
+                });
+                
+                const messageDiv = document.createElement('div');
+                messageDiv.className = 'message bot-message';
+                messageDiv.appendChild(badgesDiv);
+                
+                setTimeout(() => {
+                    chatbotMessages.appendChild(messageDiv);
+                    scrollToBottom();
+                }, 500);
+            }
+            
+            function showBadgeNotification(badgeName) {
+                const notificationDiv = document.createElement('div');
+                notificationDiv.className = 'message bot-message';
+                notificationDiv.innerHTML = `
+                    <p>🎉 Congratulations! You've earned the <strong>${badgeName}</strong> badge!</p>
+                    <p>Keep exploring to earn more achievements.</p>
+                `;
+                
+                chatbotMessages.appendChild(notificationDiv);
+                scrollToBottom();
+            }
+            
+            function showMotivationalMessage() {
+                const randomQuote = motivationalQuotes[Math.floor(Math.random() * motivationalQuotes.length)];
+                
+                const quoteDiv = document.createElement('div');
+                quoteDiv.className = 'message bot-message';
+                quoteDiv.style.backgroundColor = 'var(--accent-pink-transparent)';
+                quoteDiv.style.borderColor = 'rgba(255, 126, 185, 0.3)';
+                quoteDiv.innerHTML = `
+                    <p><strong>💖 Motivational Moment:</strong></p>
+                    <p><em>"${randomQuote}"</em></p>
+                `;
+                
+                chatbotMessages.appendChild(quoteDiv);
+                scrollToBottom();
+            }
+            
+            function detectNegativeSentiment(text) {
+                const negativeWords = ['frustrated', 'lost', 'confused', 'difficult', 'hard', 'struggle', 'help', 'problem'];
+                return negativeWords.some(word => text.toLowerCase().includes(word));
+            }
+            
+            function showSupportMessage() {
+                const supportDiv = document.createElement('div');
+                supportDiv.className = 'message bot-message support-message';
+                supportDiv.innerHTML = `
+                    <p>I sense you might be feeling a bit frustrated. Remember, career journeys have ups and downs.</p>
+                    <p>Would you like me to:</p>
+                    <div class="quick-actions" style="margin-top: 10px;">
+                        <button class="quick-action"><i class="fas fa-hands-helping"></i> Connect you with a mentor</button>
+                        <button class="quick-action"><i class="fas fa-users"></i> Suggest support communities</button>
+                        <button class="quick-action"><i class="fas fa-headset"></i> Connect with human support</button>
+                    </div>
+                `;
+                
+                // Add event listeners to the buttons
+                supportDiv.querySelectorAll('.quick-action').forEach(button => {
+                    button.addEventListener('click', () => {
+                        const action = button.textContent.trim();
+                        addUserMessage(action);
+                        showTypingIndicator();
+                        setTimeout(() => {
+                            removeTypingIndicator();
+                            
+                            if (action.includes('mentor')) {
+                                showMentorSuggestions();
+                            } else if (action.includes('communities')) {
+                                showCommunitySuggestions();
+                            } else if (action.includes('human')) {
+                                addBotMessage("I'll connect you with a JobsForHer support specialist. Please hold on...");
+                            }
+                        }, 1500);
+                    });
+                });
+                
+                chatbotMessages.appendChild(supportDiv);
+                scrollToBottom();
+            }
+            
+            function showConversationSummary() {
+                summaryContent.innerHTML = `
+                    <h4>Conversation Summary</h4>
+                    <p>Here's a recap of our discussion:</p>
+                    <ul>
+                        ${conversationHistory.slice(0, 10).map(msg => 
+                            `<li><strong>${msg.type === 'user' ? 'You' : 'Asha'}:</strong> ${msg.content.substring(0, 50)}${msg.content.length > 50 ? '...' : ''}</li>`
+                        ).join('')}
+                    </ul>
+                    <div class="resume-tips">
+                        <h4>Next Steps</h4>
+                        <ul>
+                            <li>Review the job opportunities we discussed</li>
+                            <li>Consider registering for the events mentioned</li>
+                            <li>Reach out to potential mentors</li>
+                            <li>Explore the recommended resources</li>
+                        </ul>
+                    </div>
+                `;
+                
+                summaryModal.classList.add('active');
+            }
+            
+            // Close modals when clicking outside
+            window.addEventListener('click', function(event) {
+                if (event.target === resumeModal) {
+                    resumeModal.classList.remove('active');
+                }
+                if (event.target === summaryModal) {
+                    summaryModal.classList.remove('active');
+                }
+                if (event.target === onboardingModal) {
+                    onboardingModal.classList.remove('active');
+                }
+                if (!event.target.closest('.emoji-picker') && !event.target.closest('.emoji-btn')) {
+                    emojiPicker.classList.remove('active');
+                }
+                if (!event.target.closest('.language-selector') && !event.target.closest('.language-btn')) {
+                    languageSelector.classList.remove('active');
+                }
+                if (event.target === authSection) {
+                    authSection.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                }
+            });
             
             // Initialize with chatbot hidden
             chatbotContainer.classList.remove('active');
