@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Asha AI Chatbot - Enhancing women careers with JobsForHer Foundation">
-    <title>Asha AI Chatbot</title>
+    <meta name="description" content="AshaAI - Empowering Indian Women in Tech with Career Discovery, Mentorship & Community">
+    <title>AshaAI - Your Career Companion</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
@@ -62,7 +62,7 @@
             line-height: 1.6;
             min-height: 100vh;
         }
-        
+
         /* Header */
         header {
             background-color: var(--current-card);
@@ -172,29 +172,7 @@
             box-shadow: 0 0 20px var(--accent-blue-transparent);
             transform: translateY(-2px);
         }
-        
-        /* Theme Toggle */
-        .theme-toggle {
-            background: transparent;
-            border: none;
-            color: var(--current-text);
-            font-size: 1.2rem;
-            cursor: pointer;
-            margin-left: 1rem;
-            transition: all 0.3s;
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .theme-toggle:hover {
-            background-color: var(--accent-purple-transparent);
-            color: var(--accent-purple);
-        }
-        
+
         /* Hero Section */
         .hero {
             margin-top: 80px;
@@ -203,6 +181,11 @@
             background: linear-gradient(135deg, rgba(79, 209, 255, 0.1), rgba(168, 139, 255, 0.1));
             position: relative;
             overflow: hidden;
+            min-height: 80vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
         }
         
         .hero::before {
@@ -218,10 +201,12 @@
         }
         
         .hero h1 {
-            font-size: 3rem;
+            font-size: 3.5rem;
             color: var(--current-text);
             margin-bottom: 1.5rem;
             font-weight: 700;
+            line-height: 1.2;
+            max-width: 900px;
         }
         
         .hero h1 span {
@@ -232,7 +217,7 @@
         }
         
         .hero p {
-            font-size: 1.2rem;
+            font-size: 1.4rem;
             max-width: 800px;
             margin: 0 auto 2rem;
             color: var(--current-text-secondary);
@@ -244,12 +229,95 @@
             gap: 1.5rem;
             margin-top: 2rem;
         }
+
+        /* Quotes Banner */
+        .quotes-banner {
+            background: linear-gradient(135deg, var(--accent-purple-transparent), var(--accent-teal-transparent));
+            padding: 1.5rem;
+            text-align: center;
+            font-size: 1.2rem;
+            font-weight: 500;
+            border-top: 1px solid var(--current-border);
+            border-bottom: 1px solid var(--current-border);
+            margin-bottom: 3rem;
+        }
         
+        .quote {
+            display: none;
+            animation: fadeIn 1s ease;
+        }
+        
+        .quote.active {
+            display: block;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Features Section */
+        .features {
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: var(--current-text);
+        }
+        
+        .section-title span {
+            color: var(--current-accent);
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .feature-card {
+            background-color: var(--current-card);
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border: 1px solid var(--current-border);
+            transition: transform 0.3s;
+            text-align: center;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        }
+        
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            color: var(--current-accent);
+        }
+        
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--current-text);
+        }
+        
+        .feature-card p {
+            color: var(--current-text-secondary);
+            margin-bottom: 1.5rem;
+        }
+
         /* Dashboard Grid */
         .dashboard {
             padding: 4rem 2rem;
             max-width: 1400px;
             margin: 0 auto;
+            display: none; /* Hidden by default, shown after login */
         }
         
         .dashboard-grid {
@@ -484,6 +552,100 @@
             background-color: var(--accent-purple-transparent);
             color: var(--accent-purple);
             transform: scale(1.1);
+        }
+        
+        /* Login Modal */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+        }
+        
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .modal-content {
+            background: var(--current-card);
+            border-radius: 12px;
+            padding: 2rem;
+            max-width: 500px;
+            width: 90%;
+            position: relative;
+            border: 1px solid var(--current-border);
+        }
+        
+        .modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: transparent;
+            border: none;
+            color: var(--current-text-secondary);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        .modal-title {
+            margin-bottom: 1.5rem;
+            color: var(--current-accent);
+            text-align: center;
+            font-size: 1.8rem;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--current-text);
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 1px solid var(--current-border);
+            border-radius: 8px;
+            background: var(--current-bg);
+            color: var(--current-text);
+            font-size: 1rem;
+        }
+        
+        .form-group input:focus {
+            border-color: var(--current-accent);
+            outline: none;
+            box-shadow: 0 0 0 2px var(--accent-blue-transparent);
+        }
+        
+        .form-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 2rem;
+        }
+        
+        .form-footer {
+            text-align: center;
+            margin-top: 1.5rem;
+            color: var(--current-text-secondary);
+        }
+        
+        .form-footer a {
+            color: var(--current-accent);
+            text-decoration: none;
         }
         
         /* Chatbot Container */
@@ -968,10 +1130,16 @@
             
             nav ul {
                 gap: 1rem;
+                flex-wrap: wrap;
+                justify-content: center;
             }
             
             .hero h1 {
                 font-size: 2.2rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
             }
             
             .hero-buttons {
@@ -1100,7 +1268,7 @@
         }
         
         /* Resume Review Modal */
-        .modal-overlay {
+        .resume-modal {
             position: fixed;
             top: 0;
             left: 0;
@@ -1116,12 +1284,12 @@
             transition: all 0.3s;
         }
         
-        .modal-overlay.active {
+        .resume-modal.active {
             opacity: 1;
             visibility: visible;
         }
         
-        .modal-content {
+        .resume-content {
             background: var(--current-card);
             border-radius: 12px;
             padding: 2rem;
@@ -1531,6 +1699,140 @@
             visibility: visible;
             opacity: 1;
         }
+
+        /* Career Path Section */
+        .career-path {
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            display: none; /* Hidden by default, shown after login */
+        }
+
+        .path-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .path-card {
+            background: var(--current-card);
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border: 1px solid var(--current-border);
+            transition: all 0.3s;
+        }
+
+        .path-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+
+        .path-card h3 {
+            color: var(--current-accent);
+            margin-bottom: 1rem;
+        }
+
+        .path-card .salary {
+            color: var(--accent-green);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .path-card .locations {
+            color: var(--current-text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .path-card .skills {
+            margin-top: 1rem;
+        }
+
+        .path-card .skill {
+            display: inline-block;
+            background: var(--accent-blue-transparent);
+            color: var(--current-accent);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-right: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Login/Signup Section */
+        .auth-section {
+            display: none;
+            padding: 4rem 2rem;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .auth-form {
+            background: var(--current-card);
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border: 1px solid var(--current-border);
+        }
+
+        .auth-tabs {
+            display: flex;
+            margin-bottom: 2rem;
+            border-bottom: 1px solid var(--current-border);
+        }
+
+        .auth-tab {
+            padding: 0.8rem 1.5rem;
+            cursor: pointer;
+            border-bottom: 2px solid transparent;
+            transition: all 0.3s;
+        }
+
+        .auth-tab.active {
+            border-bottom: 2px solid var(--current-accent);
+            color: var(--current-accent);
+        }
+
+        .auth-tab:hover {
+            color: var(--current-accent);
+        }
+
+        /* Confetti Effect */
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            background-color: var(--accent-pink);
+            opacity: 0;
+            z-index: 9999;
+            animation: confetti-fall 5s ease-out;
+        }
+
+        @keyframes confetti-fall {
+            0% {
+                transform: translateY(-100vh) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Emotional Selling Line */
+        .emotional-line {
+            text-align: center;
+            font-size: 1.2rem;
+            font-style: italic;
+            margin: 3rem 0;
+            padding: 1.5rem;
+            border-radius: 12px;
+            background: var(--accent-purple-transparent);
+            border: 1px solid var(--current-border);
+            color: var(--current-text);
+        }
     </style>
 </head>
 <body class="dark-mode">
@@ -1544,24 +1846,18 @@
         <nav>
             <ul>
                 <li><a href="#" class="active">Home</a></li>
-                <li><a href="#jobs">Careers</a></li>
+                <li><a href="#careers">Careers</a></li>
                 <li><a href="#mentorship">Mentorship</a></li>
                 <li><a href="#events">Events</a></li>
                 <li><a href="#communities">Communities</a></li>
                 <li><a href="#resources">Resources</a></li>
+                <li><a href="#about">About Us</a></li>
             </ul>
         </nav>
         
         <div class="nav-buttons">
-            <div class="search-bar">
-                <input type="text" placeholder="Search jobs, resources...">
-                <i class="fas fa-search"></i>
-            </div>
-            <div class="user-profile">
-                <div class="user-avatar">
-                    <i class="fas fa-user"></i>
-                </div>
-            </div>
+            <button class="btn btn-outline" id="loginBtn">Login</button>
+            <button class="btn btn-primary" id="signupBtn">Sign Up</button>
             <button class="theme-toggle" id="themeToggle">
                 <i class="fas fa-sun"></i>
             </button>
@@ -1569,117 +1865,178 @@
     </header>
     
     <!-- Hero Section -->
-    <section class="hero">
-        <h1>Meet Asha, Your <span>AI Career Ally</span></h1>
-        <p>Empowering women to navigate their career journey with personalized guidance, mentorship connections, and job opportunities tailored just for you.</p>
+    <section class="hero" id="home">
+        <h1>Your Dreams Are Valid. <span>Your Journey Starts Here.</span></h1>
+        <p>Career discovery, mentorship, community, and opportunities tailored for ambitious women across India.</p>
         
         <div class="hero-buttons">
-            <a href="#" class="btn btn-primary" id="startChatBtn">Start Chat</a>
-            <a href="#" class="btn btn-outline">How It Works</a>
+            <a href="#" class="btn btn-primary" id="startJourneyBtn">Start My Journey</a>
+            <a href="#" class="btn btn-outline" id="exploreBtn">Explore Opportunities</a>
         </div>
     </section>
-    
-    <!-- Dashboard Section -->
-    <section class="dashboard">
+
+    <!-- Quotes Banner -->
+    <div class="quotes-banner">
+        <div class="quote active">"She remembered who she was and the game changed."</div>
+        <div class="quote">"The future is female."</div>
+        <div class="quote">"Behind every successful woman is HERSELF."</div>
+        <div class="quote">"Be the woman who fixes another woman's crown."</div>
+    </div>
+
+    <!-- Features Section -->
+    <section class="features">
+        <h2 class="section-title">How <span>AshaAI</span> Empowers You</h2>
+        
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-briefcase"></i>
+                </div>
+                <h3>Career Path</h3>
+                <p>Discover personalized career paths with salary expectations, required skills, and growth opportunities in the Indian market.</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-hands-helping"></i>
+                </div>
+                <h3>Mentorship</h3>
+                <p>Connect with experienced mentors who can guide you through your career journey and personal growth.</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-calendar-star"></i>
+                </div>
+                <h3>Events</h3>
+                <p>Access exclusive workshops, webinars, and networking events designed for women in tech across India.</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-users"></i>
+                </div>
+                <h3>Communities</h3>
+                <p>Join supportive communities of like-minded women to share experiences, ask questions, and grow together.</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-book"></i>
+                </div>
+                <h3>Resources</h3>
+                <p>Get access to free courses, resume templates, interview guides, and scholarship information.</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-robot"></i>
+                </div>
+                <h3>AI Companion</h3>
+                <p>24/7 support from Asha, your AI career assistant, ready to answer questions and provide guidance.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Emotional Selling Line -->
+    <div class="emotional-line">
+        "Dear woman, you are powerful, you are capable, and your dreams are valid. Let's build your future — together."
+    </div>
+
+    <!-- Dashboard Section (Hidden before login) -->
+    <section class="dashboard" id="dashboard">
         <div class="dashboard-grid">
             <!-- Sidebar Navigation -->
             <aside class="sidebar">
                 <ul class="sidebar-nav">
                     <li><a href="#" class="active"><i class="fas fa-home"></i> Dashboard</a></li>
-                    <li><a href="#jobs"><i class="fas fa-briefcase"></i> Career Path</a></li>
-                    <li><a href="#events"><i class="fas fa-calendar-alt"></i> Events</a></li>
+                    <li><a href="#career-path"><i class="fas fa-briefcase"></i> Career Path</a></li>
+                    <li><a href="#job-search"><i class="fas fa-search"></i> Job Search</a></li>
                     <li><a href="#mentorship"><i class="fas fa-hands-helping"></i> Mentorship</a></li>
+                    <li><a href="#events"><i class="fas fa-calendar-alt"></i> Events</a></li>
                     <li><a href="#communities"><i class="fas fa-users"></i> Communities</a></li>
                     <li><a href="#resources"><i class="fas fa-book"></i> Resources</a></li>
+                    <li><a href="#achievements"><i class="fas fa-trophy"></i> My Achievements</a></li>
+                    <li><a href="#notifications"><i class="fas fa-bell"></i> Notifications</a></li>
                     <li><a href="#settings"><i class="fas fa-cog"></i> Settings</a></li>
                 </ul>
             </aside>
             
             <!-- Main Content -->
             <div class="main-content">
-                <!-- Stats Cards -->
-                <div class="stats-grid">
-                    <div class="stat-card">
-                        <h3>Recommended Jobs</h3>
-                        <div class="value">24</div>
-                        <div class="change"><i class="fas fa-arrow-up"></i> 3 new today</div>
-                    </div>
-                    <div class="stat-card">
-                        <h3>Mentor Sessions</h3>
-                        <div class="value">5</div>
-                        <div class="change"><i class="fas fa-check-circle"></i> 1 upcoming</div>
-                    </div>
-                    <div class="stat-card">
-                        <h3>Career Progress</h3>
-                        <div class="value">78%</div>
-                        <div class="change"><i class="fas fa-chart-line"></i> 12% this month</div>
-                    </div>
-                    <div class="stat-card">
-                        <h3>Community</h3>
-                        <div class="value">42</div>
-                        <div class="change"><i class="fas fa-users"></i> New connections</div>
-                    </div>
+                <div class="welcome-message">
+                    <h2>Welcome, <span id="userName">Priya</span>!</h2>
+                    <p>Your personalized dashboard is ready to help you achieve your career goals.</p>
                 </div>
                 
-                <!-- Career Companion Section -->
-                <h2 style="color: var(--current-text); margin-top: 2rem;">Career Companion</h2>
-                <div class="companion-goal">
-                    <h4>Current Goal: Find a remote job in marketing within 3 months</h4>
+                <!-- Weekly Goals -->
+                <div class="stat-card">
+                    <h3>Your Weekly Goal</h3>
+                    <p>Apply for 3 jobs | Attend 1 event | Connect with 1 mentor</p>
                     <div class="progress-bar">
                         <div class="progress-fill" style="width: 45%"></div>
                     </div>
-                    <p>45% complete - 1 month 2 weeks remaining</p>
-                    <button class="quick-action" style="margin-top: 10px;">
-                        <i class="fas fa-edit"></i> Update Goal
-                    </button>
                 </div>
                 
-                <!-- Job Listings -->
-                <h2 style="color: var(--current-text); margin-top: 2rem;">Recommended For You</h2>
+                <!-- Quick Stats -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <h3>Jobs Applied</h3>
+                        <div class="value">2</div>
+                        <div class="change">this week</div>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Mentors Contacted</h3>
+                        <div class="value">1</div>
+                        <div class="change">this week</div>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Events Registered</h3>
+                        <div class="value">1</div>
+                        <div class="change">this week</div>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Profile Completion</h3>
+                        <div class="value">80%</div>
+                        <div class="change">almost there!</div>
+                    </div>
+                </div>
+                
+                <!-- Recommended Jobs -->
+                <h2>Recommended Jobs For You</h2>
                 <div class="job-listings">
                     <div class="job-card">
-                        <h3>Senior Product Designer</h3>
-                        <div class="company">TechFusion India</div>
+                        <h3>Frontend Developer</h3>
+                        <div class="company">TechSolutions India</div>
                         <div class="details">
                             <span><i class="fas fa-map-marker-alt"></i> Bangalore, KA</span>
-                            <span><i class="fas fa-rupee-sign"></i> ₹18L - ₹22L</span>
-                        </div>
-                        <div class="tags">
-                            <span class="tag">UI/UX</span>
-                            <span class="tag">Figma</span>
-                            <span class="tag">5+ years</span>
-                        </div>
-                    </div>
-                    <div class="job-card">
-                        <h3>Marketing Manager</h3>
-                        <div class="company">GrowthMarketing India</div>
-                        <div class="details">
-                            <span><i class="fas fa-map-marker-alt"></i> Mumbai, MH</span>
-                            <span><i class="fas fa-rupee-sign"></i> ₹15L - ₹20L</span>
-                        </div>
-                        <div class="tags">
-                            <span class="tag">Digital</span>
-                            <span class="tag">SEO</span>
-                            <span class="tag">3+ years</span>
-                        </div>
-                    </div>
-                    <div class="job-card">
-                        <h3>Frontend Developer</h3>
-                        <div class="company">WebSolutions India</div>
-                        <div class="details">
-                            <span><i class="fas fa-map-marker-alt"></i> Hybrid (Delhi)</span>
-                            <span><i class="fas fa-rupee-sign"></i> ₹20L - ₹25L</span>
+                            <span><i class="fas fa-rupee-sign"></i> ₹6L - ₹8L</span>
+                            <span><i class="fas fa-clock"></i> Full-time</span>
                         </div>
                         <div class="tags">
                             <span class="tag">React</span>
                             <span class="tag">JavaScript</span>
-                            <span class="tag">4+ years</span>
+                            <span class="tag">Fresher</span>
+                        </div>
+                    </div>
+                    <div class="job-card">
+                        <h3>UX Designer</h3>
+                        <div class="company">DesignHub India</div>
+                        <div class="details">
+                            <span><i class="fas fa-map-marker-alt"></i> Remote</span>
+                            <span><i class="fas fa-rupee-sign"></i> ₹5L - ₹7L</span>
+                            <span><i class="fas fa-clock"></i> Full-time</span>
+                        </div>
+                        <div class="tags">
+                            <span class="tag">Figma</span>
+                            <span class="tag">UI/UX</span>
+                            <span class="tag">0-2 years</span>
                         </div>
                     </div>
                 </div>
                 
-                <!-- Events Section -->
-                <h2 style="color: var(--current-text); margin-top: 2rem;">Upcoming Events</h2>
+                <!-- Upcoming Events -->
+                <h2>Upcoming Events</h2>
                 <div class="job-listings">
                     <div class="job-card">
                         <h3>Women in Tech Conference</h3>
@@ -1693,36 +2050,158 @@
                             <span class="tag">In-Person</span>
                         </div>
                     </div>
-                    <div class="job-card">
-                        <h3>Leadership Workshop</h3>
-                        <div class="company">Online, July 2</div>
-                        <div class="details">
-                            <span><i class="fas fa-clock"></i> 2:00 PM - 4:00 PM</span>
-                            <span><i class="fas fa-tag"></i> Skill Development</span>
-                        </div>
-                        <div class="tags">
-                            <span class="tag">Free</span>
-                            <span class="tag">Virtual</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Resource Center -->
-                <h2 style="color: var(--current-text); margin-top: 2rem;">Resource Center</h2>
-                <div class="resource-card">
-                    <h4>Resume Building Guide</h4>
-                    <p>Learn how to create a resume that stands out with our comprehensive guide.</p>
-                    <a href="#" class="resource-link">View Resource <i class="fas fa-external-link-alt"></i></a>
-                </div>
-                <div class="resource-card">
-                    <h4>Interview Tips for Women</h4>
-                    <p>Strategies to confidently navigate interviews and showcase your strengths.</p>
-                    <a href="#" class="resource-link">View Resource <i class="fas fa-external-link-alt"></i></a>
                 </div>
             </div>
         </div>
     </section>
-    
+
+    <!-- Career Path Section (Hidden before login) -->
+    <section class="career-path" id="career-path">
+        <h2 class="section-title">Map Your Journey <span>With Confidence</span></h2>
+        <p>Whether you're just starting, switching careers, or returning after a break, we have customized paths for you.</p>
+        
+        <div class="path-options">
+            <div class="path-card">
+                <h3>Software Developer</h3>
+                <div class="salary">Starting salary: ₹6-8 LPA</div>
+                <div class="locations">Best Locations: Bengaluru, Pune, Hyderabad</div>
+                <p>Build applications and systems that power our digital world.</p>
+                <div class="skills">
+                    <span class="skill">HTML/CSS</span>
+                    <span class="skill">JavaScript</span>
+                    <span class="skill">React</span>
+                    <span class="skill">Node.js</span>
+                </div>
+            </div>
+            
+            <div class="path-card">
+                <h3>Data Analyst</h3>
+                <div class="salary">Starting salary: ₹5.5 LPA</div>
+                <div class="locations">Best Locations: Gurgaon, Noida, Chennai</div>
+                <p>Turn data into insights that drive business decisions.</p>
+                <div class="skills">
+                    <span class="skill">Python</span>
+                    <span class="skill">SQL</span>
+                    <span class="skill">Excel</span>
+                    <span class="skill">Tableau</span>
+                </div>
+            </div>
+            
+            <div class="path-card">
+                <h3>Product Manager</h3>
+                <div class="salary">Starting salary: ₹8-10 LPA</div>
+                <div class="locations">Best Locations: Mumbai, Bengaluru, Delhi</div>
+                <p>Lead product development from conception to launch.</p>
+                <div class="skills">
+                    <span class="skill">Market Research</span>
+                    <span class="skill">Agile</span>
+                    <span class="skill">UX Basics</span>
+                    <span class="skill">Leadership</span>
+                </div>
+            </div>
+            
+            <div class="path-card">
+                <h3>UX/UI Designer</h3>
+                <div class="salary">Starting salary: ₹5-7 LPA</div>
+                <div class="locations">Best Locations: Bengaluru, Pune, Hyderabad</div>
+                <p>Create intuitive and beautiful digital experiences.</p>
+                <div class="skills">
+                    <span class="skill">Figma</span>
+                    <span class="skill">User Research</span>
+                    <span class="skill">Wireframing</span>
+                    <span class="skill">Prototyping</span>
+                </div>
+            </div>
+            
+            <div class="path-card">
+                <h3>Cloud Architect</h3>
+                <div class="salary">Starting salary: ₹10-12 LPA</div>
+                <div class="locations">Best Locations: Bengaluru, Pune, Hyderabad</div>
+                <p>Design and implement cloud solutions for businesses.</p>
+                <div class="skills">
+                    <span class="skill">AWS</span>
+                    <span class="skill">Azure</span>
+                    <span class="skill">DevOps</span>
+                    <span class="skill">Networking</span>
+                </div>
+            </div>
+            
+            <div class="path-card">
+                <h3>Cybersecurity Analyst</h3>
+                <div class="salary">Starting salary: ₹7-9 LPA</div>
+                <div class="locations">Best Locations: Mumbai, Delhi, Bengaluru</div>
+                <p>Protect systems and networks from digital attacks.</p>
+                <div class="skills">
+                    <span class="skill">Ethical Hacking</span>
+                    <span class="skill">Network Security</span>
+                    <span class="skill">Risk Assessment</span>
+                    <span class="skill">Incident Response</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Login/Signup Section -->
+    <section class="auth-section" id="auth-section">
+        <div class="auth-form">
+            <div class="auth-tabs">
+                <div class="auth-tab active" id="loginTab">Login</div>
+                <div class="auth-tab" id="signupTab">Sign Up</div>
+            </div>
+            
+            <div id="loginForm">
+                <div class="form-group">
+                    <label for="loginEmail">Email</label>
+                    <input type="email" id="loginEmail" placeholder="Enter your email">
+                </div>
+                
+                <div class="form-group">
+                    <label for="loginPassword">Password</label>
+                    <input type="password" id="loginPassword" placeholder="Enter your password">
+                </div>
+                
+                <div class="form-actions">
+                    <button class="btn btn-primary">Login</button>
+                    <a href="#" class="forgot-password">Forgot Password?</a>
+                </div>
+                
+                <div class="form-footer">
+                    Don't have an account? <a href="#" id="switchToSignup">Sign Up</a>
+                </div>
+            </div>
+            
+            <div id="signupForm" style="display: none;">
+                <div class="form-group">
+                    <label for="signupName">Full Name</label>
+                    <input type="text" id="signupName" placeholder="Enter your full name">
+                </div>
+                
+                <div class="form-group">
+                    <label for="signupEmail">Email</label>
+                    <input type="email" id="signupEmail" placeholder="Enter your email">
+                </div>
+                
+                <div class="form-group">
+                    <label for="signupPassword">Password</label>
+                    <input type="password" id="signupPassword" placeholder="Create a password">
+                </div>
+                
+                <div class="form-group">
+                    <label for="signupConfirmPassword">Confirm Password</label>
+                    <input type="password" id="signupConfirmPassword" placeholder="Confirm your password">
+                </div>
+                
+                <div class="form-actions">
+                    <button class="btn btn-primary">Sign Up</button>
+                </div>
+                
+                <div class="form-footer">
+                    Already have an account? <a href="#" id="switchToLogin">Login</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Chatbot Toggle Button -->
     <div class="chatbot-toggle" id="chatbotToggle">
         <i class="fas fa-comment-dots"></i>
@@ -1802,8 +2281,8 @@
     </div>
     
     <!-- Resume Review Modal -->
-    <div class="modal-overlay" id="resumeModal">
-        <div class="modal-content">
+    <div class="resume-modal" id="resumeModal">
+        <div class="resume-content">
             <button class="modal-close" id="resumeModalClose">
                 <i class="fas fa-times"></i>
             </button>
@@ -2030,7 +2509,20 @@
             const menuButtons = document.querySelectorAll('.menu-button');
             const notification = document.getElementById('notification');
             const notificationMessage = document.getElementById('notificationMessage');
-            const startChatBtn = document.getElementById('startChatBtn');
+            const startChatBtn = document.getElementById('startJourneyBtn');
+            const exploreBtn = document.getElementById('exploreBtn');
+            const loginBtn = document.getElementById('loginBtn');
+            const signupBtn = document.getElementById('signupBtn');
+            const authSection = document.getElementById('auth-section');
+            const loginTab = document.getElementById('loginTab');
+            const signupTab = document.getElementById('signupTab');
+            const loginForm = document.getElementById('loginForm');
+            const signupForm = document.getElementById('signupForm');
+            const switchToLogin = document.getElementById('switchToLogin');
+            const switchToSignup = document.getElementById('switchToSignup');
+            const dashboard = document.getElementById('dashboard');
+            const careerPathSection = document.getElementById('career-path');
+            const quotes = document.querySelectorAll('.quote');
             const resumeModal = document.getElementById('resumeModal');
             const resumeModalClose = document.getElementById('resumeModalClose');
             const fileUpload = document.getElementById('fileUpload');
@@ -2054,6 +2546,18 @@
             let isListening = false;
             let recognition;
             let messageCount = 0;
+            let isLoggedIn = false;
+            let currentQuote = 0;
+            
+            // Rotate quotes every 5 seconds
+            function rotateQuotes() {
+                quotes[currentQuote].classList.remove('active');
+                currentQuote = (currentQuote + 1) % quotes.length;
+                quotes[currentQuote].classList.add('active');
+            }
+            
+            // Start quote rotation
+            setInterval(rotateQuotes, 5000);
             
             // Initialize Speech Recognition
             try {
@@ -2141,9 +2645,193 @@
                 }
             });
             
+            exploreBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                // Show some featured opportunities without requiring login
+                addBotMessage("Here are some featured opportunities you can explore:");
+                
+                const opportunitiesDiv = document.createElement('div');
+                opportunitiesDiv.innerHTML = `
+                    <div class="quick-actions">
+                        <button class="quick-action"><i class="fas fa-briefcase"></i> Featured Jobs</button>
+                        <button class="quick-action"><i class="fas fa-calendar-alt"></i> Upcoming Events</button>
+                        <button class="quick-action"><i class="fas fa-book"></i> Free Resources</button>
+                    </div>
+                `;
+                
+                setTimeout(() => {
+                    addBotMessage(opportunitiesDiv);
+                }, 500);
+            });
+            
             chatbotClose.addEventListener('click', function() {
                 chatbotContainer.classList.remove('active');
             });
+            
+            // Login/Signup functionality
+            loginBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                authSection.style.display = 'block';
+                loginForm.style.display = 'block';
+                signupForm.style.display = 'none';
+                loginTab.classList.add('active');
+                signupTab.classList.remove('active');
+                document.body.style.overflow = 'hidden';
+            });
+            
+            signupBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                authSection.style.display = 'block';
+                loginForm.style.display = 'none';
+                signupForm.style.display = 'block';
+                loginTab.classList.remove('active');
+                signupTab.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            });
+            
+            loginTab.addEventListener('click', function() {
+                loginForm.style.display = 'block';
+                signupForm.style.display = 'none';
+                loginTab.classList.add('active');
+                signupTab.classList.remove('active');
+            });
+            
+            signupTab.addEventListener('click', function() {
+                loginForm.style.display = 'none';
+                signupForm.style.display = 'block';
+                loginTab.classList.remove('active');
+                signupTab.classList.add('active');
+            });
+            
+            switchToLogin.addEventListener('click', function(e) {
+                e.preventDefault();
+                loginForm.style.display = 'block';
+                signupForm.style.display = 'none';
+                loginTab.classList.add('active');
+                signupTab.classList.remove('active');
+            });
+            
+            switchToSignup.addEventListener('click', function(e) {
+                e.preventDefault();
+                loginForm.style.display = 'none';
+                signupForm.style.display = 'block';
+                loginTab.classList.remove('active');
+                signupTab.classList.add('active');
+            });
+            
+            // Simulate login (in a real app, this would be handled by your backend)
+            document.querySelector('#loginForm .btn-primary').addEventListener('click', function() {
+                // Validate inputs
+                const email = document.getElementById('loginEmail').value;
+                const password = document.getElementById('loginPassword').value;
+                
+                if (!email || !password) {
+                    showNotification('Please fill in all fields');
+                    return;
+                }
+                
+                // Simulate successful login
+                isLoggedIn = true;
+                authSection.style.display = 'none';
+                document.body.style.overflow = 'auto';
+                
+                // Show dashboard and hide other sections
+                dashboard.style.display = 'block';
+                careerPathSection.style.display = 'block';
+                document.querySelector('header .nav-buttons').innerHTML = `
+                    <div class="user-profile">
+                        <div class="user-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                    </div>
+                    <button class="theme-toggle" id="themeToggle">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                `;
+                
+                // Show welcome notification
+                showNotification('Welcome back! Your dashboard is ready.');
+                
+                // Show onboarding if not completed
+                if (!localStorage.getItem('onboardingComplete')) {
+                    setTimeout(() => {
+                        onboardingModal.classList.add('active');
+                    }, 1000);
+                }
+            });
+            
+            // Simulate signup (in a real app, this would be handled by your backend)
+            document.querySelector('#signupForm .btn-primary').addEventListener('click', function() {
+                // Validate inputs
+                const name = document.getElementById('signupName').value;
+                const email = document.getElementById('signupEmail').value;
+                const password = document.getElementById('signupPassword').value;
+                const confirmPassword = document.getElementById('signupConfirmPassword').value;
+                
+                if (!name || !email || !password || !confirmPassword) {
+                    showNotification('Please fill in all fields');
+                    return;
+                }
+                
+                if (password !== confirmPassword) {
+                    showNotification('Passwords do not match');
+                    return;
+                }
+                
+                // Simulate successful signup
+                isLoggedIn = true;
+                authSection.style.display = 'none';
+                document.body.style.overflow = 'auto';
+                userProfile.name = name.split(' ')[0]; // Use first name
+                
+                // Show dashboard and hide other sections
+                dashboard.style.display = 'block';
+                careerPathSection.style.display = 'block';
+                document.querySelector('header .nav-buttons').innerHTML = `
+                    <div class="user-profile">
+                        <div class="user-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                    </div>
+                    <button class="theme-toggle" id="themeToggle">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                `;
+                
+                // Update welcome message with user's name
+                document.getElementById('userName').textContent = userProfile.name;
+                
+                // Show welcome notification
+                showNotification(`Welcome ${userProfile.name}! Let's get started with your career journey.`);
+                
+                // Show onboarding
+                setTimeout(() => {
+                    onboardingModal.classList.add('active');
+                }, 1000);
+                
+                // Create confetti effect
+                createConfetti();
+            });
+            
+            // Function to create confetti effect
+            function createConfetti() {
+                const colors = ['#4FD1FF', '#A88BFF', '#8FFFAB', '#FF7EB9', '#FFA85C'];
+                
+                for (let i = 0; i < 100; i++) {
+                    const confetti = document.createElement('div');
+                    confetti.className = 'confetti';
+                    confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                    confetti.style.left = Math.random() * 100 + 'vw';
+                    confetti.style.animationDuration = Math.random() * 3 + 2 + 's';
+                    confetti.style.animationDelay = Math.random() * 5 + 's';
+                    document.body.appendChild(confetti);
+                    
+                    // Remove confetti after animation completes
+                    setTimeout(() => {
+                        confetti.remove();
+                    }, 7000);
+                }
+            }
             
             // Send message when button is clicked
             sendButton.addEventListener('click', sendMessage);
@@ -2360,11 +3048,11 @@
                     quickActions.className = 'quick-actions';
                     
                     let categories = [
-                        {icon: 'briefcase', text: 'Job Search'},
+                        {icon: 'briefcase', text: 'Find Tech Jobs'},
                         {icon: 'calendar-star', text: 'Upcoming Events'},
-                        {icon: 'hands-helping', text: 'Mentor Matching'},
-                        {icon: 'chart-line', text: 'Career Growth'},
-                        {icon: 'book', text: 'Resources'},
+                        {icon: 'hands-helping', text: 'Match Me With A Mentor'},
+                        {icon: 'chart-line', text: 'Career Growth Advice'},
+                        {icon: 'book', text: 'Learning Resources'},
                         {icon: 'file-alt', text: 'Resume Review'}
                     ];
                     
@@ -2738,16 +3426,16 @@
                     
                     // Handle different quick actions
                     switch(action) {
-                        case 'Job Search':
+                        case 'Find Tech Jobs':
                             showJobSuggestions();
                             break;
                         case 'Upcoming Events':
                             showEventSuggestions();
                             break;
-                        case 'Mentor Matching':
+                        case 'Match Me With A Mentor':
                             showMentorSuggestions();
                             break;
-                        case 'Career Growth':
+                        case 'Career Growth Advice':
                             addBotMessage("Career growth involves continuous learning and skill development. Here are some tips:");
                             
                             const tipsDiv = document.createElement('div');
@@ -2768,7 +3456,7 @@
                                 addBotMessage(tipsDiv);
                             }, 500);
                             break;
-                        case 'Resources':
+                        case 'Learning Resources':
                             showResourceCenter();
                             break;
                         case 'Resume Review':
@@ -3060,7 +3748,7 @@
                 resourcesDiv.innerHTML = `
                     <div class="resource-card">
                         <h4>${category || 'Career'} Development Guide</h4>
-                        <p>Comprehensive guide to advancing your ${category ? category + ' ' : ''}career with actionable strategies.</p>
+                        <p>Learn how to create a resume that stands out with our comprehensive guide.</p>
                         <a href="#" class="resource-link">View Resource <i class="fas fa-external-link-alt"></i></a>
                     </div>
                     <div class="resource-card">
@@ -3272,13 +3960,14 @@
                 if (!event.target.closest('.language-selector') && !event.target.closest('.language-btn')) {
                     languageSelector.classList.remove('active');
                 }
+                if (event.target === authSection) {
+                    authSection.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                }
             });
             
             // Initialize with chatbot hidden
             chatbotContainer.classList.remove('active');
-            
-            // Show onboarding if not completed
-            showOnboarding();
         });
     </script>
 </body>
