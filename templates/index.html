@@ -223,11 +223,47 @@
             color: var(--current-text-secondary);
         }
         
+        .hero .subtitle {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            color: var(--current-text-secondary);
+        }
+        
         .hero-buttons {
             display: flex;
             justify-content: center;
             gap: 1.5rem;
             margin-top: 2rem;
+        }
+
+        /* Stats Banner */
+        .stats-banner {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 3rem;
+            flex-wrap: wrap;
+        }
+        
+        .stat-card {
+            background-color: var(--current-card);
+            border-radius: 12px;
+            padding: 1.5rem;
+            min-width: 250px;
+            text-align: center;
+            border: 1px solid var(--current-border);
+        }
+        
+        .stat-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: var(--current-accent);
+        }
+        
+        .stat-card p {
+            font-size: 0.9rem;
+            color: var(--current-text-secondary);
         }
 
         /* Quotes Banner */
@@ -1147,6 +1183,11 @@
                 gap: 1rem;
             }
             
+            .stats-banner {
+                flex-direction: column;
+                align-items: center;
+            }
+            
             .chatbot-container {
                 width: 95%;
                 right: 2.5%;
@@ -1833,6 +1874,58 @@
             border: 1px solid var(--current-border);
             color: var(--current-text);
         }
+
+        /* Neon Button */
+        .btn-neon {
+            background: transparent;
+            color: var(--accent-blue);
+            border: 2px solid var(--accent-blue);
+            border-radius: 30px;
+            padding: 0.8rem 1.8rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s;
+            box-shadow: 0 0 10px var(--accent-blue-transparent), 0 0 20px var(--accent-blue-transparent);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-neon:hover {
+            background: var(--accent-blue-transparent);
+            box-shadow: 0 0 15px var(--accent-blue-transparent), 0 0 30px var(--accent-blue-transparent);
+            transform: translateY(-2px);
+        }
+
+        .btn-neon::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                to bottom right,
+                transparent,
+                transparent,
+                transparent,
+                var(--accent-blue),
+                transparent,
+                transparent,
+                transparent
+            );
+            transform: rotate(30deg);
+            animation: shine 3s infinite;
+            opacity: 0.5;
+        }
+
+        @keyframes shine {
+            0% {
+                left: -50%;
+            }
+            100% {
+                left: 150%;
+            }
+        }
     </style>
 </head>
 <body class="dark-mode">
@@ -1866,12 +1959,28 @@
     
     <!-- Hero Section -->
     <section class="hero" id="home">
-        <h1>Your Dreams Are Valid. <span>Your Journey Starts Here.</span></h1>
-        <p>Career discovery, mentorship, community, and opportunities tailored for ambitious women across India.</p>
+        <h1>Meet Asha, Your AI Career Assistant</h1>
+        <p class="subtitle">Personalized career guidance, job recommendations, and mentorship matching for women - all powered by AI to help you advance in your professional journey. Your Dreams Are Valid. Your Journey Starts Here.</p>
         
         <div class="hero-buttons">
-            <a href="#" class="btn btn-primary" id="startJourneyBtn">Start My Journey</a>
-            <a href="#" class="btn btn-outline" id="exploreBtn">Explore Opportunities</a>
+            <a href="#" class="btn-neon" id="startChatBtn">Chat with Asha</a>
+            <a href="#" class="btn btn-outline" id="exploreFeaturesBtn">Explore Features</a>
+        </div>
+
+        <!-- Stats Banner -->
+        <div class="stats-banner">
+            <div class="stat-card">
+                <h3>WOMEN EMPOWERED</h3>
+                <p>10000+ professional women advancing their careers</p>
+            </div>
+            <div class="stat-card">
+                <h3>JOB OPPORTUNITIES</h3>
+                <p>5000+ open positions across industries</p>
+            </div>
+            <div class="stat-card">
+                <h3>MENTORSHIP SESSIONS</h3>
+                <p>2500+ successful mentoring connections</p>
+            </div>
         </div>
     </section>
 
@@ -2509,8 +2618,8 @@
             const menuButtons = document.querySelectorAll('.menu-button');
             const notification = document.getElementById('notification');
             const notificationMessage = document.getElementById('notificationMessage');
-            const startChatBtn = document.getElementById('startJourneyBtn');
-            const exploreBtn = document.getElementById('exploreBtn');
+            const startChatBtn = document.getElementById('startChatBtn');
+            const exploreFeaturesBtn = document.getElementById('exploreFeaturesBtn');
             const loginBtn = document.getElementById('loginBtn');
             const signupBtn = document.getElementById('signupBtn');
             const authSection = document.getElementById('auth-section');
@@ -2645,23 +2754,12 @@
                 }
             });
             
-            exploreBtn.addEventListener('click', function(e) {
+            exploreFeaturesBtn.addEventListener('click', function(e) {
                 e.preventDefault();
-                // Show some featured opportunities without requiring login
-                addBotMessage("Here are some featured opportunities you can explore:");
-                
-                const opportunitiesDiv = document.createElement('div');
-                opportunitiesDiv.innerHTML = `
-                    <div class="quick-actions">
-                        <button class="quick-action"><i class="fas fa-briefcase"></i> Featured Jobs</button>
-                        <button class="quick-action"><i class="fas fa-calendar-alt"></i> Upcoming Events</button>
-                        <button class="quick-action"><i class="fas fa-book"></i> Free Resources</button>
-                    </div>
-                `;
-                
-                setTimeout(() => {
-                    addBotMessage(opportunitiesDiv);
-                }, 500);
+                // Scroll to features section
+                document.querySelector('.features').scrollIntoView({ 
+                    behavior: 'smooth' 
+                });
             });
             
             chatbotClose.addEventListener('click', function() {
@@ -2813,7 +2911,6 @@
                 createConfetti();
             });
             
-            // Function to create confetti effect
             function createConfetti() {
                 const colors = ['#4FD1FF', '#A88BFF', '#8FFFAB', '#FF7EB9', '#FFA85C'];
                 
