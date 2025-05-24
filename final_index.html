@@ -1,0 +1,1649 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="JobsForHer Foundation - Empowering Indian Women in Their Career Journey with AI-Powered Guidance">
+    <title>JobsForHer Foundation - Your Career Companion</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            /* Professional Dark Theme */
+            --bg-dark: #0E0E10;
+            --card-dark: #1C1C1E;
+            --text-light: #F5F5F7;
+            --text-secondary: #9A9A9A;
+            --accent-blue: #4FD1FF;
+            --accent-green: #8FFFAB;
+            --accent-purple: #A88BFF;
+            --accent-teal: #4FE3C2;
+            --accent-pink: #FF7EB9;
+            --accent-orange: #FFA85C;
+            --accent-blue-transparent: rgba(79, 209, 255, 0.2);
+            --accent-purple-transparent: rgba(168, 139, 255, 0.2);
+            --accent-green-transparent: rgba(143, 255, 171, 0.2);
+            --accent-teal-transparent: rgba(79, 227, 194, 0.2);
+            
+            /* Current theme variables */
+            --current-bg: var(--bg-dark);
+            --current-card: var(--card-dark);
+            --current-text: var(--text-light);
+            --current-text-secondary: var(--text-secondary);
+            --current-accent: var(--accent-blue);
+            --current-border: rgba(245, 245, 247, 0.1);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', 'Segoe UI', sans-serif;
+            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
+        
+        body {
+            background-color: var(--current-bg);
+            color: var(--current-text);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        /* Header */
+        header {
+            background-color: var(--current-card);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid var(--current-border); 
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .logo-icon {
+            width: 50px;
+            height: 50px;
+            background: url('attached_assets/logo_1748060088583.png') center/contain no-repeat;
+            filter: drop-shadow(0 0 8px rgba(79, 209, 255, 0.3));
+        }
+        
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .logo-main {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--current-text);
+            line-height: 1;
+        }
+
+        .logo-sub {
+            font-size: 0.75rem;
+            color: var(--accent-teal);
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .nav-buttons {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .user-dashboard {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .user-profile {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            background: var(--current-card);
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            border: 1px solid var(--current-border);
+        }
+
+        .user-avatar-header {
+            width: 35px;
+            height: 35px;
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-teal));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--current-bg);
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .user-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .user-name {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--current-text);
+            line-height: 1;
+        }
+
+        .user-role {
+            font-size: 0.75rem;
+            color: var(--current-text-secondary);
+            line-height: 1;
+        }
+
+        .language-selector {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--current-card);
+            padding: 0.5rem;
+            border-radius: 20px;
+            border: 1px solid var(--current-border);
+        }
+
+        .language-btn {
+            padding: 0.25rem 0.75rem;
+            border: none;
+            border-radius: 15px;
+            background: transparent;
+            color: var(--current-text-secondary);
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .language-btn.active {
+            background: var(--accent-blue-transparent);
+            color: var(--current-accent);
+        }
+        
+        .btn {
+            padding: 0.6rem 1.2rem;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            border: none;
+            font-size: 0.9rem;
+        }
+        
+        .btn-outline {
+            border: 2px solid var(--current-accent);
+            color: var(--current-accent);
+            background: transparent;
+        }
+        
+        .btn-outline:hover {
+            background-color: var(--accent-blue-transparent);
+            box-shadow: 0 0 15px var(--accent-blue-transparent);
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-teal));
+            color: var(--current-bg);
+        }
+        
+        .btn-primary:hover {
+            box-shadow: 0 0 20px var(--accent-blue-transparent);
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        .hero {
+            margin-top: 80px;
+            padding: 6rem 2rem;
+            text-align: center;
+            background: linear-gradient(135deg, rgba(79, 209, 255, 0.1), rgba(168, 139, 255, 0.1));
+            position: relative;
+            overflow: hidden;
+            min-height: 80vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 70% 30%, rgba(79, 209, 255, 0.05) 0%, transparent 50%),
+                        radial-gradient(circle at 30% 70%, rgba(168, 139, 255, 0.05) 0%, transparent 50%);
+            z-index: -1;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            color: var(--current-text);
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            max-width: 900px;
+        }
+        
+        .hero h1 span {
+            background: linear-gradient(90deg, var(--accent-blue), var(--accent-teal));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .hero p {
+            font-size: 1.4rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            color: var(--current-text-secondary);
+        }
+        
+        .hero-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .safe-indicator {
+            position: absolute;
+            top: 1.5rem;
+            right: 2rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--accent-green-transparent);
+            color: var(--accent-green);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            border: 1px solid var(--accent-green);
+            backdrop-filter: blur(10px);
+        }
+
+        /* Features Section */
+        .features {
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: var(--current-text);
+        }
+        
+        .section-title span {
+            color: var(--current-accent);
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .feature-card {
+            background-color: var(--current-card);
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border: 1px solid var(--current-border);
+            transition: transform 0.3s;
+            text-align: center;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        }
+        
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            color: var(--current-accent);
+        }
+        
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--current-text);
+        }
+        
+        .feature-card p {
+            color: var(--current-text-secondary);
+            margin-bottom: 1.5rem;
+        }
+
+        /* Job Portals Section */
+        .job-portals {
+            background-color: var(--current-card);
+            border-radius: 15px;
+            padding: 3rem 2rem;
+            margin: 3rem auto;
+            max-width: 1200px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            border: 1px solid var(--current-border);
+        }
+
+        .portal-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .portal-card {
+            background: var(--current-bg);
+            padding: 1.5rem;
+            border-radius: 10px;
+            border: 1px solid var(--current-border);
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.3s ease;
+        }
+
+        .portal-card:hover {
+            background: linear-gradient(135deg, var(--accent-purple-transparent), var(--accent-teal-transparent));
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
+
+        .portal-name {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--current-accent);
+        }
+
+        .portal-description {
+            font-size: 0.9rem;
+            color: var(--current-text-secondary);
+        }
+
+        /* Full Screen Chat Modal */
+        .chat-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--current-bg);
+            z-index: 2000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .chat-modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .chat-header {
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-teal));
+            color: var(--current-bg);
+            padding: 1.5rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .chat-header-info {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .chat-avatar {
+            width: 50px;
+            height: 50px;
+            background: url('attached_assets/logo_1748060088583.png') center/contain no-repeat;
+            border-radius: 50%;
+            background-color: rgba(255,255,255,0.2);
+            padding: 8px;
+        }
+        
+        .chat-info h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+        
+        .chat-info p {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .chat-controls {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .chat-close {
+            background: none;
+            border: none;
+            color: var(--current-bg);
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+        
+        .chat-close:hover {
+            background: rgba(255,255,255,0.2);
+            transform: rotate(90deg);
+        }
+        
+        .chat-messages {
+            flex: 1;
+            padding: 2rem;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            background: linear-gradient(135deg, rgba(79, 209, 255, 0.02), rgba(168, 139, 255, 0.02));
+            max-height: calc(100vh - 200px);
+        }
+        
+        .message {
+            display: flex;
+            gap: 0.75rem;
+            animation: fadeInUp 0.3s ease;
+            max-width: 70%;
+        }
+        
+        .message.user {
+            flex-direction: row-reverse;
+            margin-left: auto;
+        }
+        
+        .message-avatar {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+            flex-shrink: 0;
+        }
+        
+        .message.bot .message-avatar {
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-teal));
+            color: var(--current-bg);
+        }
+        
+        .message.user .message-avatar {
+            background: var(--accent-purple);
+            color: var(--current-bg);
+        }
+        
+        .message-content {
+            padding: 1rem 1.25rem;
+            border-radius: 18px;
+            font-size: 0.95rem;
+            line-height: 1.5;
+            word-wrap: break-word;
+        }
+        
+        .message.bot .message-content {
+            background: var(--current-card);
+            color: var(--current-text);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            border: 1px solid var(--current-border);
+        }
+        
+        .message.user .message-content {
+            background: linear-gradient(135deg, var(--accent-purple), var(--accent-pink));
+            color: var(--current-bg);
+        }
+        
+        .chat-input-container {
+            padding: 2rem;
+            background: var(--current-card);
+            border-top: 1px solid var(--current-border);
+        }
+        
+        .chat-input-form {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .chat-input {
+            flex: 1;
+            padding: 1rem 1.5rem;
+            border: 2px solid var(--current-border);
+            border-radius: 25px;
+            outline: none;
+            font-size: 1rem;
+            background: var(--current-bg);
+            color: var(--current-text);
+            transition: all 0.3s ease;
+        }
+        
+        .chat-input:focus {
+            border-color: var(--current-accent);
+            box-shadow: 0 0 0 3px var(--accent-blue-transparent);
+        }
+        
+        .send-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-teal));
+            color: var(--current-bg);
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            font-size: 1.1rem;
+        }
+        
+        .send-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(79, 209, 255, 0.3);
+        }
+        
+        .send-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .suggestions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        
+        .suggestion-btn {
+            padding: 0.5rem 1rem;
+            border: 1px solid var(--current-border);
+            background: var(--current-bg);
+            color: var(--current-text-secondary);
+            border-radius: 20px;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .suggestion-btn:hover {
+            background: var(--current-accent);
+            color: var(--current-bg);
+            border-color: var(--current-accent);
+            transform: translateY(-2px);
+        }
+
+        /* Chat Toggle Button */
+        .chat-toggle {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-teal));
+            color: var(--current-bg);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            cursor: pointer;
+            box-shadow: 0 8px 25px rgba(79, 209, 255, 0.4);
+            z-index: 999;
+            transition: all 0.3s ease;
+        }
+        
+        .chat-toggle:hover {
+            transform: scale(1.1);
+            box-shadow: 0 10px 30px rgba(79, 209, 255, 0.5);
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(79, 209, 255, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(79, 209, 255, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(79, 209, 255, 0); }
+        }
+
+        /* Typing animation */
+        .typing-indicator {
+            display: flex;
+            gap: 0.25rem;
+            padding: 1rem 1.25rem;
+        }
+        
+        .typing-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--current-accent);
+            animation: typing 1.4s infinite;
+        }
+        
+        .typing-dot:nth-child(2) { animation-delay: 0.2s; }
+        .typing-dot:nth-child(3) { animation-delay: 0.4s; }
+        
+        @keyframes typing {
+            0%, 60%, 100% { transform: translateY(0); opacity: 0.4; }
+            30% { transform: translateY(-10px); opacity: 1; }
+        }
+        
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Enhanced Login Modal */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2500;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+        }
+        
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .modal-content {
+            background: var(--current-card);
+            border-radius: 16px;
+            padding: 2.5rem;
+            max-width: 450px;
+            width: 90%;
+            position: relative;
+            border: 1px solid var(--current-border);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+        }
+        
+        .modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: transparent;
+            border: none;
+            color: var(--current-text-secondary);
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .modal-close:hover {
+            color: var(--current-accent);
+            transform: rotate(90deg);
+        }
+        
+        .modal-title {
+            margin-bottom: 2rem;
+            color: var(--current-accent);
+            text-align: center;
+            font-size: 1.8rem;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--current-text);
+            font-weight: 500;
+        }
+        
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 1px solid var(--current-border);
+            border-radius: 8px;
+            background: var(--current-bg);
+            color: var(--current-text);
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .form-group input:focus, .form-group select:focus {
+            border-color: var(--current-accent);
+            outline: none;
+            box-shadow: 0 0 0 2px var(--accent-blue-transparent);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero p {
+                font-size: 1.2rem;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .chat-messages {
+                padding: 1rem;
+            }
+            
+            .chat-input-container {
+                padding: 1rem;
+            }
+            
+            .message {
+                max-width: 85%;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .portal-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .safe-indicator {
+                position: static;
+                margin-bottom: 2rem;
+            }
+
+            .language-selector {
+                flex-direction: column;
+                gap: 0.25rem;
+            }
+
+            .user-dashboard {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+        }
+
+        /* Accessibility */
+        .btn:focus, .chat-input:focus, .send-btn:focus, .suggestion-btn:focus {
+            outline: 2px solid var(--current-accent);
+            outline-offset: 2px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="logo">
+            <div class="logo-icon"></div>
+            <div class="logo-text">
+                <div class="logo-main">JobsForHer Foundation</div>
+                <div class="logo-sub">Delicational Journey</div>
+            </div>
+        </div>
+        
+        <div class="nav-buttons">
+            <div class="language-selector">
+                <button class="language-btn active" onclick="switchLanguage('en')" id="langEn">English</button>
+                <button class="language-btn" onclick="switchLanguage('hi')" id="langHi">हिंदी</button>
+            </div>
+            <button class="btn btn-outline" onclick="showLoginModal()" id="loginBtn" data-en="Login" data-hi="लॉगिन">Login</button>
+            <button class="btn btn-primary" onclick="showSignupModal()" id="signupBtn" data-en="Sign Up" data-hi="साइन अप">Sign Up</button>
+            <div class="user-dashboard" id="userDashboard" style="display: none;">
+                <div class="user-profile">
+                    <div class="user-avatar-header" id="userAvatar">U</div>
+                    <div class="user-info">
+                        <div class="user-name" id="userNameDisplay">User</div>
+                        <div class="user-role" data-en="Career Explorer" data-hi="करियर एक्सप्लोरर">Career Explorer</div>
+                    </div>
+                </div>
+                <button class="btn btn-outline" onclick="logoutUser()" id="logoutBtn">
+                    <i class="fas fa-sign-out-alt"></i> <span data-en="Logout" data-hi="लॉगआउट">Logout</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="safe-indicator">
+            <i class="fas fa-shield-alt"></i>
+            <span data-en="Safe Space - No Stereotypes, All Opportunities" data-hi="सुरक्षित स्थान - कोई रूढ़िवादिता नहीं, सभी अवसर">Safe Space - No Stereotypes, All Opportunities</span>
+        </div>
+        
+        <h1>
+            <span data-en="Empowering Indian Women in Their Career Journey" data-hi="भारतीय महिलाओं को उनकी करियर यात्रा में सशक्त बनाना">Empowering <span>Indian Women</span><br>
+            in Their Career Journey</span>
+        </h1>
+        
+        <p data-en="Get personalized career guidance, course recommendations, and mentorship opportunities. Break barriers, not stereotypes. Every career path is yours to explore." data-hi="व्यक्तिगत करियर मार्गदर्शन, कोर्स की सिफारिशें, और मेंटरशिप के अवसर पाएं। बाधाओं को तोड़ें, रूढ़िवादिता को नहीं। हर करियर पथ आपका है।">
+            Get personalized career guidance, course recommendations, and mentorship opportunities. 
+            Break barriers, not stereotypes. Every career path is yours to explore.
+        </p>
+        
+        <div class="hero-buttons">
+            <button class="btn btn-primary" onclick="openChatModal()">
+                <i class="fas fa-comments"></i> <span data-en="Start Career Chat" data-hi="करियर चैट शुरू करें">Start Career Chat</span>
+            </button>
+            <button class="btn btn-outline" onclick="showLoginModal()">
+                <i class="fas fa-users"></i> <span data-en="Join Community" data-hi="समुदाय में शामिल हों">Join Community</span>
+            </button>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <h2 class="section-title">
+            <span data-en="Your Career Companion" data-hi="आपका करियर साथी">Your Career <span>Companion</span></span>
+        </h2>
+        
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+                <h3 data-en="Course Recommendations" data-hi="कोर्स की सिफारिशें">Course Recommendations</h3>
+                <p data-en="Get personalized learning paths for any skill - from Java to leadership, data science to entrepreneurship." data-hi="किसी भी कौशल के लिए व्यक्तिगत शिक्षा पथ प्राप्त करें - जावा से लेकर नेतृत्व तक, डेटा साइंस से उद्यमिता तक।">Get personalized learning paths for any skill - from Java to leadership, data science to entrepreneurship.</p>
+                <button class="btn btn-outline" onclick="handleFeatureClick('I want to learn Java')">
+                    <i class="fas fa-play"></i> <span data-en="Explore Courses" data-hi="कोर्स देखें">Explore Courses</span>
+                </button>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-file-alt"></i>
+                </div>
+                <h3 data-en="AI Resume Builder" data-hi="AI रिज्यूमे बिल्डर">AI Resume Builder</h3>
+                <p data-en="Create professional resumes with AI assistance and expert guidance tailored for your industry." data-hi="अपने उद्योग के लिए AI सहायता और विशेषज्ञ मार्गदर्शन के साथ पेशेवर रिज्यूमे बनाएं।">Create professional resumes with AI assistance and expert guidance tailored for your industry.</p>
+                <button class="btn btn-outline" onclick="handleFeatureClick('Help me build a resume')">
+                    <i class="fas fa-edit"></i> <span data-en="Build Resume" data-hi="रिज्यूमे बनाएं">Build Resume</span>
+                </button>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-users"></i>
+                </div>
+                <h3 data-en="Mentorship Network" data-hi="मेंटरशिप नेटवर्क">Mentorship Network</h3>
+                <p data-en="Connect with experienced professionals and join communities of like-minded women." data-hi="अनुभवी पेशेवरों से जुड़ें और समान विचारधारा वाली महिलाओं के समुदाय में शामिल हों।">Connect with experienced professionals and join communities of like-minded women.</p>
+                <button class="btn btn-outline" onclick="handleFeatureClick('Find me a mentor')">
+                    <i class="fas fa-handshake"></i> <span data-en="Find Mentors" data-hi="मेंटर खोजें">Find Mentors</span>
+                </button>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-briefcase"></i>
+                </div>
+                <h3 data-en="Job Opportunities" data-hi="नौकरी के अवसर">Job Opportunities</h3>
+                <p data-en="Access women-focused job portals and career opportunities in all fields." data-hi="सभी क्षेत्रों में महिला-केंद्रित नौकरी पोर्टल और करियर के अवसरों तक पहुंच।">Access women-focused job portals and career opportunities in all fields.</p>
+                <button class="btn btn-outline" onclick="handleFeatureClick('Show me job opportunities')">
+                    <i class="fas fa-search"></i> <span data-en="Find Jobs" data-hi="नौकरी खोजें">Find Jobs</span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Job Portals Section -->
+    <section class="job-portals">
+        <h2 class="section-title" data-en="Women-Focused Job Portals" data-hi="महिला-केंद्रित नौकरी पोर्टल">Women-Focused Job Portals</h2>
+        <div class="portal-grid">
+            <a href="https://www.naukri.com/women-jobs" target="_blank" class="portal-card">
+                <div class="portal-name">
+                    <i class="fas fa-briefcase"></i> Naukri Women Jobs
+                </div>
+                <div class="portal-description" data-en="Dedicated job section for women professionals across all industries" data-hi="सभी उद्योगों में महिला पेशेवरों के लिए समर्पित नौकरी अनुभाग">Dedicated job section for women professionals across all industries</div>
+            </a>
+            <a href="https://www.gharsenaukri.com/" target="_blank" class="portal-card">
+                <div class="portal-name">
+                    <i class="fas fa-home"></i> GharSeNaukri
+                </div>
+                <div class="portal-description" data-en="Work from home opportunities perfect for flexible careers" data-hi="लचीले करियर के लिए आदर्श घर से काम के अवसर">Work from home opportunities perfect for flexible careers</div>
+            </a>
+            <a href="https://in.linkedin.com/jobs/female-only-jobs" target="_blank" class="portal-card">
+                <div class="portal-name">
+                    <i class="fab fa-linkedin"></i> LinkedIn Female Jobs
+                </div>
+                <div class="portal-description" data-en="Professional network with female-focused opportunities" data-hi="महिला-केंद्रित अवसरों के साथ पेशेवर नेटवर्क">Professional network with female-focused opportunities</div>
+            </a>
+            <a href="https://www.herkey.com/" target="_blank" class="portal-card">
+                <div class="portal-name">
+                    <i class="fas fa-laptop"></i> Herkey
+                </div>
+                <div class="portal-description" data-en="Freelance and remote work platform with mentorship programs" data-hi="मेंटरशिप कार्यक्रमों के साथ फ्रीलांस और रिमोट वर्क प्लेटफॉर्म">Freelance and remote work platform with mentorship programs</div>
+            </a>
+            <a href="https://internshala.com/jobs-for-women/" target="_blank" class="portal-card">
+                <div class="portal-name">
+                    <i class="fas fa-graduation-cap"></i> Internshala Women
+                </div>
+                <div class="portal-description" data-en="Internships and jobs specifically designed for women" data-hi="महिलाओं के लिए विशेष रूप से डिज़ाइन की गई इंटर्नशिप और नौकरियां">Internships and jobs specifically designed for women</div>
+            </a>
+        </div>
+    </section>
+
+    <!-- Chat Toggle Button -->
+    <div class="chat-toggle" onclick="openChatModal()">
+        <i class="fas fa-comments"></i>
+    </div>
+
+    <!-- Full Screen Chat Modal -->
+    <div class="chat-modal" id="chatModal">
+        <div class="chat-header">
+            <div class="chat-header-info">
+                <div class="chat-avatar"></div>
+                <div class="chat-info">
+                    <h3 data-en="JobsForHer AI Assistant" data-hi="JobsForHer AI सहायक">JobsForHer AI Assistant</h3>
+                    <p data-en="Your personal career companion" data-hi="आपका व्यक्तिगत करियर साथी">Your personal career companion</p>
+                </div>
+            </div>
+            <div class="chat-controls">
+                <div class="language-selector">
+                    <button class="language-btn" onclick="switchChatLanguage('en')" id="chatLangEn">En</button>
+                    <button class="language-btn" onclick="switchChatLanguage('hi')" id="chatLangHi">हि</button>
+                </div>
+                <button class="chat-close" onclick="closeChatModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="chat-messages" id="chatMessages">
+            <div class="message bot">
+                <div class="message-avatar">
+                    <i class="fas fa-heart"></i>
+                </div>
+                <div class="message-content" id="welcomeMessage">
+                    Hello! I'm your JobsForHer AI companion. I'm here to help you with course recommendations, resume building, job search tips, and career guidance. I believe every career path is open to you - from technology to leadership, entrepreneurship to creative fields. How can I assist you today?
+                </div>
+            </div>
+        </div>
+
+        <div class="chat-input-container">
+            <form class="chat-input-form" onsubmit="sendMessage(event)">
+                <input 
+                    type="text" 
+                    class="chat-input" 
+                    id="messageInput"
+                    placeholder="Ask me anything about your career..."
+                    autocomplete="off"
+                >
+                <button type="submit" class="send-btn" id="sendBtn">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </form>
+            
+            <div class="suggestions">
+                <button class="suggestion-btn" onclick="sendSuggestion('I want to learn Java')" data-en="I want to learn Java" data-hi="मैं जावा सीखना चाहता हूं">I want to learn Java</button>
+                <button class="suggestion-btn" onclick="sendSuggestion('Help me build a resume')" data-en="Help me build a resume" data-hi="रिज्यूमे बनाने में मदद करें">Help me build a resume</button>
+                <button class="suggestion-btn" onclick="sendSuggestion('Find me a mentor')" data-en="Find me a mentor" data-hi="मुझे एक मेंटर खोजें">Find me a mentor</button>
+                <button class="suggestion-btn" onclick="sendSuggestion('Career change advice')" data-en="Career change advice" data-hi="करियर बदलाव की सलाह">Career change advice</button>
+                <button class="suggestion-btn" onclick="sendSuggestion('Show me job opportunities')" data-en="Show me job opportunities" data-hi="नौकरी के अवसर दिखाएं">Job opportunities</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Enhanced Login Modal -->
+    <div class="modal-overlay" id="loginModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeLoginModal()">
+                <i class="fas fa-times"></i>
+            </button>
+            <h2 class="modal-title" data-en="Welcome Back" data-hi="वापस स्वागत है">Welcome Back</h2>
+            <form onsubmit="loginUser(event)">
+                <div class="form-group">
+                    <label for="loginEmail" data-en="Email" data-hi="ईमेल">Email</label>
+                    <input type="email" id="loginEmail" placeholder="Enter your email" required>
+                </div>
+                <div class="form-group">
+                    <label for="loginPassword" data-en="Password" data-hi="पासवर्ड">Password</label>
+                    <input type="password" id="loginPassword" placeholder="Enter your password" required>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%;" data-en="Login" data-hi="लॉगिन">Login</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Enhanced Signup Modal -->
+    <div class="modal-overlay" id="signupModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeSignupModal()">
+                <i class="fas fa-times"></i>
+            </button>
+            <h2 class="modal-title" data-en="Join JobsForHer" data-hi="JobsForHer में शामिल हों">Join JobsForHer</h2>
+            <form onsubmit="signupUser(event)">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="signupFirstName" data-en="First Name" data-hi="पहला नाम">First Name</label>
+                        <input type="text" id="signupFirstName" placeholder="First Name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="signupLastName" data-en="Last Name" data-hi="अंतिम नाम">Last Name</label>
+                        <input type="text" id="signupLastName" placeholder="Last Name" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="signupEmail" data-en="Email" data-hi="ईमेल">Email</label>
+                    <input type="email" id="signupEmail" placeholder="Enter your email" required>
+                </div>
+                <div class="form-group">
+                    <label for="signupPassword" data-en="Password" data-hi="पासवर्ड">Password</label>
+                    <input type="password" id="signupPassword" placeholder="Create a password" required>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="signupAge" data-en="Age" data-hi="उम्र">Age</label>
+                        <input type="number" id="signupAge" placeholder="Age" min="16" max="100" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="signupEducation" data-en="Education" data-hi="शिक्षा">Education</label>
+                        <select id="signupEducation" required>
+                            <option value="">Select Education</option>
+                            <option value="high-school">High School</option>
+                            <option value="bachelors">Bachelor's Degree</option>
+                            <option value="masters">Master's Degree</option>
+                            <option value="phd">PhD</option>
+                            <option value="diploma">Diploma</option>
+                            <option value="certification">Professional Certification</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="signupField" data-en="Field of Interest" data-hi="रुचि का क्षेत्र">Field of Interest</label>
+                    <select id="signupField" required>
+                        <option value="">Select Field</option>
+                        <option value="technology">Technology</option>
+                        <option value="business">Business</option>
+                        <option value="healthcare">Healthcare</option>
+                        <option value="education">Education</option>
+                        <option value="creative">Creative Arts</option>
+                        <option value="finance">Finance</option>
+                        <option value="engineering">Engineering</option>
+                        <option value="marketing">Marketing</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%;" data-en="Sign Up" data-hi="साइन अप">Sign Up</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Global variables
+        let isLoggedIn = false;
+        let userProfile = {};
+        let chatHistory = [];
+        let currentLanguage = 'en';
+        let chatLanguage = 'en';
+
+        // Language translations
+        const translations = {
+            en: {
+                welcomeMessage: "Hello! I'm your JobsForHer AI companion. I'm here to help you with course recommendations, resume building, job search tips, and career guidance. I believe every career path is open to you - from technology to leadership, entrepreneurship to creative fields. How can I assist you today?",
+                inputPlaceholder: "Ask me anything about your career...",
+                thinking: "Thinking..."
+            },
+            hi: {
+                welcomeMessage: "नमस्ते! मैं आपका JobsForHer AI साथी हूं। मैं यहां कोर्स की सिफारिशों, रिज्यूमे बनाने, नौकरी खोजने की सुझाव, और करियर मार्गदर्शन में आपकी मदद करने के लिए हूं। मैं मानता हूं कि हर करियर पथ आपके लिए खुला है - प्रौद्योगिकी से लेकर नेतृत्व तक, उद्यमिता से रचनात्मक क्षेत्रों तक। आज मैं आपकी कैसे सहायता कर सकता हूं?",
+                inputPlaceholder: "अपने करियर के बारे में कुछ भी पूछें...",
+                thinking: "सोच रहा हूं..."
+            }
+        };
+
+        // Initialize app
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedSession = localStorage.getItem('jobsforher_session');
+            if (savedSession) {
+                const session = JSON.parse(savedSession);
+                isLoggedIn = true;
+                userProfile = session.userProfile;
+                chatHistory = session.chatHistory || [];
+                updateAuthUI();
+                loadChatHistory();
+            }
+            updateLanguage();
+        });
+
+        // Language functions
+        function switchLanguage(lang) {
+            currentLanguage = lang;
+            
+            // Update language buttons
+            document.querySelectorAll('.language-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            document.getElementById('lang' + lang.charAt(0).toUpperCase() + lang.slice(1)).classList.add('active');
+            
+            updateLanguage();
+        }
+
+        function switchChatLanguage(lang) {
+            chatLanguage = lang;
+            
+            // Update chat language buttons
+            document.querySelectorAll('#chatLangEn, #chatLangHi').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            document.getElementById('chatLang' + lang.charAt(0).toUpperCase() + lang.slice(1)).classList.add('active');
+            
+            // Update chat interface
+            document.getElementById('messageInput').placeholder = translations[lang].inputPlaceholder;
+            document.getElementById('welcomeMessage').textContent = translations[lang].welcomeMessage;
+        }
+
+        function updateLanguage() {
+            document.querySelectorAll('[data-' + currentLanguage + ']').forEach(element => {
+                const text = element.getAttribute('data-' + currentLanguage);
+                if (element.tagName === 'INPUT' && element.type === 'text') {
+                    element.placeholder = text;
+                } else if (element.children.length === 0) {
+                    element.textContent = text;
+                } else {
+                    // For elements with child elements, update only text nodes
+                    const walker = document.createTreeWalker(
+                        element,
+                        NodeFilter.SHOW_TEXT,
+                        null,
+                        false
+                    );
+                    const textNodes = [];
+                    let node;
+                    while(node = walker.nextNode()) {
+                        textNodes.push(node);
+                    }
+                    if (textNodes.length > 0) {
+                        textNodes[0].textContent = text;
+                    }
+                }
+            });
+        }
+
+        // Modal functions
+        function showLoginModal() {
+            document.getElementById('loginModal').classList.add('active');
+        }
+
+        function closeLoginModal() {
+            document.getElementById('loginModal').classList.remove('active');
+        }
+
+        function showSignupModal() {
+            document.getElementById('signupModal').classList.add('active');
+        }
+
+        function closeSignupModal() {
+            document.getElementById('signupModal').classList.remove('active');
+        }
+
+        // Authentication functions
+        function loginUser(event) {
+            event.preventDefault();
+            const email = document.getElementById('loginEmail').value.trim();
+            const password = document.getElementById('loginPassword').value.trim();
+            
+            if (email && password) {
+                // In a real app, you would validate credentials with a server
+                // For now, we'll simulate login by checking localStorage
+                const storedUser = localStorage.getItem('user_' + email);
+                if (storedUser) {
+                    const userData = JSON.parse(storedUser);
+                    if (userData.password === password) {
+                        isLoggedIn = true;
+                        userProfile = userData;
+                        const session = {
+                            userProfile: userProfile,
+                            loginTime: new Date().toISOString(),
+                            chatHistory: chatHistory
+                        };
+                        localStorage.setItem('jobsforher_session', JSON.stringify(session));
+                        updateAuthUI();
+                        closeLoginModal();
+                        
+                        // Check for pending message from feature buttons
+                        const pendingMessage = sessionStorage.getItem('pendingMessage');
+                        if (pendingMessage) {
+                            sessionStorage.removeItem('pendingMessage');
+                            openChatModal(pendingMessage);
+                        } else {
+                            addBotMessage(`Welcome back, ${userProfile.firstName}! I remember our previous conversations. How can I help you continue your career journey today?`);
+                        }
+                    } else {
+                        alert('Invalid password. Please try again.');
+                    }
+                } else {
+                    alert('No account found with this email. Please sign up first.');
+                }
+            }
+        }
+
+        function signupUser(event) {
+            event.preventDefault();
+            const firstName = document.getElementById('signupFirstName').value.trim();
+            const lastName = document.getElementById('signupLastName').value.trim();
+            const email = document.getElementById('signupEmail').value.trim();
+            const password = document.getElementById('signupPassword').value.trim();
+            const age = document.getElementById('signupAge').value;
+            const education = document.getElementById('signupEducation').value;
+            const field = document.getElementById('signupField').value;
+            
+            if (firstName && lastName && email && password && age && education && field) {
+                // Check if user already exists
+                if (localStorage.getItem('user_' + email)) {
+                    alert('An account with this email already exists. Please login instead.');
+                    return;
+                }
+                
+                isLoggedIn = true;
+                userProfile = {
+                    firstName: firstName,
+                    lastName: lastName,
+                    email: email,
+                    password: password, // In a real app, this would be hashed
+                    age: parseInt(age),
+                    education: education,
+                    field: field,
+                    signupTime: new Date().toISOString()
+                };
+                
+                // Store user data
+                localStorage.setItem('user_' + email, JSON.stringify(userProfile));
+                
+                const session = {
+                    userProfile: userProfile,
+                    signupTime: new Date().toISOString(),
+                    chatHistory: []
+                };
+                localStorage.setItem('jobsforher_session', JSON.stringify(session));
+                updateAuthUI();
+                closeSignupModal();
+                
+                // Check for pending message from feature buttons
+                const pendingMessage = sessionStorage.getItem('pendingMessage');
+                if (pendingMessage) {
+                    sessionStorage.removeItem('pendingMessage');
+                    openChatModal(pendingMessage);
+                } else {
+                    openChatModal();
+                    setTimeout(() => {
+                        addBotMessage(`Welcome to JobsForHer, ${userProfile.firstName}! I'm thrilled to be your career companion. Based on your interest in ${userProfile.field} and ${userProfile.education} background, I can provide personalized guidance. What would you like to explore first?`);
+                    }, 500);
+                }
+            }
+        }
+
+        function logoutUser() {
+            if (confirm("Are you sure you want to logout?")) {
+                isLoggedIn = false;
+                userProfile = {};
+                localStorage.removeItem('jobsforher_session');
+                updateAuthUI();
+                clearChat();
+                closeChatModal();
+            }
+        }
+
+        function updateAuthUI() {
+            const loginBtn = document.getElementById('loginBtn');
+            const signupBtn = document.getElementById('signupBtn');
+            const userDashboard = document.getElementById('userDashboard');
+            const userNameDisplay = document.getElementById('userNameDisplay');
+            const userAvatar = document.getElementById('userAvatar');
+
+            if (isLoggedIn) {
+                loginBtn.style.display = 'none';
+                signupBtn.style.display = 'none';
+                userDashboard.style.display = 'flex';
+                userNameDisplay.textContent = userProfile.firstName + ' ' + userProfile.lastName;
+                userAvatar.textContent = userProfile.firstName.charAt(0).toUpperCase();
+            } else {
+                loginBtn.style.display = 'block';
+                signupBtn.style.display = 'block';
+                userDashboard.style.display = 'none';
+            }
+        }
+
+        // Handle feature button clicks
+        function handleFeatureClick(message) {
+            if (!isLoggedIn) {
+                showLoginModal();
+                sessionStorage.setItem('pendingMessage', message);
+                return;
+            }
+            openChatModal(message);
+        }
+
+        // Chat modal functions
+        function openChatModal(initialMessage = '') {
+            document.getElementById('chatModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+            
+            if (initialMessage && isLoggedIn) {
+                setTimeout(() => {
+                    document.getElementById('messageInput').value = initialMessage;
+                    sendMessage(new Event('submit'));
+                }, 300);
+            } else if (initialMessage && !isLoggedIn) {
+                showLoginModal();
+                sessionStorage.setItem('pendingMessage', initialMessage);
+            }
+        }
+
+        function closeChatModal() {
+            document.getElementById('chatModal').classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Chat functionality
+        function sendMessage(event) {
+            event.preventDefault();
+            const input = document.getElementById('messageInput');
+            const message = input.value.trim();
+            
+            if (!message) return;
+            
+            if (!isLoggedIn) {
+                showLoginModal();
+                return;
+            }
+
+            addUserMessage(message);
+            input.value = '';
+            
+            showTypingIndicator();
+            
+            // Use Google API for responses
+            generateAIResponse(message).then(response => {
+                hideTypingIndicator();
+                addBotMessage(response);
+                saveChatHistory();
+            }).catch(error => {
+                hideTypingIndicator();
+                console.error('AI response error:', error);
+                addBotMessage("I'm sorry, I'm having trouble connecting right now. Let me give you some general guidance based on your question.");
+                saveChatHistory();
+            });
+        }
+
+        function sendSuggestion(suggestion) {
+            if (!isLoggedIn) {
+                showLoginModal();
+                return;
+            }
+            
+            document.getElementById('messageInput').value = suggestion;
+            sendMessage(new Event('submit'));
+        }
+
+        // AI Response using Google API
+        async function generateAIResponse(message) {
+            const GOOGLE_API_KEY = 'GOOGLE_API_KEY'; // This should be replaced with actual API key management
+            
+            const prompt = `You are JobsForHer AI, a career companion specifically designed to help Indian women with their career journey. User profile: ${JSON.stringify(userProfile)}. 
+
+            Respond in ${chatLanguage === 'hi' ? 'Hindi' : 'English'}.
+            
+            User message: ${message}
+            
+            Provide helpful career guidance focusing on:
+            1. Non-stereotypical career advice for ALL fields
+            2. Specific course recommendations with Indian pricing
+            3. Real job opportunities in India
+            4. Mentorship and networking advice
+            5. Resume and professional development tips
+            
+            Keep responses practical, empowering, and culturally relevant for Indian women.`;
+
+            try {
+                const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${GOOGLE_API_KEY}`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        contents: [{
+                            parts: [{
+                                text: prompt
+                            }]
+                        }]
+                    })
+                });
+
+                if (!response.ok) {
+                    throw new Error('API request failed');
+                }
+
+                const data = await response.json();
+                return data.candidates[0].content.parts[0].text;
+            } catch (error) {
+                console.error('Google API error:', error);
+                return getFallbackResponse(message);
+            }
+        }
+
+        // Fallback response system
+        function getFallbackResponse(message) {
+            const lowerMessage = message.toLowerCase();
+            
+            // Course recommendations
+            if (lowerMessage.includes('java')) {
+                return chatLanguage === 'hi' ? 
+                    'जावा एक बेहतरीन विकल्प है! यहाँ कुछ सुझाव हैं:\n\n• Oracle Java Certification - Coursera (₹3,999/महीना)\n• Java Programming Masterclass - Udemy (₹1,299)\n• Spring Framework - Pluralsight (₹1,500/महीना)\n\nक्या आप किसी विशिष्ट पाठ्यक्रम के बारे में और जानना चाहेंगे?' :
+                    'Great choice! Java is perfect for enterprise development. Here are top courses:\n\n• Oracle Java Certification - Coursera (₹3,999/month)\n• Java Programming Masterclass - Udemy (₹1,299)\n• Spring Framework - Pluralsight (₹1,500/month)\n\nWould you like specific guidance on any of these courses?';
+            }
+            
+            // Resume building
+            if (lowerMessage.includes('resume')) {
+                return chatLanguage === 'hi' ? 
+                    'मैं आपके रिज्यूमे बनाने में मदद कर सकता हूं! Resume-Now का उपयोग करें:\n🔗 https://www.resume-now.com/\n\nमुख्य सुझाव:\n• पेशेवर टेम्प्लेट चुनें\n• उपलब्धियों को संख्याओं के साथ दिखाएं\n• प्रत्येक नौकरी के लिए अनुकूलित करें' :
+                    'I\'d love to help you build a professional resume! Use Resume-Now:\n🔗 https://www.resume-now.com/\n\nKey tips:\n• Choose a clean, professional template\n• Quantify achievements with numbers\n• Tailor for each job application';
+            }
+            
+            // Default response
+            return chatLanguage === 'hi' ? 
+                `नमस्ते ${userProfile.firstName}! मैं आपकी करियर यात्रा में मदद करने के लिए यहाँ हूँ। आप कोर्स की सिफारिशें, नौकरी के अवसर, या करियर सलाह के बारे में पूछ सकते हैं।` :
+                `Hello ${userProfile.firstName}! I'm here to help with your career journey. I can assist with course recommendations, job opportunities, and career advice. What would you like to explore?`;
+        }
+
+        function addUserMessage(message) {
+            const chatMessages = document.getElementById('chatMessages');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = 'message user';
+            messageDiv.innerHTML = `
+                <div class="message-avatar">
+                    <i class="fas fa-user"></i>
+                </div>
+                <div class="message-content">${escapeHtml(message)}</div>
+            `;
+            chatMessages.appendChild(messageDiv);
+            scrollToBottom();
+            
+            chatHistory.push({
+                type: 'user',
+                content: message,
+                timestamp: new Date().toISOString()
+            });
+        }
+
+        function addBotMessage(message) {
+            const chatMessages = document.getElementById('chatMessages');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = 'message bot';
+            messageDiv.innerHTML = `
+                <div class="message-avatar">
+                    <i class="fas fa-heart"></i>
+                </div>
+                <div class="message-content">${formatBotMessage(message)}</div>
+            `;
+            chatMessages.appendChild(messageDiv);
+            scrollToBottom();
+            
+            chatHistory.push({
+                type: 'bot',
+                content: message,
+                timestamp: new Date().toISOString()
+            });
+        }
+
+        function showTypingIndicator() {
+            const chatMessages = document.getElementById('chatMessages');
+            const typingDiv = document.createElement('div');
+            typingDiv.className = 'message bot';
+            typingDiv.id = 'typingIndicator';
+            typingDiv.innerHTML = `
+                <div class="message-avatar">
+                    <i class="fas fa-heart"></i>
+                </div>
+                <div class="message-content">
+                    <div class="typing-indicator">
+                        <div class="typing-dot"></div>
+                        <div class="typing-dot"></div>
+                        <div class="typing-dot"></div>
+                    </div>
+                </div>
+            `;
+            chatMessages.appendChild(typingDiv);
+            scrollToBottom();
+        }
+
+        function hideTypingIndicator() {
+            const typingIndicator = document.getElementById('typingIndicator');
+            if (typingIndicator) {
+                typingIndicator.remove();
+            }
+        }
+
+        function scrollToBottom() {
+            const chatMessages = document.getElementById('chatMessages');
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        function clearChat() {
+            const chatMessages = document.getElementById('chatMessages');
+            chatMessages.innerHTML = `
+                <div class="message bot">
+                    <div class="message-avatar">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <div class="message-content">
+                        ${translations[chatLanguage].welcomeMessage}
+                    </div>
+                </div>
+            `;
+            chatHistory = [];
+        }
+
+        function loadChatHistory() {
+            const chatMessages = document.getElementById('chatMessages');
+            chatMessages.innerHTML = '';
+            
+            addBotMessage(`Welcome back, ${userProfile.firstName}! I remember our previous conversations. How can I help you continue your career journey today?`);
+            
+            chatHistory.forEach(msg => {
+                if (msg.type === 'user') {
+                    addUserMessage(msg.content);
+                } else {
+                    addBotMessage(msg.content);
+                }
+            });
+        }
+
+        function saveChatHistory() {
+            if (isLoggedIn) {
+                const session = JSON.parse(localStorage.getItem('jobsforher_session') || '{}');
+                session.chatHistory = chatHistory;
+                localStorage.setItem('jobsforher_session', JSON.stringify(session));
+            }
+        }
+
+        // Utility functions
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        function formatBotMessage(message) {
+            return message.replace(/\n/g, '<br>');
+        }
+
+        // Keyboard shortcuts
+        document.addEventListener('keydown', function(event) {
+            if ((event.ctrlKey || event.metaKey) && event.key === 'Enter') {
+                sendMessage(new Event('submit'));
+            }
+            
+            if (event.key === 'Escape') {
+                closeChatModal();
+                closeLoginModal();
+                closeSignupModal();
+            }
+        });
+
+        // Close modals when clicking outside
+        document.getElementById('chatModal').addEventListener('click', function(event) {
+            if (event.target === this) {
+                closeChatModal();
+            }
+        });
+
+        document.getElementById('loginModal').addEventListener('click', function(event) {
+            if (event.target === this) {
+                closeLoginModal();
+            }
+        });
+
+        document.getElementById('signupModal').addEventListener('click', function(event) {
+            if (event.target === this) {
+                closeSignupModal();
+            }
+        });
+    </script>
+</body>
+</html>
