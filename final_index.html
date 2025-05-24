@@ -151,31 +151,7 @@
             line-height: 1;
         }
 
-        .language-selector {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            background: var(--current-card);
-            padding: 0.5rem;
-            border-radius: 20px;
-            border: 1px solid var(--current-border);
-        }
 
-        .language-btn {
-            padding: 0.25rem 0.75rem;
-            border: none;
-            border-radius: 15px;
-            background: transparent;
-            color: var(--current-text-secondary);
-            font-size: 0.8rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .language-btn.active {
-            background: var(--accent-blue-transparent);
-            color: var(--current-accent);
-        }
         
         .btn {
             padding: 0.6rem 1.2rem;
@@ -831,22 +807,18 @@
         </div>
         
         <div class="nav-buttons">
-            <div class="language-selector">
-                <button class="language-btn active" onclick="switchLanguage('en')" id="langEn">English</button>
-                <button class="language-btn" onclick="switchLanguage('hi')" id="langHi">हिंदी</button>
-            </div>
-            <button class="btn btn-outline" onclick="showLoginModal()" id="loginBtn" data-en="Login" data-hi="लॉगिन">Login</button>
-            <button class="btn btn-primary" onclick="showSignupModal()" id="signupBtn" data-en="Sign Up" data-hi="साइन अप">Sign Up</button>
+            <button class="btn btn-outline" onclick="showLoginModal()" id="loginBtn">Login</button>
+            <button class="btn btn-primary" onclick="showSignupModal()" id="signupBtn">Sign Up</button>
             <div class="user-dashboard" id="userDashboard" style="display: none;">
                 <div class="user-profile">
                     <div class="user-avatar-header" id="userAvatar">U</div>
                     <div class="user-info">
                         <div class="user-name" id="userNameDisplay">User</div>
-                        <div class="user-role" data-en="Career Explorer" data-hi="करियर एक्सप्लोरर">Career Explorer</div>
+                        <div class="user-role">Career Explorer</div>
                     </div>
                 </div>
                 <button class="btn btn-outline" onclick="logoutUser()" id="logoutBtn">
-                    <i class="fas fa-sign-out-alt"></i> <span data-en="Logout" data-hi="लॉगआउट">Logout</span>
+                    <i class="fas fa-sign-out-alt"></i> <span>Logout</span>
                 </button>
             </div>
         </div>
@@ -856,25 +828,25 @@
     <section class="hero">
         <div class="safe-indicator">
             <i class="fas fa-shield-alt"></i>
-            <span data-en="Safe Space - No Stereotypes, All Opportunities" data-hi="सुरक्षित स्थान - कोई रूढ़िवादिता नहीं, सभी अवसर">Safe Space - No Stereotypes, All Opportunities</span>
+            <span>Safe Space - No Stereotypes, All Opportunities</span>
         </div>
         
         <h1>
-            <span data-en="Empowering Indian Women in Their Career Journey" data-hi="भारतीय महिलाओं को उनकी करियर यात्रा में सशक्त बनाना">Empowering <span>Indian Women</span><br>
-            in Their Career Journey</span>
+            Empowering <span>Indian Women</span><br>
+            in Their Career Journey
         </h1>
         
-        <p data-en="Get personalized career guidance, course recommendations, and mentorship opportunities. Break barriers, not stereotypes. Every career path is yours to explore." data-hi="व्यक्तिगत करियर मार्गदर्शन, कोर्स की सिफारिशें, और मेंटरशिप के अवसर पाएं। बाधाओं को तोड़ें, रूढ़िवादिता को नहीं। हर करियर पथ आपका है।">
+        <p>
             Get personalized career guidance, course recommendations, and mentorship opportunities. 
             Break barriers, not stereotypes. Every career path is yours to explore.
         </p>
         
         <div class="hero-buttons">
             <button class="btn btn-primary" onclick="openChatModal()">
-                <i class="fas fa-comments"></i> <span data-en="Start Career Chat" data-hi="करियर चैट शुरू करें">Start Career Chat</span>
+                <i class="fas fa-comments"></i> <span>Start Career Chat</span>
             </button>
             <button class="btn btn-outline" onclick="showLoginModal()">
-                <i class="fas fa-users"></i> <span data-en="Join Community" data-hi="समुदाय में शामिल हों">Join Community</span>
+                <i class="fas fa-users"></i> <span>Join Community</span>
             </button>
         </div>
     </section>
@@ -882,7 +854,7 @@
     <!-- Features Section -->
     <section class="features">
         <h2 class="section-title">
-            <span data-en="Your Career Companion" data-hi="आपका करियर साथी">Your Career <span>Companion</span></span>
+            Your Career <span>Companion</span>
         </h2>
         
         <div class="features-grid">
@@ -890,10 +862,10 @@
                 <div class="feature-icon">
                     <i class="fas fa-graduation-cap"></i>
                 </div>
-                <h3 data-en="Course Recommendations" data-hi="कोर्स की सिफारिशें">Course Recommendations</h3>
-                <p data-en="Get personalized learning paths for any skill - from Java to leadership, data science to entrepreneurship." data-hi="किसी भी कौशल के लिए व्यक्तिगत शिक्षा पथ प्राप्त करें - जावा से लेकर नेतृत्व तक, डेटा साइंस से उद्यमिता तक।">Get personalized learning paths for any skill - from Java to leadership, data science to entrepreneurship.</p>
+                <h3>Course Recommendations</h3>
+                <p>Get personalized learning paths for any skill - from Java to leadership, data science to entrepreneurship.</p>
                 <button class="btn btn-outline" onclick="handleFeatureClick('I want to learn Java')">
-                    <i class="fas fa-play"></i> <span data-en="Explore Courses" data-hi="कोर्स देखें">Explore Courses</span>
+                    <i class="fas fa-play"></i> <span>Explore Courses</span>
                 </button>
             </div>
             
@@ -901,10 +873,10 @@
                 <div class="feature-icon">
                     <i class="fas fa-file-alt"></i>
                 </div>
-                <h3 data-en="AI Resume Builder" data-hi="AI रिज्यूमे बिल्डर">AI Resume Builder</h3>
-                <p data-en="Create professional resumes with AI assistance and expert guidance tailored for your industry." data-hi="अपने उद्योग के लिए AI सहायता और विशेषज्ञ मार्गदर्शन के साथ पेशेवर रिज्यूमे बनाएं।">Create professional resumes with AI assistance and expert guidance tailored for your industry.</p>
+                <h3>AI Resume Builder</h3>
+                <p>Create professional resumes with AI assistance and expert guidance tailored for your industry.</p>
                 <button class="btn btn-outline" onclick="handleFeatureClick('Help me build a resume')">
-                    <i class="fas fa-edit"></i> <span data-en="Build Resume" data-hi="रिज्यूमे बनाएं">Build Resume</span>
+                    <i class="fas fa-edit"></i> <span>Build Resume</span>
                 </button>
             </div>
             
@@ -912,10 +884,10 @@
                 <div class="feature-icon">
                     <i class="fas fa-users"></i>
                 </div>
-                <h3 data-en="Mentorship Network" data-hi="मेंटरशिप नेटवर्क">Mentorship Network</h3>
-                <p data-en="Connect with experienced professionals and join communities of like-minded women." data-hi="अनुभवी पेशेवरों से जुड़ें और समान विचारधारा वाली महिलाओं के समुदाय में शामिल हों।">Connect with experienced professionals and join communities of like-minded women.</p>
+                <h3>Mentorship Network</h3>
+                <p>Connect with experienced professionals and join communities of like-minded women.</p>
                 <button class="btn btn-outline" onclick="handleFeatureClick('Find me a mentor')">
-                    <i class="fas fa-handshake"></i> <span data-en="Find Mentors" data-hi="मेंटर खोजें">Find Mentors</span>
+                    <i class="fas fa-handshake"></i> <span>Find Mentors</span>
                 </button>
             </div>
             
@@ -923,10 +895,10 @@
                 <div class="feature-icon">
                     <i class="fas fa-briefcase"></i>
                 </div>
-                <h3 data-en="Job Opportunities" data-hi="नौकरी के अवसर">Job Opportunities</h3>
-                <p data-en="Access women-focused job portals and career opportunities in all fields." data-hi="सभी क्षेत्रों में महिला-केंद्रित नौकरी पोर्टल और करियर के अवसरों तक पहुंच।">Access women-focused job portals and career opportunities in all fields.</p>
+                <h3>Job Opportunities</h3>
+                <p>Access women-focused job portals and career opportunities in all fields.</p>
                 <button class="btn btn-outline" onclick="handleFeatureClick('Show me job opportunities')">
-                    <i class="fas fa-search"></i> <span data-en="Find Jobs" data-hi="नौकरी खोजें">Find Jobs</span>
+                    <i class="fas fa-search"></i> <span>Find Jobs</span>
                 </button>
             </div>
         </div>
@@ -934,37 +906,37 @@
 
     <!-- Job Portals Section -->
     <section class="job-portals">
-        <h2 class="section-title" data-en="Women-Focused Job Portals" data-hi="महिला-केंद्रित नौकरी पोर्टल">Women-Focused Job Portals</h2>
+        <h2 class="section-title">Women-Focused Job Portals</h2>
         <div class="portal-grid">
             <a href="https://www.naukri.com/women-jobs" target="_blank" class="portal-card">
                 <div class="portal-name">
                     <i class="fas fa-briefcase"></i> Naukri Women Jobs
                 </div>
-                <div class="portal-description" data-en="Dedicated job section for women professionals across all industries" data-hi="सभी उद्योगों में महिला पेशेवरों के लिए समर्पित नौकरी अनुभाग">Dedicated job section for women professionals across all industries</div>
+                <div class="portal-description">Dedicated job section for women professionals across all industries</div>
             </a>
             <a href="https://www.gharsenaukri.com/" target="_blank" class="portal-card">
                 <div class="portal-name">
                     <i class="fas fa-home"></i> GharSeNaukri
                 </div>
-                <div class="portal-description" data-en="Work from home opportunities perfect for flexible careers" data-hi="लचीले करियर के लिए आदर्श घर से काम के अवसर">Work from home opportunities perfect for flexible careers</div>
+                <div class="portal-description">Work from home opportunities perfect for flexible careers</div>
             </a>
             <a href="https://in.linkedin.com/jobs/female-only-jobs" target="_blank" class="portal-card">
                 <div class="portal-name">
                     <i class="fab fa-linkedin"></i> LinkedIn Female Jobs
                 </div>
-                <div class="portal-description" data-en="Professional network with female-focused opportunities" data-hi="महिला-केंद्रित अवसरों के साथ पेशेवर नेटवर्क">Professional network with female-focused opportunities</div>
+                <div class="portal-description">Professional network with female-focused opportunities</div>
             </a>
             <a href="https://www.herkey.com/" target="_blank" class="portal-card">
                 <div class="portal-name">
                     <i class="fas fa-laptop"></i> Herkey
                 </div>
-                <div class="portal-description" data-en="Freelance and remote work platform with mentorship programs" data-hi="मेंटरशिप कार्यक्रमों के साथ फ्रीलांस और रिमोट वर्क प्लेटफॉर्म">Freelance and remote work platform with mentorship programs</div>
+                <div class="portal-description">Freelance and remote work platform with mentorship programs</div>
             </a>
             <a href="https://internshala.com/jobs-for-women/" target="_blank" class="portal-card">
                 <div class="portal-name">
                     <i class="fas fa-graduation-cap"></i> Internshala Women
                 </div>
-                <div class="portal-description" data-en="Internships and jobs specifically designed for women" data-hi="महिलाओं के लिए विशेष रूप से डिज़ाइन की गई इंटर्नशिप और नौकरियां">Internships and jobs specifically designed for women</div>
+                <div class="portal-description">Internships and jobs specifically designed for women</div>
             </a>
         </div>
     </section>
@@ -980,15 +952,11 @@
             <div class="chat-header-info">
                 <div class="chat-avatar"></div>
                 <div class="chat-info">
-                    <h3 data-en="JobsForHer AI Assistant" data-hi="JobsForHer AI सहायक">JobsForHer AI Assistant</h3>
-                    <p data-en="Your personal career companion" data-hi="आपका व्यक्तिगत करियर साथी">Your personal career companion</p>
+                    <h3>JobsForHer AI Assistant</h3>
+                    <p>Your personal career companion</p>
                 </div>
             </div>
             <div class="chat-controls">
-                <div class="language-selector">
-                    <button class="language-btn" onclick="switchChatLanguage('en')" id="chatLangEn">En</button>
-                    <button class="language-btn" onclick="switchChatLanguage('hi')" id="chatLangHi">हि</button>
-                </div>
                 <button class="chat-close" onclick="closeChatModal()">
                     <i class="fas fa-times"></i>
                 </button>
@@ -1021,11 +989,11 @@
             </form>
             
             <div class="suggestions">
-                <button class="suggestion-btn" onclick="sendSuggestion('I want to learn Java')" data-en="I want to learn Java" data-hi="मैं जावा सीखना चाहता हूं">I want to learn Java</button>
-                <button class="suggestion-btn" onclick="sendSuggestion('Help me build a resume')" data-en="Help me build a resume" data-hi="रिज्यूमे बनाने में मदद करें">Help me build a resume</button>
-                <button class="suggestion-btn" onclick="sendSuggestion('Find me a mentor')" data-en="Find me a mentor" data-hi="मुझे एक मेंटर खोजें">Find me a mentor</button>
-                <button class="suggestion-btn" onclick="sendSuggestion('Career change advice')" data-en="Career change advice" data-hi="करियर बदलाव की सलाह">Career change advice</button>
-                <button class="suggestion-btn" onclick="sendSuggestion('Show me job opportunities')" data-en="Show me job opportunities" data-hi="नौकरी के अवसर दिखाएं">Job opportunities</button>
+                <button class="suggestion-btn" onclick="sendSuggestion('I want to learn Java')">I want to learn Java</button>
+                <button class="suggestion-btn" onclick="sendSuggestion('Help me build a resume')">Help me build a resume</button>
+                <button class="suggestion-btn" onclick="sendSuggestion('Find me a mentor')">Find me a mentor</button>
+                <button class="suggestion-btn" onclick="sendSuggestion('Career change advice')">Career change advice</button>
+                <button class="suggestion-btn" onclick="sendSuggestion('Show me job opportunities')">Job opportunities</button>
             </div>
         </div>
     </div>
@@ -1036,17 +1004,17 @@
             <button class="modal-close" onclick="closeLoginModal()">
                 <i class="fas fa-times"></i>
             </button>
-            <h2 class="modal-title" data-en="Welcome Back" data-hi="वापस स्वागत है">Welcome Back</h2>
+            <h2 class="modal-title">Welcome Back</h2>
             <form onsubmit="loginUser(event)">
                 <div class="form-group">
-                    <label for="loginEmail" data-en="Email" data-hi="ईमेल">Email</label>
+                    <label for="loginEmail">Email</label>
                     <input type="email" id="loginEmail" placeholder="Enter your email" required>
                 </div>
                 <div class="form-group">
-                    <label for="loginPassword" data-en="Password" data-hi="पासवर्ड">Password</label>
+                    <label for="loginPassword">Password</label>
                     <input type="password" id="loginPassword" placeholder="Enter your password" required>
                 </div>
-                <button type="submit" class="btn btn-primary" style="width: 100%;" data-en="Login" data-hi="लॉगिन">Login</button>
+                <button type="submit" class="btn btn-primary" style="width: 100%;">Login</button>
             </form>
         </div>
     </div>
@@ -1057,33 +1025,33 @@
             <button class="modal-close" onclick="closeSignupModal()">
                 <i class="fas fa-times"></i>
             </button>
-            <h2 class="modal-title" data-en="Join JobsForHer" data-hi="JobsForHer में शामिल हों">Join JobsForHer</h2>
+            <h2 class="modal-title">Join JobsForHer</h2>
             <form onsubmit="signupUser(event)">
                 <div class="form-row">
                     <div class="form-group">
-                        <label for="signupFirstName" data-en="First Name" data-hi="पहला नाम">First Name</label>
+                        <label for="signupFirstName">First Name</label>
                         <input type="text" id="signupFirstName" placeholder="First Name" required>
                     </div>
                     <div class="form-group">
-                        <label for="signupLastName" data-en="Last Name" data-hi="अंतिम नाम">Last Name</label>
+                        <label for="signupLastName">Last Name</label>
                         <input type="text" id="signupLastName" placeholder="Last Name" required>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="signupEmail" data-en="Email" data-hi="ईमेल">Email</label>
+                    <label for="signupEmail">Email</label>
                     <input type="email" id="signupEmail" placeholder="Enter your email" required>
                 </div>
                 <div class="form-group">
-                    <label for="signupPassword" data-en="Password" data-hi="पासवर्ड">Password</label>
+                    <label for="signupPassword">Password</label>
                     <input type="password" id="signupPassword" placeholder="Create a password" required>
                 </div>
                 <div class="form-row">
                     <div class="form-group">
-                        <label for="signupAge" data-en="Age" data-hi="उम्र">Age</label>
+                        <label for="signupAge">Age</label>
                         <input type="number" id="signupAge" placeholder="Age" min="16" max="100" required>
                     </div>
                     <div class="form-group">
-                        <label for="signupEducation" data-en="Education" data-hi="शिक्षा">Education</label>
+                        <label for="signupEducation">Education</label>
                         <select id="signupEducation" required>
                             <option value="">Select Education</option>
                             <option value="high-school">High School</option>
@@ -1096,7 +1064,7 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="signupField" data-en="Field of Interest" data-hi="रुचि का क्षेत्र">Field of Interest</label>
+                    <label for="signupField">Field of Interest</label>
                     <select id="signupField" required>
                         <option value="">Select Field</option>
                         <option value="technology">Technology</option>
@@ -1110,7 +1078,7 @@
                         <option value="other">Other</option>
                     </select>
                 </div>
-                <button type="submit" class="btn btn-primary" style="width: 100%;" data-en="Sign Up" data-hi="साइन अप">Sign Up</button>
+                <button type="submit" class="btn btn-primary" style="width: 100%;">Sign Up</button>
             </form>
         </div>
     </div>
@@ -1120,22 +1088,6 @@
         let isLoggedIn = false;
         let userProfile = {};
         let chatHistory = [];
-        let currentLanguage = 'en';
-        let chatLanguage = 'en';
-
-        // Language translations
-        const translations = {
-            en: {
-                welcomeMessage: "Hello! I'm your JobsForHer AI companion. I'm here to help you with course recommendations, resume building, job search tips, and career guidance. I believe every career path is open to you - from technology to leadership, entrepreneurship to creative fields. How can I assist you today?",
-                inputPlaceholder: "Ask me anything about your career...",
-                thinking: "Thinking..."
-            },
-            hi: {
-                welcomeMessage: "नमस्ते! मैं आपका JobsForHer AI साथी हूं। मैं यहां कोर्स की सिफारिशों, रिज्यूमे बनाने, नौकरी खोजने की सुझाव, और करियर मार्गदर्शन में आपकी मदद करने के लिए हूं। मैं मानता हूं कि हर करियर पथ आपके लिए खुला है - प्रौद्योगिकी से लेकर नेतृत्व तक, उद्यमिता से रचनात्मक क्षेत्रों तक। आज मैं आपकी कैसे सहायता कर सकता हूं?",
-                inputPlaceholder: "अपने करियर के बारे में कुछ भी पूछें...",
-                thinking: "सोच रहा हूं..."
-            }
-        };
 
         // Initialize app
         document.addEventListener('DOMContentLoaded', function() {
@@ -1148,62 +1100,7 @@
                 updateAuthUI();
                 loadChatHistory();
             }
-            updateLanguage();
         });
-
-        // Language functions
-        function switchLanguage(lang) {
-            currentLanguage = lang;
-            
-            // Update language buttons
-            document.querySelectorAll('.language-btn').forEach(btn => {
-                btn.classList.remove('active');
-            });
-            document.getElementById('lang' + lang.charAt(0).toUpperCase() + lang.slice(1)).classList.add('active');
-            
-            updateLanguage();
-        }
-
-        function switchChatLanguage(lang) {
-            chatLanguage = lang;
-            
-            // Update chat language buttons
-            document.querySelectorAll('#chatLangEn, #chatLangHi').forEach(btn => {
-                btn.classList.remove('active');
-            });
-            document.getElementById('chatLang' + lang.charAt(0).toUpperCase() + lang.slice(1)).classList.add('active');
-            
-            // Update chat interface
-            document.getElementById('messageInput').placeholder = translations[lang].inputPlaceholder;
-            document.getElementById('welcomeMessage').textContent = translations[lang].welcomeMessage;
-        }
-
-        function updateLanguage() {
-            document.querySelectorAll('[data-' + currentLanguage + ']').forEach(element => {
-                const text = element.getAttribute('data-' + currentLanguage);
-                if (element.tagName === 'INPUT' && element.type === 'text') {
-                    element.placeholder = text;
-                } else if (element.children.length === 0) {
-                    element.textContent = text;
-                } else {
-                    // For elements with child elements, update only text nodes
-                    const walker = document.createTreeWalker(
-                        element,
-                        NodeFilter.SHOW_TEXT,
-                        null,
-                        false
-                    );
-                    const textNodes = [];
-                    let node;
-                    while(node = walker.nextNode()) {
-                        textNodes.push(node);
-                    }
-                    if (textNodes.length > 0) {
-                        textNodes[0].textContent = text;
-                    }
-                }
-            });
-        }
 
         // Modal functions
         function showLoginModal() {
@@ -1427,8 +1324,6 @@
             
             const prompt = `You are JobsForHer AI, a career companion specifically designed to help Indian women with their career journey. User profile: ${JSON.stringify(userProfile)}. 
 
-            Respond in ${chatLanguage === 'hi' ? 'Hindi' : 'English'}.
-            
             User message: ${message}
             
             Provide helpful career guidance focusing on:
