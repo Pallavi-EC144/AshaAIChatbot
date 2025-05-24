@@ -1,0 +1,1371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="AshaAI - Empowering Indian Women in Tech with Career Discovery, Mentorship & Community">
+    <title>AshaAI - Your Career Companion</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            /* Professional Dark Theme */
+            --bg-dark: #0E0E10;
+            --card-dark: #1C1C1E;
+            --text-light: #F5F5F7;
+            --text-secondary: #9A9A9A;
+            --accent-blue: #4FD1FF;
+            --accent-green: #8FFFAB;
+            --accent-purple: #A88BFF;
+            --accent-teal: #4FE3C2;
+            --accent-pink: #FF7EB9;
+            --accent-orange: #FFA85C;
+            --accent-blue-transparent: rgba(79, 209, 255, 0.2);
+            --accent-purple-transparent: rgba(168, 139, 255, 0.2);
+            --accent-green-transparent: rgba(143, 255, 171, 0.2);
+            --accent-teal-transparent: rgba(79, 227, 194, 0.2);
+            
+            /* Current theme variables */
+            --current-bg: var(--bg-dark);
+            --current-card: var(--card-dark);
+            --current-text: var(--text-light);
+            --current-text-secondary: var(--text-secondary);
+            --current-accent: var(--accent-blue);
+            --current-border: rgba(245, 245, 247, 0.1);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', 'Segoe UI', sans-serif;
+            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
+        
+        body {
+            background-color: var(--current-bg);
+            color: var(--current-text);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        /* Header */
+        header {
+            background-color: var(--current-card);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid var(--current-border); 
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-teal));
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--current-bg);
+            font-size: 1.2rem;
+            filter: drop-shadow(0 0 5px var(--current-accent));
+        }
+        
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--current-text);
+        }
+        
+        .logo-text span {
+            color: var(--accent-purple);
+        }
+        
+        .nav-buttons {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+        
+        .btn {
+            padding: 0.6rem 1.2rem;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            border: none;
+            font-size: 0.9rem;
+        }
+        
+        .btn-outline {
+            border: 2px solid var(--current-accent);
+            color: var(--current-accent);
+            background: transparent;
+        }
+        
+        .btn-outline:hover {
+            background-color: var(--accent-blue-transparent);
+            box-shadow: 0 0 15px var(--accent-blue-transparent);
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-teal));
+            color: var(--current-bg);
+        }
+        
+        .btn-primary:hover {
+            box-shadow: 0 0 20px var(--accent-blue-transparent);
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        .hero {
+            margin-top: 80px;
+            padding: 6rem 2rem;
+            text-align: center;
+            background: linear-gradient(135deg, rgba(79, 209, 255, 0.1), rgba(168, 139, 255, 0.1));
+            position: relative;
+            overflow: hidden;
+            min-height: 80vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 70% 30%, rgba(79, 209, 255, 0.05) 0%, transparent 50%),
+                        radial-gradient(circle at 30% 70%, rgba(168, 139, 255, 0.05) 0%, transparent 50%);
+            z-index: -1;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            color: var(--current-text);
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            max-width: 900px;
+        }
+        
+        .hero h1 span {
+            background: linear-gradient(90deg, var(--accent-blue), var(--accent-teal));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .hero p {
+            font-size: 1.4rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            color: var(--current-text-secondary);
+        }
+        
+        .hero-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .safe-indicator {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--accent-green-transparent);
+            color: var(--accent-green);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            border: 1px solid var(--accent-green);
+        }
+
+        /* Features Section */
+        .features {
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: var(--current-text);
+        }
+        
+        .section-title span {
+            color: var(--current-accent);
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .feature-card {
+            background-color: var(--current-card);
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border: 1px solid var(--current-border);
+            transition: transform 0.3s;
+            text-align: center;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        }
+        
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            color: var(--current-accent);
+        }
+        
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--current-text);
+        }
+        
+        .feature-card p {
+            color: var(--current-text-secondary);
+            margin-bottom: 1.5rem;
+        }
+
+        /* Job Portals Section */
+        .job-portals {
+            background-color: var(--current-card);
+            border-radius: 15px;
+            padding: 3rem 2rem;
+            margin: 3rem auto;
+            max-width: 1200px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            border: 1px solid var(--current-border);
+        }
+
+        .portal-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .portal-card {
+            background: var(--current-bg);
+            padding: 1.5rem;
+            border-radius: 10px;
+            border: 1px solid var(--current-border);
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.3s ease;
+        }
+
+        .portal-card:hover {
+            background: linear-gradient(135deg, var(--accent-purple-transparent), var(--accent-teal-transparent));
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
+
+        .portal-name {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--current-accent);
+        }
+
+        .portal-description {
+            font-size: 0.9rem;
+            color: var(--current-text-secondary);
+        }
+
+        /* Large Chat Modal */
+        .chat-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            padding: 2rem;
+        }
+        
+        .chat-modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .chat-container {
+            background: var(--current-card);
+            border-radius: 16px;
+            width: 100%;
+            max-width: 1000px;
+            height: 80vh;
+            max-height: 700px;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+            border: 1px solid var(--current-border);
+            overflow: hidden;
+        }
+        
+        .chat-header {
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-teal));
+            color: var(--current-bg);
+            padding: 1.5rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .chat-header-info {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .chat-avatar {
+            width: 50px;
+            height: 50px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+        
+        .chat-info h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+        
+        .chat-info p {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+        
+        .chat-close {
+            background: none;
+            border: none;
+            color: var(--current-bg);
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+        
+        .chat-close:hover {
+            background: rgba(255,255,255,0.2);
+            transform: rotate(90deg);
+        }
+        
+        .chat-messages {
+            flex: 1;
+            padding: 2rem;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            background: linear-gradient(135deg, rgba(79, 209, 255, 0.02), rgba(168, 139, 255, 0.02));
+        }
+        
+        .message {
+            display: flex;
+            gap: 0.75rem;
+            animation: fadeInUp 0.3s ease;
+            max-width: 70%;
+        }
+        
+        .message.user {
+            flex-direction: row-reverse;
+            margin-left: auto;
+        }
+        
+        .message-avatar {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+            flex-shrink: 0;
+        }
+        
+        .message.bot .message-avatar {
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-teal));
+            color: var(--current-bg);
+        }
+        
+        .message.user .message-avatar {
+            background: var(--accent-purple);
+            color: var(--current-bg);
+        }
+        
+        .message-content {
+            padding: 1rem 1.25rem;
+            border-radius: 18px;
+            font-size: 0.95rem;
+            line-height: 1.5;
+            word-wrap: break-word;
+        }
+        
+        .message.bot .message-content {
+            background: var(--current-bg);
+            color: var(--current-text);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            border: 1px solid var(--current-border);
+        }
+        
+        .message.user .message-content {
+            background: linear-gradient(135deg, var(--accent-purple), var(--accent-pink));
+            color: var(--current-bg);
+        }
+        
+        .chat-input-container {
+            padding: 2rem;
+            background: var(--current-card);
+            border-top: 1px solid var(--current-border);
+        }
+        
+        .chat-input-form {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .chat-input {
+            flex: 1;
+            padding: 1rem 1.5rem;
+            border: 2px solid var(--current-border);
+            border-radius: 25px;
+            outline: none;
+            font-size: 1rem;
+            background: var(--current-bg);
+            color: var(--current-text);
+            transition: all 0.3s ease;
+        }
+        
+        .chat-input:focus {
+            border-color: var(--current-accent);
+            box-shadow: 0 0 0 3px var(--accent-blue-transparent);
+        }
+        
+        .send-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-teal));
+            color: var(--current-bg);
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            font-size: 1.1rem;
+        }
+        
+        .send-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(79, 209, 255, 0.3);
+        }
+        
+        .send-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .suggestions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        
+        .suggestion-btn {
+            padding: 0.5rem 1rem;
+            border: 1px solid var(--current-border);
+            background: var(--current-bg);
+            color: var(--current-text-secondary);
+            border-radius: 20px;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .suggestion-btn:hover {
+            background: var(--current-accent);
+            color: var(--current-bg);
+            border-color: var(--current-accent);
+            transform: translateY(-2px);
+        }
+
+        /* Chat Toggle Button */
+        .chat-toggle {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-teal));
+            color: var(--current-bg);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            cursor: pointer;
+            box-shadow: 0 8px 25px rgba(79, 209, 255, 0.4);
+            z-index: 999;
+            transition: all 0.3s ease;
+        }
+        
+        .chat-toggle:hover {
+            transform: scale(1.1);
+            box-shadow: 0 10px 30px rgba(79, 209, 255, 0.5);
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(79, 209, 255, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(79, 209, 255, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(79, 209, 255, 0); }
+        }
+
+        /* Typing animation */
+        .typing-indicator {
+            display: flex;
+            gap: 0.25rem;
+            padding: 1rem 1.25rem;
+        }
+        
+        .typing-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--current-accent);
+            animation: typing 1.4s infinite;
+        }
+        
+        .typing-dot:nth-child(2) { animation-delay: 0.2s; }
+        .typing-dot:nth-child(3) { animation-delay: 0.4s; }
+        
+        @keyframes typing {
+            0%, 60%, 100% { transform: translateY(0); opacity: 0.4; }
+            30% { transform: translateY(-10px); opacity: 1; }
+        }
+        
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Login Modal */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+        }
+        
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .modal-content {
+            background: var(--current-card);
+            border-radius: 16px;
+            padding: 2rem;
+            max-width: 400px;
+            width: 90%;
+            position: relative;
+            border: 1px solid var(--current-border);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+        }
+        
+        .modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: transparent;
+            border: none;
+            color: var(--current-text-secondary);
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .modal-close:hover {
+            color: var(--current-accent);
+            transform: rotate(90deg);
+        }
+        
+        .modal-title {
+            margin-bottom: 1.5rem;
+            color: var(--current-accent);
+            text-align: center;
+            font-size: 1.8rem;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--current-text);
+            font-weight: 500;
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 1px solid var(--current-border);
+            border-radius: 8px;
+            background: var(--current-bg);
+            color: var(--current-text);
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .form-group input:focus {
+            border-color: var(--current-accent);
+            outline: none;
+            box-shadow: 0 0 0 2px var(--accent-blue-transparent);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero p {
+                font-size: 1.2rem;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .chat-container {
+                width: 95%;
+                height: 85vh;
+                margin: 1rem;
+            }
+            
+            .chat-messages {
+                padding: 1rem;
+            }
+            
+            .chat-input-container {
+                padding: 1rem;
+            }
+            
+            .message {
+                max-width: 85%;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .portal-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Accessibility */
+        .btn:focus, .chat-input:focus, .send-btn:focus, .suggestion-btn:focus {
+            outline: 2px solid var(--current-accent);
+            outline-offset: 2px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="logo">
+            <div class="logo-icon">
+                <i class="fas fa-heart"></i>
+            </div>
+            <div class="logo-text">
+                Asha<span>AI</span>
+            </div>
+        </div>
+        
+        <div class="nav-buttons">
+            <button class="btn btn-outline" onclick="showLoginModal()" id="loginBtn">Login</button>
+            <button class="btn btn-primary" onclick="showSignupModal()" id="signupBtn">Sign Up</button>
+            <button class="btn btn-outline" onclick="logoutUser()" id="logoutBtn" style="display: none;">Logout</button>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="safe-indicator">
+            <i class="fas fa-shield-alt"></i>
+            <span>Safe Space - No Stereotypes, All Opportunities</span>
+        </div>
+        
+        <h1>
+            Empowering <span>Indian Women</span><br>
+            in Their Career Journey
+        </h1>
+        
+        <p>
+            Get personalized career guidance, course recommendations, and mentorship opportunities. 
+            Break barriers, not stereotypes. Every career path is yours to explore.
+        </p>
+        
+        <div class="hero-buttons">
+            <button class="btn btn-primary" onclick="openChatModal()">
+                <i class="fas fa-comments"></i> Start Career Chat
+            </button>
+            <button class="btn btn-outline" onclick="showLoginModal()">
+                <i class="fas fa-user-plus"></i> Join Community
+            </button>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <h2 class="section-title">
+            Your Career <span>Companion</span>
+        </h2>
+        
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+                <h3>Course Recommendations</h3>
+                <p>Get personalized learning paths for any skill - from Java to leadership, data science to entrepreneurship.</p>
+                <button class="btn btn-outline" onclick="handleFeatureClick('I want to learn Java')">
+                    <i class="fas fa-play"></i> Explore Courses
+                </button>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-file-alt"></i>
+                </div>
+                <h3>AI Resume Builder</h3>
+                <p>Create professional resumes with AI assistance and expert guidance tailored for your industry.</p>
+                <button class="btn btn-outline" onclick="handleFeatureClick('Help me build a resume')">
+                    <i class="fas fa-edit"></i> Build Resume
+                </button>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-users"></i>
+                </div>
+                <h3>Mentorship Network</h3>
+                <p>Connect with experienced professionals and join communities of like-minded women.</p>
+                <button class="btn btn-outline" onclick="handleFeatureClick('Find me a mentor')">
+                    <i class="fas fa-handshake"></i> Find Mentors
+                </button>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-briefcase"></i>
+                </div>
+                <h3>Job Opportunities</h3>
+                <p>Access women-focused job portals and career opportunities in all fields.</p>
+                <button class="btn btn-outline" onclick="handleFeatureClick('Show me job opportunities')">
+                    <i class="fas fa-search"></i> Find Jobs
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Job Portals Section -->
+    <section class="job-portals">
+        <h2 class="section-title">Women-Focused Job Portals</h2>
+        <div class="portal-grid">
+            <a href="https://www.naukri.com/women-jobs" target="_blank" class="portal-card">
+                <div class="portal-name">
+                    <i class="fas fa-briefcase"></i> Naukri Women Jobs
+                </div>
+                <div class="portal-description">Dedicated job section for women professionals across all industries</div>
+            </a>
+            <a href="https://www.gharsenaukri.com/" target="_blank" class="portal-card">
+                <div class="portal-name">
+                    <i class="fas fa-home"></i> GharSeNaukri
+                </div>
+                <div class="portal-description">Work from home opportunities perfect for flexible careers</div>
+            </a>
+            <a href="https://in.linkedin.com/jobs/female-only-jobs" target="_blank" class="portal-card">
+                <div class="portal-name">
+                    <i class="fab fa-linkedin"></i> LinkedIn Female Jobs
+                </div>
+                <div class="portal-description">Professional network with female-focused opportunities</div>
+            </a>
+            <a href="https://www.herkey.com/" target="_blank" class="portal-card">
+                <div class="portal-name">
+                    <i class="fas fa-laptop"></i> Herkey
+                </div>
+                <div class="portal-description">Freelance and remote work platform with mentorship programs</div>
+            </a>
+            <a href="https://internshala.com/jobs-for-women/" target="_blank" class="portal-card">
+                <div class="portal-name">
+                    <i class="fas fa-graduation-cap"></i> Internshala Women
+                </div>
+                <div class="portal-description">Internships and jobs specifically designed for women</div>
+            </a>
+        </div>
+    </section>
+
+    <!-- Chat Toggle Button -->
+    <div class="chat-toggle" onclick="openChatModal()">
+        <i class="fas fa-comments"></i>
+    </div>
+
+    <!-- Large Chat Modal -->
+    <div class="chat-modal" id="chatModal">
+        <div class="chat-container">
+            <div class="chat-header">
+                <div class="chat-header-info">
+                    <div class="chat-avatar">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <div class="chat-info">
+                        <h3>AshaAI Assistant</h3>
+                        <p>Your personal career companion</p>
+                    </div>
+                </div>
+                <button class="chat-close" onclick="closeChatModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+
+            <div class="chat-messages" id="chatMessages">
+                <div class="message bot">
+                    <div class="message-avatar">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <div class="message-content">
+                        Hello! I'm AshaAI, your career companion. I'm here to help you with course recommendations, resume building, job search tips, and career guidance. I believe every career path is open to you - from technology to leadership, entrepreneurship to creative fields. How can I assist you today?
+                    </div>
+                </div>
+            </div>
+
+            <div class="chat-input-container">
+                <form class="chat-input-form" onsubmit="sendMessage(event)">
+                    <input 
+                        type="text" 
+                        class="chat-input" 
+                        id="messageInput"
+                        placeholder="Ask me anything about your career..."
+                        autocomplete="off"
+                    >
+                    <button type="submit" class="send-btn" id="sendBtn">
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </form>
+                
+                <div class="suggestions">
+                    <button class="suggestion-btn" onclick="sendSuggestion('I want to learn Java')">I want to learn Java</button>
+                    <button class="suggestion-btn" onclick="sendSuggestion('Help me build a resume')">Help me build a resume</button>
+                    <button class="suggestion-btn" onclick="sendSuggestion('Find me a mentor')">Find me a mentor</button>
+                    <button class="suggestion-btn" onclick="sendSuggestion('Career change advice')">Career change advice</button>
+                    <button class="suggestion-btn" onclick="sendSuggestion('Show me job opportunities')">Job opportunities</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Login Modal -->
+    <div class="modal-overlay" id="loginModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeLoginModal()">
+                <i class="fas fa-times"></i>
+            </button>
+            <h2 class="modal-title">Welcome Back</h2>
+            <form onsubmit="loginUser(event)">
+                <div class="form-group">
+                    <label for="loginName">Your Name</label>
+                    <input type="text" id="loginName" placeholder="Enter your name" required>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%;">Login</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Signup Modal -->
+    <div class="modal-overlay" id="signupModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeSignupModal()">
+                <i class="fas fa-times"></i>
+            </button>
+            <h2 class="modal-title">Join AshaAI</h2>
+            <form onsubmit="signupUser(event)">
+                <div class="form-group">
+                    <label for="signupName">Your Name</label>
+                    <input type="text" id="signupName" placeholder="Enter your name" required>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%;">Sign Up</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // User session management
+        let isLoggedIn = false;
+        let userName = '';
+        let chatHistory = [];
+
+        // Initialize app
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedSession = localStorage.getItem('ashaai_session');
+            if (savedSession) {
+                const session = JSON.parse(savedSession);
+                isLoggedIn = true;
+                userName = session.name;
+                chatHistory = session.chatHistory || [];
+                updateAuthUI();
+                loadChatHistory();
+            }
+        });
+
+        // Modal functions
+        function showLoginModal() {
+            document.getElementById('loginModal').classList.add('active');
+        }
+
+        function closeLoginModal() {
+            document.getElementById('loginModal').classList.remove('active');
+        }
+
+        function showSignupModal() {
+            document.getElementById('signupModal').classList.add('active');
+        }
+
+        function closeSignupModal() {
+            document.getElementById('signupModal').classList.remove('active');
+        }
+
+        // Authentication functions
+        function loginUser(event) {
+            event.preventDefault();
+            const name = document.getElementById('loginName').value.trim();
+            if (name) {
+                isLoggedIn = true;
+                userName = name;
+                const session = {
+                    name: userName,
+                    loginTime: new Date().toISOString(),
+                    chatHistory: chatHistory
+                };
+                localStorage.setItem('ashaai_session', JSON.stringify(session));
+                updateAuthUI();
+                closeLoginModal();
+                
+                // Check for pending message from feature buttons
+                const pendingMessage = sessionStorage.getItem('pendingMessage');
+                if (pendingMessage) {
+                    sessionStorage.removeItem('pendingMessage');
+                    openChatModal(pendingMessage);
+                } else {
+                    addBotMessage(`Welcome back, ${userName}! I'm excited to continue helping you with your career journey. What would you like to explore today?`);
+                }
+            }
+        }
+
+        function signupUser(event) {
+            event.preventDefault();
+            const name = document.getElementById('signupName').value.trim();
+            if (name) {
+                isLoggedIn = true;
+                userName = name;
+                const session = {
+                    name: userName,
+                    signupTime: new Date().toISOString(),
+                    chatHistory: []
+                };
+                localStorage.setItem('ashaai_session', JSON.stringify(session));
+                updateAuthUI();
+                closeSignupModal();
+                
+                // Check for pending message from feature buttons
+                const pendingMessage = sessionStorage.getItem('pendingMessage');
+                if (pendingMessage) {
+                    sessionStorage.removeItem('pendingMessage');
+                    openChatModal(pendingMessage);
+                } else {
+                    openChatModal();
+                    setTimeout(() => {
+                        addBotMessage(`Welcome to AshaAI, ${userName}! I'm thrilled to be your career companion. I'm here to help you explore any career path - from STEM fields to entrepreneurship, creative industries to leadership roles. Every opportunity is yours to pursue. What interests you most?`);
+                    }, 500);
+                }
+            }
+        }
+
+        function logoutUser() {
+            if (confirm("Are you sure you want to logout?")) {
+                isLoggedIn = false;
+                userName = '';
+                localStorage.removeItem('ashaai_session');
+                updateAuthUI();
+                clearChat();
+                closeChatModal();
+            }
+        }
+
+        function updateAuthUI() {
+            const loginBtn = document.getElementById('loginBtn');
+            const signupBtn = document.getElementById('signupBtn');
+            const logoutBtn = document.getElementById('logoutBtn');
+
+            if (isLoggedIn) {
+                loginBtn.style.display = 'none';
+                signupBtn.style.display = 'none';
+                logoutBtn.style.display = 'block';
+                logoutBtn.innerHTML = `<i class="fas fa-sign-out-alt"></i> Logout (${userName})`;
+            } else {
+                loginBtn.style.display = 'block';
+                signupBtn.style.display = 'block';
+                logoutBtn.style.display = 'none';
+            }
+        }
+
+        // Handle feature button clicks
+        function handleFeatureClick(message) {
+            if (!isLoggedIn) {
+                showLoginModal();
+                // Store the message to send after login
+                sessionStorage.setItem('pendingMessage', message);
+                return;
+            }
+            openChatModal(message);
+        }
+
+        // Chat modal functions
+        function openChatModal(initialMessage = '') {
+            document.getElementById('chatModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+            
+            if (initialMessage && isLoggedIn) {
+                setTimeout(() => {
+                    document.getElementById('messageInput').value = initialMessage;
+                    sendMessage(new Event('submit'));
+                }, 300);
+            } else if (initialMessage && !isLoggedIn) {
+                showLoginModal();
+                sessionStorage.setItem('pendingMessage', initialMessage);
+            }
+        }
+
+        function closeChatModal() {
+            document.getElementById('chatModal').classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Chat functionality
+        function sendMessage(event) {
+            event.preventDefault();
+            const input = document.getElementById('messageInput');
+            const message = input.value.trim();
+            
+            if (!message) return;
+            
+            if (!isLoggedIn) {
+                showLoginModal();
+                return;
+            }
+
+            addUserMessage(message);
+            input.value = '';
+            
+            showTypingIndicator();
+            
+            setTimeout(() => {
+                hideTypingIndicator();
+                const response = generateResponse(message);
+                addBotMessage(response);
+                saveChatHistory();
+            }, 1000 + Math.random() * 2000);
+        }
+
+        function sendSuggestion(suggestion) {
+            if (!isLoggedIn) {
+                showLoginModal();
+                return;
+            }
+            
+            document.getElementById('messageInput').value = suggestion;
+            sendMessage(new Event('submit'));
+        }
+
+        function addUserMessage(message) {
+            const chatMessages = document.getElementById('chatMessages');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = 'message user';
+            messageDiv.innerHTML = `
+                <div class="message-avatar">
+                    <i class="fas fa-user"></i>
+                </div>
+                <div class="message-content">${escapeHtml(message)}</div>
+            `;
+            chatMessages.appendChild(messageDiv);
+            scrollToBottom();
+            
+            chatHistory.push({
+                type: 'user',
+                content: message,
+                timestamp: new Date().toISOString()
+            });
+        }
+
+        function addBotMessage(message) {
+            const chatMessages = document.getElementById('chatMessages');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = 'message bot';
+            messageDiv.innerHTML = `
+                <div class="message-avatar">
+                    <i class="fas fa-heart"></i>
+                </div>
+                <div class="message-content">${formatBotMessage(message)}</div>
+            `;
+            chatMessages.appendChild(messageDiv);
+            scrollToBottom();
+            
+            chatHistory.push({
+                type: 'bot',
+                content: message,
+                timestamp: new Date().toISOString()
+            });
+        }
+
+        function showTypingIndicator() {
+            const chatMessages = document.getElementById('chatMessages');
+            const typingDiv = document.createElement('div');
+            typingDiv.className = 'message bot';
+            typingDiv.id = 'typingIndicator';
+            typingDiv.innerHTML = `
+                <div class="message-avatar">
+                    <i class="fas fa-heart"></i>
+                </div>
+                <div class="message-content">
+                    <div class="typing-indicator">
+                        <div class="typing-dot"></div>
+                        <div class="typing-dot"></div>
+                        <div class="typing-dot"></div>
+                    </div>
+                </div>
+            `;
+            chatMessages.appendChild(typingDiv);
+            scrollToBottom();
+        }
+
+        function hideTypingIndicator() {
+            const typingIndicator = document.getElementById('typingIndicator');
+            if (typingIndicator) {
+                typingIndicator.remove();
+            }
+        }
+
+        function scrollToBottom() {
+            const chatMessages = document.getElementById('chatMessages');
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        function clearChat() {
+            const chatMessages = document.getElementById('chatMessages');
+            chatMessages.innerHTML = `
+                <div class="message bot">
+                    <div class="message-avatar">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <div class="message-content">
+                        Hello! I'm AshaAI, your career companion. I'm here to help you with course recommendations, resume building, job search tips, and career guidance. I believe every career path is open to you - from technology to leadership, entrepreneurship to creative fields. How can I assist you today?
+                    </div>
+                </div>
+            `;
+            chatHistory = [];
+        }
+
+        function loadChatHistory() {
+            const chatMessages = document.getElementById('chatMessages');
+            chatMessages.innerHTML = '';
+            
+            addBotMessage(`Welcome back, ${userName}! Here's our previous conversation. How can I help you continue your career journey?`);
+            
+            chatHistory.forEach(msg => {
+                if (msg.type === 'user') {
+                    addUserMessage(msg.content);
+                } else {
+                    addBotMessage(msg.content);
+                }
+            });
+        }
+
+        function saveChatHistory() {
+            if (isLoggedIn) {
+                const session = JSON.parse(localStorage.getItem('ashaai_session') || '{}');
+                session.chatHistory = chatHistory;
+                localStorage.setItem('ashaai_session', JSON.stringify(session));
+            }
+        }
+
+        // AI Response Generation
+        function generateResponse(message) {
+            const lowerMessage = message.toLowerCase();
+            
+            // Course recommendations
+            const courseKeywords = {
+                'java': 'Great choice! Java is a powerful programming language used in enterprise applications, Android development, and web services. Here are some excellent courses:\n\n• Oracle Java Certification Course - Coursera\n• Java Programming Masterclass - Udemy\n• Spring Framework Tutorial - Pluralsight\n• Java for Beginners - Codecademy\n\nWould you like specific guidance on any of these courses or help planning your Java learning path?',
+                
+                'python': 'Python is fantastic for beginners and professionals alike! It\'s used in web development, data science, AI, and automation. Here are top recommendations:\n\n• Python for Data Science - Coursera\n• Complete Python Bootcamp - Udemy\n• Python Programming - edX\n• Django Web Development - Pluralsight\n\nWhat specific area interests you - web development, data science, or automation?',
+                
+                'javascript': 'JavaScript opens doors to modern web development! Here are excellent courses:\n\n• JavaScript Algorithms and Data Structures - freeCodeCamp\n• Modern JavaScript Course - Udemy\n• React.js Complete Guide - Coursera\n• Node.js Development - Pluralsight\n\nAre you interested in frontend, backend, or full-stack development?',
+                
+                'data science': 'Data science is an exciting field with incredible opportunities! Here are excellent courses:\n\n• Data Science Specialization - Coursera\n• Machine Learning A-Z - Udemy\n• Introduction to Data Science - edX\n• Python for Data Analysis - DataCamp\n\nWhat aspect interests you most - analytics, machine learning, or data visualization?',
+                
+                'web development': 'Web development offers endless creative and technical possibilities! Try these:\n\n• Full Stack Web Development - Coursera\n• The Complete Web Developer Course - Udemy\n• Modern Web Development - Pluralsight\n• Frontend Masters - Frontend Development\n\nDo you prefer designing user interfaces or working with databases and servers?'
+            };
+
+            for (const [skill, response] of Object.entries(courseKeywords)) {
+                if (lowerMessage.includes(skill)) {
+                    return response;
+                }
+            }
+
+            // Resume building
+            if (lowerMessage.includes('resume') || lowerMessage.includes('cv')) {
+                return `I\'d love to help you build a professional resume! For the best AI-powered resume building experience, I recommend:\n\n🔗 <a href="https://www.resume-now.com/" target="_blank" style="color: var(--accent-blue); text-decoration: underline;">Resume-Now</a>\n\n<strong>Expert Tips for Outstanding Resumes:</strong>\n• Choose a clean, professional template that matches your industry\n• Use powerful action verbs (achieved, led, implemented, designed, optimized)\n• Quantify your achievements with specific numbers and percentages\n• Tailor your resume to each job application\n• Keep it concise but comprehensive (1-2 pages)\n• Include relevant skills and certifications prominently\n• Proofread carefully - even small errors can hurt your chances\n\nWould you like specific advice for your field or help with any particular section?`;
+            }
+
+            // Mentorship
+            if (lowerMessage.includes('mentor')) {
+                return `Finding a mentor is one of the smartest moves for career growth! Here are excellent resources:\n\n🔗 <a href="https://www.herkey.com/" target="_blank" style="color: var(--accent-blue); text-decoration: underline;">Herkey</a> - They have fantastic mentorship programs specifically for women\n\n<strong>More Ways to Find Amazing Mentors:</strong>\n• Join professional women\'s communities and networks\n• Attend industry events and conferences (virtual or in-person)\n• Reach out respectfully to professionals on LinkedIn\n• Participate in women-in-tech organizations like Women Who Code\n• Look for internal mentorship programs at your current workplace\n• Join virtual networking events and workshops\n\nRemember: Most successful women are happy to help others! Would you like help crafting the perfect message to potential mentors?`;
+            }
+
+            // Job search
+            if (lowerMessage.includes('job') || lowerMessage.includes('career opportunities') || lowerMessage.includes('opportunities')) {
+                return `Here are the best job portals specifically designed to support women:\n\n🔗 <a href="https://www.naukri.com/women-jobs" target="_blank" style="color: var(--accent-blue);">Naukri Women Jobs</a> - Dedicated section for women professionals across all industries\n🔗 <a href="https://www.gharsenaukri.com/" target="_blank" style="color: var(--accent-blue);">GharSeNaukri</a> - Perfect for work-from-home opportunities\n🔗 <a href="https://in.linkedin.com/jobs/female-only-jobs" target="_blank" style="color: var(--accent-blue);">LinkedIn Female Jobs</a> - Professional networking with female-focused roles\n🔗 <a href="https://www.herkey.com/" target="_blank" style="color: var(--accent-blue);">Herkey</a> - Freelance, remote work, and mentorship programs\n🔗 <a href="https://internshala.com/jobs-for-women/" target="_blank" style="color: var(--accent-blue);">Internshala Women</a> - Great for internships and entry-level positions\n\nThese platforms prioritize creating inclusive, safe work environments. What type of role or industry interests you most?`;
+            }
+
+            // Personal questions - professional boundary
+            if (lowerMessage.includes('single') || lowerMessage.includes('married') || lowerMessage.includes('relationship') || lowerMessage.includes('are you single')) {
+                return `I\'m an AI assistant focused entirely on helping you with your career journey! My purpose is to provide professional guidance, course recommendations, and career advice. I\'m here to support your professional growth and help you explore all the amazing career possibilities out there. How can I help you advance your career today?`;
+            }
+
+            // Communities
+            if (lowerMessage.includes('community') || lowerMessage.includes('network')) {
+                return `Building a strong professional network is absolutely crucial for career success! Here are excellent ways to connect:\n\n<strong>Amazing Professional Communities:</strong>\n• Women Who Code - Global community for women in tech\n• AnitaB.org - Supporting women in computing and technology\n• Lean In Circles - Professional development and support groups\n• Industry-specific women\'s groups (ask me about your field!)\n\n<strong>Smart Networking Strategies:</strong>\n• Attend virtual and in-person networking events regularly\n• Join online forums and engage in professional discussions\n• Connect thoughtfully with professionals on LinkedIn\n• Participate in webinars, workshops, and industry conferences\n• Attend local meetups and professional gatherings\n\nWhat industry or field are you in? I can suggest more specific communities and networking opportunities!`;
+            }
+
+            // Career change advice
+            if (lowerMessage.includes('career change') || lowerMessage.includes('career advice') || lowerMessage.includes('transition')) {
+                return `Career transitions can be incredibly exciting opportunities for growth! Here\'s your strategic roadmap:\n\n<strong>Smart Steps for Successful Career Change:</strong>\n• Assess your transferable skills and unique strengths\n• Research your target industry thoroughly (trends, requirements, culture)\n• Network with professionals in your desired field\n• Gain relevant certifications or skills through online courses\n• Start with informational interviews to learn insider perspectives\n• Update your resume to highlight relevant experience\n• Be patient and persistent - meaningful transitions take time\n\n<strong>Remember This:</strong> Your unique perspective and diverse experience are incredible assets! Don\'t let anyone tell you certain careers aren\'t "for women" - every field benefits from talented, diverse professionals.\n\nWhat specific career change are you considering? I\'d love to help you create a personalized plan!`;
+            }
+
+            // Default responses with encouragement
+            const defaultResponses = [
+                `I\'m here to be your strongest career ally! I can help you with:\n\n• Course and skill recommendations for ANY field you\'re interested in\n• Resume building and optimization strategies\n• Job search tactics and accessing the best opportunities\n• Mentorship connections and professional networking\n• Career transition guidance and planning\n• Professional development advice and goal setting\n\nEvery single career path is open to you - technology, engineering, leadership, entrepreneurship, creative fields, healthcare, finance, and beyond. Your potential is limitless! What specific area would you like to explore together?`,
+                
+                `Your career potential is absolutely limitless! Whether you\'re passionate about STEM fields, business leadership, creative industries, social impact, or any other area, I\'m here to guide and support you every step of the way. What would you like to know more about?`,
+                
+                `I believe wholeheartedly in empowering women to pursue any career they\'re passionate about. No field is off-limits, and your unique perspective is a valuable asset everywhere you go. You have everything it takes to succeed! How can I help you take the next exciting step in your journey?`
+            ];
+
+            return defaultResponses[Math.floor(Math.random() * defaultResponses.length)];
+        }
+
+        // Utility functions
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        function formatBotMessage(message) {
+            return message.replace(/\n/g, '<br>');
+        }
+
+        // Keyboard shortcuts
+        document.addEventListener('keydown', function(event) {
+            if ((event.ctrlKey || event.metaKey) && event.key === 'Enter') {
+                sendMessage(new Event('submit'));
+            }
+            
+            // Close modal with Escape key
+            if (event.key === 'Escape') {
+                closeChatModal();
+                closeLoginModal();
+                closeSignupModal();
+            }
+        });
+
+        // Close modals when clicking outside
+        document.getElementById('chatModal').addEventListener('click', function(event) {
+            if (event.target === this) {
+                closeChatModal();
+            }
+        });
+
+        document.getElementById('loginModal').addEventListener('click', function(event) {
+            if (event.target === this) {
+                closeLoginModal();
+            }
+        });
+
+        document.getElementById('signupModal').addEventListener('click', function(event) {
+            if (event.target === this) {
+                closeSignupModal();
+            }
+        });
+    </script>
+</body>
+</html>
