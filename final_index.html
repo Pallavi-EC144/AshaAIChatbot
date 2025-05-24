@@ -777,11 +777,6 @@
                 margin-bottom: 2rem;
             }
 
-            .language-selector {
-                flex-direction: column;
-                gap: 0.25rem;
-            }
-
             .user-dashboard {
                 flex-direction: column;
                 gap: 0.5rem;
@@ -1368,22 +1363,16 @@
             
             // Course recommendations
             if (lowerMessage.includes('java')) {
-                return chatLanguage === 'hi' ? 
-                    'जावा एक बेहतरीन विकल्प है! यहाँ कुछ सुझाव हैं:\n\n• Oracle Java Certification - Coursera (₹3,999/महीना)\n• Java Programming Masterclass - Udemy (₹1,299)\n• Spring Framework - Pluralsight (₹1,500/महीना)\n\nक्या आप किसी विशिष्ट पाठ्यक्रम के बारे में और जानना चाहेंगे?' :
-                    'Great choice! Java is perfect for enterprise development. Here are top courses:\n\n• Oracle Java Certification - Coursera (₹3,999/month)\n• Java Programming Masterclass - Udemy (₹1,299)\n• Spring Framework - Pluralsight (₹1,500/month)\n\nWould you like specific guidance on any of these courses?';
+                return 'Great choice! Java is perfect for enterprise development. Here are top courses:\n\n• Oracle Java Certification - Coursera (₹3,999/month)\n• Java Programming Masterclass - Udemy (₹1,299)\n• Spring Framework - Pluralsight (₹1,500/month)\n\nWould you like specific guidance on any of these courses?';
             }
             
             // Resume building
             if (lowerMessage.includes('resume')) {
-                return chatLanguage === 'hi' ? 
-                    'मैं आपके रिज्यूमे बनाने में मदद कर सकता हूं! Resume-Now का उपयोग करें:\n🔗 https://www.resume-now.com/\n\nमुख्य सुझाव:\n• पेशेवर टेम्प्लेट चुनें\n• उपलब्धियों को संख्याओं के साथ दिखाएं\n• प्रत्येक नौकरी के लिए अनुकूलित करें' :
-                    'I\'d love to help you build a professional resume! Use Resume-Now:\n🔗 https://www.resume-now.com/\n\nKey tips:\n• Choose a clean, professional template\n• Quantify achievements with numbers\n• Tailor for each job application';
+                return 'I\'d love to help you build a professional resume! Use Resume-Now:\n🔗 https://www.resume-now.com/\n\nKey tips:\n• Choose a clean, professional template\n• Quantify achievements with numbers\n• Tailor for each job application';
             }
             
             // Default response
-            return chatLanguage === 'hi' ? 
-                `नमस्ते ${userProfile.firstName}! मैं आपकी करियर यात्रा में मदद करने के लिए यहाँ हूँ। आप कोर्स की सिफारिशें, नौकरी के अवसर, या करियर सलाह के बारे में पूछ सकते हैं।` :
-                `Hello ${userProfile.firstName}! I'm here to help with your career journey. I can assist with course recommendations, job opportunities, and career advice. What would you like to explore?`;
+            return `Hello ${userProfile.firstName || 'there'}! I'm here to help with your career journey. I can assist with course recommendations, job opportunities, and career advice. What would you like to explore?`;
         }
 
         function addUserMessage(message) {
