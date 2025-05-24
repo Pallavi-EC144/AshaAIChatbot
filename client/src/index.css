@@ -1,0 +1,205 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Light mode - matching design reference */
+  --background: 248 250 252; /* #F8FAFC - warm-gray */
+  --foreground: 45 45 45; /* #2D2D2D - text-dark */
+  --muted: 241 245 249; /* #F1F5F9 */
+  --muted-foreground: 106 106 106; /* #6A6A6A - text-secondary-light */
+  --popover: 255 255 255; /* #FFFFFF */
+  --popover-foreground: 45 45 45; /* #2D2D2D */
+  --card: 255 255 255; /* #FFFFFF */
+  --card-foreground: 45 45 45; /* #2D2D2D */
+  --border: 228 230 235; /* #E4E6EB - border-light */
+  --input: 228 230 235; /* #E4E6EB */
+  --primary: 107 70 193; /* #6B46C1 - purple-600 */
+  --primary-foreground: 255 255 255; /* #FFFFFF */
+  --secondary: 20 184 166; /* #14B8A6 - teal-600 */
+  --secondary-foreground: 255 255 255; /* #FFFFFF */
+  --accent: 224 231 255; /* #E0E7FF - lavender */
+  --accent-foreground: 107 70 193; /* #6B46C1 */
+  --destructive: 239 68 68; /* #EF4444 */
+  --destructive-foreground: 255 255 255; /* #FFFFFF */
+  --ring: 107 70 193; /* #6B46C1 */
+  --radius: 0.5rem;
+}
+
+.dark {
+  --background: 14 14 16; /* #0E0E10 - bg-dark */
+  --foreground: 245 245 247; /* #F5F5F7 - text-light */
+  --muted: 28 28 30; /* #1C1C1E */
+  --muted-foreground: 154 154 154; /* #9A9A9A - text-secondary */
+  --popover: 28 28 30; /* #1C1C1E */
+  --popover-foreground: 245 245 247; /* #F5F5F7 */
+  --card: 28 28 30; /* #1C1C1E - card-dark */
+  --card-foreground: 245 245 247; /* #F5F5F7 */
+  --border: 245 245 247 0.1; /* rgba(245, 245, 247, 0.1) */
+  --input: 245 245 247 0.1; /* rgba(245, 245, 247, 0.1) */
+  --primary: 79 209 255; /* #4FD1FF - accent-blue */
+  --primary-foreground: 14 14 16; /* #0E0E10 */
+  --secondary: 79 227 194; /* #4FE3C2 - accent-teal */
+  --secondary-foreground: 14 14 16; /* #0E0E10 */
+  --accent: 28 28 30; /* #1C1C1E */
+  --accent-foreground: 245 245 247; /* #F5F5F7 */
+  --destructive: 220 38 38; /* #DC2626 */
+  --destructive-foreground: 245 245 247; /* #F5F5F7 */
+  --ring: 79 209 255; /* #4FD1FF */
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply font-sans antialiased bg-background text-foreground;
+    font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  }
+
+  /* Custom scrollbar for chat */
+  .chat-container::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .chat-container::-webkit-scrollbar-track {
+    @apply bg-gray-100;
+  }
+
+  .chat-container::-webkit-scrollbar-thumb {
+    @apply bg-gray-300 rounded-full;
+  }
+
+  .chat-container::-webkit-scrollbar-thumb:hover {
+    @apply bg-gray-400;
+  }
+
+  /* Smooth transitions */
+  * {
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  /* Gradient text utilities */
+  .gradient-text {
+    background: linear-gradient(90deg, rgb(107, 70, 193), rgb(20, 184, 166));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  /* Animated background gradients */
+  .hero-gradient {
+    background: linear-gradient(135deg, rgba(107, 70, 193, 0.1), rgba(20, 184, 166, 0.1));
+  }
+
+  /* Button hover effects */
+  .btn-gradient {
+    background: linear-gradient(135deg, rgb(107, 70, 193), rgb(20, 184, 166));
+    transition: all 0.3s ease;
+  }
+
+  .btn-gradient:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(107, 70, 193, 0.3);
+  }
+
+  /* Card hover effects */
+  .card-hover {
+    transition: all 0.3s ease;
+  }
+
+  .card-hover:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  }
+
+  /* Loading animation */
+  @keyframes pulse {
+    0%, 100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.5;
+    }
+  }
+
+  .animate-pulse {
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  /* Focus styles for accessibility */
+  .focus-ring {
+    @apply focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2;
+  }
+}
+
+/* Custom styles for better visual hierarchy */
+.section-title {
+  @apply text-3xl font-bold text-gray-900 mb-8;
+}
+
+.feature-card {
+  @apply bg-white rounded-xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100;
+}
+
+.nav-link {
+  @apply text-gray-700 hover:text-primary transition-colors duration-200 font-medium;
+}
+
+.nav-link:hover {
+  @apply text-primary;
+}
+
+/* Responsive typography */
+@media (max-width: 768px) {
+  .hero-title {
+    @apply text-3xl leading-tight;
+  }
+  
+  .section-title {
+    @apply text-2xl;
+  }
+}
+
+/* Chat message animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.message-enter {
+  animation: fadeInUp 0.3s ease-out;
+}
+
+/* Professional color palette matching design */
+.bg-primary-gradient {
+  background: linear-gradient(135deg, rgb(107, 70, 193), rgb(20, 184, 166));
+}
+
+.bg-accent-gradient {
+  background: linear-gradient(135deg, rgba(107, 70, 193, 0.1), rgba(20, 184, 166, 0.1));
+}
+
+.text-primary-gradient {
+  background: linear-gradient(90deg, rgb(107, 70, 193), rgb(20, 184, 166));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Safe space indicators */
+.safe-indicator {
+  @apply inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800;
+}
+
+/* Women-friendly visual elements */
+.empowerment-badge {
+  @apply inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-purple-100 text-purple-800;
+}
